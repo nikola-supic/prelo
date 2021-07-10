@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/back.png</file>
+    <file>images/hover_back.png</file>
+    <file>images/hover_logs.png</file>
+    <file>images/logs.png</file>
+    <file>images/chat.png</file>
+    <file>images/download.png</file>
+    <file>images/hover_chat.png</file>
+    <file>images/hover_download.png</file>
+    <file>images/hover_restart.png</file>
+    <file>images/hover_shutdown.png</file>
+    <file>images/restart.png</file>
+    <file>images/shutdown.png</file>
+  </qresource>
+</RCC>
