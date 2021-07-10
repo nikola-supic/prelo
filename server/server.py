@@ -103,7 +103,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.click_time = get_time()+1
         
         self.button_anim(self.btn_chat)
-        add_log('clicked chat button.')
+        add_log('Toggle chat system.')
 
 
     def toggle_download(self):
@@ -112,7 +112,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.click_time = get_time()+1
 
         self.button_anim(self.btn_download)
-        add_log('clicked download button.')
+        add_log('Toggle download music system.')
 
 
     def server_logs(self):
@@ -124,7 +124,8 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
 
 
     def server_shutdown(self):
-        global log_msgs
+        add_log('Shutting server down...')
+
         if len(log_msgs):
             time = datetime.now()
             time_str = f'{time.day:02d}_{time.month:02d}_{time.year} {time.hour:02d}_{time.minute:02d}_{time.second:02d}'
@@ -177,4 +178,5 @@ def add_log(msg):
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     window = ServerScreen()
+    add_log('Starting server up...')
     sys.exit(app.exec_())
