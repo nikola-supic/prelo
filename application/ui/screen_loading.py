@@ -75,7 +75,7 @@ class Ui_LoadingScreen(object):
         font.setFamily("Courier")
         font.setPointSize(14)
         self.label_description.setFont(font)
-        self.label_description.setStyleSheet("color: rgb(20, 92, 158);")
+        self.label_description.setStyleSheet("color: rgb(224,224,226);")
         self.label_description.setAlignment(QtCore.Qt.AlignCenter)
         self.label_description.setObjectName("label_description")
         self.label_title = QtWidgets.QLabel(self.widget)

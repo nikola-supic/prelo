@@ -1,11 +1,11 @@
 """
 DOCSTRING:
     colors
-    121212 - black - 18, 18, 18
-    145c9e - blue - 20, 92, 158
-    133758 - blue:hover - 19, 55, 88
-    132535 - blue:pressed - 19, 37, 53
-    e0e0e2 - white - 224, 224, 226
+    121212 - black - 18,18,18
+    145c9e - blue - 20,92,158
+    133758 - blue:hover - 19,55,88
+    132535 - blue:pressed - 19,37,53
+    e0e0e2 - white - 224,224,226
 
 """
 
@@ -154,15 +154,6 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
         # Close loading screen and open welcome screen
         if counter > 100:
             self.timer.stop()
-            self.widget.hide()
-
-            # self.resize(490, 440)
-            # qtRectangle = self.frameGeometry()
-            # center_point = QDesktopWidget().availableGeometry().center()
-            # qtRectangle.moveCenter(center_point)
-            # self.move(qtRectangle.topLeft())
-
-
             self.welcome = WelcomeScreen()
             self.close()
 

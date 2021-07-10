@@ -725,6 +725,33 @@ QPushButton:pressed {
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
+      <widget class="QLabel" name="label_login_4">
+       <property name="geometry">
+        <rect>
+         <x>205</x>
+         <y>45</y>
+         <width>251</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(224,224,226);</string>
+       </property>
+       <property name="text">
+        <string>СНАГА КРАЈИНЕ</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QLabel" name="app_bg">

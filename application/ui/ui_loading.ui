@@ -141,7 +141,7 @@ QProgressBar::chunk{
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(20, 92, 158);</string>
+        <string notr="true">color: rgb(224,224,226);</string>
        </property>
        <property name="text">
         <string>Радио снага крајине</string>
