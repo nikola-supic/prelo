@@ -142,7 +142,7 @@ QPushButton:pressed {
 }</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page_login">
         <widget class="QPushButton" name="btn_login">
@@ -223,6 +223,9 @@ QPushButton:pressed {
          <property name="placeholderText">
           <string>Лозинка</string>
          </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QLineEdit" name="login_username">
          <property name="geometry">
@@ -250,6 +253,9 @@ QPushButton:pressed {
          </property>
          <property name="placeholderText">
           <string>Корисничко име</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
          </property>
         </widget>
         <widget class="QLabel" name="label_login_2">
@@ -359,6 +365,9 @@ QPushButton:pressed {
          <property name="placeholderText">
           <string>Корисничко име</string>
          </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QPushButton" name="btn_to_login">
          <property name="geometry">
@@ -462,6 +471,9 @@ QPushButton:pressed {
          <property name="placeholderText">
           <string>Лозинка</string>
          </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QLineEdit" name="reg_first">
          <property name="geometry">
@@ -489,6 +501,9 @@ QPushButton:pressed {
          </property>
          <property name="placeholderText">
           <string>Име</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
          </property>
         </widget>
         <widget class="QLineEdit" name="reg_last">
@@ -518,6 +533,9 @@ QPushButton:pressed {
          <property name="placeholderText">
           <string>Презиме</string>
          </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QLineEdit" name="reg_email">
          <property name="geometry">
@@ -546,6 +564,9 @@ QPushButton:pressed {
          <property name="placeholderText">
           <string>Ваш мејл</string>
          </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QLineEdit" name="reg_pw_2">
          <property name="geometry">
@@ -573,6 +594,9 @@ QPushButton:pressed {
          </property>
          <property name="placeholderText">
           <string>Потвридте лозинку</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
          </property>
         </widget>
        </widget>
