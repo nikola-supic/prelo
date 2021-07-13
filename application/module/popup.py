@@ -45,7 +45,8 @@ class PopupScreen(QMainWindow, Ui_PopupScreen):
 
 
     def exit(self):
-        self.back.show()
+        if self.back is not None:
+            self.back.show()
         self.close()
 
 
