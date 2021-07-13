@@ -20,7 +20,7 @@ from ui.screen_loading import Ui_LoadingScreen
 from ui.screen_welcome import Ui_WelcomeScreen
 
 # Import the modules
-# from module.main_menu import MenuScreen
+from module.main_menu import MenuScreen
 # from module.popup import PopupError
 
 # Import database functions
@@ -50,9 +50,9 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
 
         # Events
         self.login_form = True
-        # self.btn_login.clicked.connect(self.login)
+        self.btn_login.clicked.connect(self.login)
         self.btn_to_register.clicked.connect(lambda: self.stacked_pages.setCurrentWidget(self.page_register))
-        # self.btn_register.clicked.connect(self.register)
+        self.btn_register.clicked.connect(self.register)
         self.btn_to_login.clicked.connect(lambda: self.stacked_pages.setCurrentWidget(self.page_login))
 
         self.btn_fb.clicked.connect(lambda: webbrowser.open(links['fb']))
@@ -88,40 +88,15 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
         QtCore.QTimer.singleShot(anim_time, lambda: self.widget.show())
 
 
-    """
     def register(self):
-        first_name = self.input_first.text()
-        last_name = self.input_last.text()
-        email = self.input_email_2.text()
-        password = self.input_pw_2.text()
-        confirm_pw = self.input_pw_3.text()
-
-        registered = db.check_register(first_name, last_name, email, password, confirm_pw)
-        if not registered:
-            self.popup = PopupError(self, 'You entered wrong information.', 'COULD NOT REGISTER')
-            self.close()
-        else:
-            global db_user
-            user = db.check_login(email, password)
-            db_user = user
-            self.menu = MenuScreen(user)
-            self.close()
+        self.menu = MenuScreen(db_user)
+        self.close()
 
 
     def login(self):
-        email = self.input_email.text()
-        password = self.input_pw.text()
+        self.menu = MenuScreen(db_user)
+        self.close()
 
-        user = db.check_login(email, password)
-        if not user:
-            self.popup = PopupError(self, 'Wrong username or password.', 'COULD NOT LOGIN')
-            self.close()
-        else:
-            global db_user
-            db_user = user
-            self.menu = MenuScreen(user)
-            self.close()
-    """
 
 # Loading screen
 class LoadingScreen(QMainWindow, Ui_LoadingScreen):
