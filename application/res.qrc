@@ -2,4 +2,22 @@
   <qresource prefix="images">
     <file>images/welcome_bg.png</file>
   </qresource>
+  <qresource prefix="menu">
+    <file>images/menu/admin.png</file>
+    <file>images/menu/chat.png</file>
+    <file>images/menu/friends.png</file>
+    <file>images/menu/hover_admin.png</file>
+    <file>images/menu/hover_chat.png</file>
+    <file>images/menu/hover_friends.png</file>
+    <file>images/menu/hover_info.png</file>
+    <file>images/menu/hover_play.png</file>
+    <file>images/menu/hover_search.png</file>
+    <file>images/menu/hover_settings.png</file>
+    <file>images/menu/hover_shutdown.png</file>
+    <file>images/menu/info.png</file>
+    <file>images/menu/play.png</file>
+    <file>images/menu/search.png</file>
+    <file>images/menu/settings.png</file>
+    <file>images/menu/shutdown.png</file>
+  </qresource>
 </RCC>
