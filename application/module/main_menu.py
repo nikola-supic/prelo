@@ -46,7 +46,7 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.play = PlayScreen(self, self.user)
+        self.play = PlayScreen(self)
         self.close()
 
 
@@ -55,7 +55,7 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.search = SearchScreen(self, self.user)
+        self.search = SearchScreen(self)
         self.close()
 
 
@@ -64,7 +64,7 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.friend = FriendScreen(self, self.user)
+        self.friend = FriendScreen(self)
         self.close()
 
 
@@ -73,7 +73,7 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.chat = ChatScreen(self, self.user)
+        self.chat = ChatScreen(self)
         self.close()
 
 
@@ -82,7 +82,7 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.settings = SettingsScreen(self, self.user)
+        self.settings = SettingsScreen(self)
         self.close()
 
 
@@ -91,7 +91,7 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.about = AboutScreen(self, self.user)
+        self.about = AboutScreen(self)
         self.close()
 
 

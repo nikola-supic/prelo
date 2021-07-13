@@ -10,11 +10,11 @@ from datetime import datetime
 
 # PLAY SCREEN
 class PlayScreen(QMainWindow, Ui_PlayScreen):
-    def __init__(self, last_screen, user):
+    def __init__(self, last_screen):
         super(PlayScreen, self).__init__()
         self.setupUi(self)
         self.back = last_screen
-        self.user = user
+        self.user = last_screen.user
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)

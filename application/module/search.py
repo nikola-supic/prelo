@@ -10,11 +10,11 @@ from datetime import datetime
 
 # SEARCH SCREEN
 class SearchScreen(QMainWindow, Ui_SearchScreen):
-    def __init__(self, last_screen, user):
+    def __init__(self, last_screen):
         super(SearchScreen, self).__init__()
         self.setupUi(self)
         self.back = last_screen
-        self.user = user
+        self.user = last_screen.user
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
