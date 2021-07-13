@@ -154,44 +154,6 @@ class Ui_PlayScreen(object):
         self.list_playlist.addItem(item)
         item = QtWidgets.QListWidgetItem()
         self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
         self.stacked_pages = QtWidgets.QStackedWidget(self.widget)
         self.stacked_pages.setGeometry(QtCore.QRect(130, 0, 340, 580))
         self.stacked_pages.setStyleSheet("QStackedWidget {\n"
@@ -201,7 +163,7 @@ class Ui_PlayScreen(object):
         self.page_songs = QtWidgets.QWidget()
         self.page_songs.setObjectName("page_songs")
         self.widget_current = QtWidgets.QWidget(self.page_songs)
-        self.widget_current.setGeometry(QtCore.QRect(0, 0, 340, 150))
+        self.widget_current.setGeometry(QtCore.QRect(0, 0, 340, 161))
         self.widget_current.setStyleSheet("")
         self.widget_current.setObjectName("widget_current")
         self.label_art = QtWidgets.QLabel(self.widget_current)
@@ -239,7 +201,7 @@ class Ui_PlayScreen(object):
         self.label_artist.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_artist.setObjectName("label_artist")
         self.horizontalSlider = QtWidgets.QSlider(self.widget_current)
-        self.horizontalSlider.setGeometry(QtCore.QRect(10, 125, 320, 15))
+        self.horizontalSlider.setGeometry(QtCore.QRect(10, 140, 320, 15))
         self.horizontalSlider.setStyleSheet("QSlider::groove:horizontal {\n"
 "    background-color: rgb(224,224,226);\n"
 "    height: 4px;\n"
@@ -259,21 +221,62 @@ class Ui_PlayScreen(object):
         self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setTickInterval(0)
         self.horizontalSlider.setObjectName("horizontalSlider")
-        self.pushButton = QtWidgets.QPushButton(self.widget_current)
-        self.pushButton.setGeometry(QtCore.QRect(80, 80, 31, 31))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.widget_current)
-        self.pushButton_2.setGeometry(QtCore.QRect(120, 80, 31, 31))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.widget_current)
-        self.pushButton_3.setGeometry(QtCore.QRect(160, 80, 31, 31))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(self.widget_current)
-        self.pushButton_4.setGeometry(QtCore.QRect(200, 80, 31, 31))
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.pushButton_5 = QtWidgets.QPushButton(self.widget_current)
-        self.pushButton_5.setGeometry(QtCore.QRect(240, 80, 31, 31))
-        self.pushButton_5.setObjectName("pushButton_5")
+        self.btn_shuffle = QtWidgets.QPushButton(self.widget_current)
+        self.btn_shuffle.setGeometry(QtCore.QRect(50, 90, 40, 40))
+        self.btn_shuffle.setStyleSheet("QPushButton#btn_shuffle {\n"
+"    border-image: url(:/play/images/play/shuffle.png);\n"
+"}\n"
+"QPushButton#btn_shuffle:hover {\n"
+"    border-image: url(:/play/images/play/hover_shuffle.png);\n"
+"}")
+        self.btn_shuffle.setText("")
+        self.btn_shuffle.setObjectName("btn_shuffle")
+        self.btn_previous = QtWidgets.QPushButton(self.widget_current)
+        self.btn_previous.setGeometry(QtCore.QRect(100, 90, 40, 40))
+        self.btn_previous.setStyleSheet("QPushButton#btn_previous {\n"
+"    border-image: url(:/play/images/play/previous.png);\n"
+"}\n"
+"QPushButton#btn_previous:hover {\n"
+"    border-image: url(:/play/images/play/hover_previous.png);\n"
+"}")
+        self.btn_previous.setText("")
+        self.btn_previous.setObjectName("btn_previous")
+        self.btn_play = QtWidgets.QPushButton(self.widget_current)
+        self.btn_play.setGeometry(QtCore.QRect(150, 90, 40, 40))
+        self.btn_play.setStyleSheet("QPushButton#btn_play {\n"
+"    border-image: url(:/play/images/play/play.png);\n"
+"}\n"
+"QPushButton#btn_play:hover {\n"
+"    border-image: url(:/play/images/play/hover_play.png);\n"
+"}")
+        self.btn_play.setText("")
+        self.btn_play.setObjectName("btn_play")
+        self.btn_next = QtWidgets.QPushButton(self.widget_current)
+        self.btn_next.setGeometry(QtCore.QRect(200, 90, 40, 40))
+        self.btn_next.setStyleSheet("QPushButton#btn_next {\n"
+"    border-image: url(:/play/images/play/next.png);\n"
+"}\n"
+"QPushButton#btn_next:hover {\n"
+"    border-image: url(:/play/images/play/hover_next.png);\n"
+"}")
+        self.btn_next.setText("")
+        self.btn_next.setObjectName("btn_next")
+        self.btn_repeat_all = QtWidgets.QPushButton(self.widget_current)
+        self.btn_repeat_all.setGeometry(QtCore.QRect(250, 90, 40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_repeat_all.setFont(font)
+        self.btn_repeat_all.setStyleSheet("QPushButton#btn_repeat_all {\n"
+"    border-image: url(:/play/images/play/repeat.png);\n"
+"    color: rgb(224,224,226);\n"
+"}\n"
+"QPushButton#btn_repeat_all:hover {\n"
+"    border-image: url(:/play/images/play/hover_repeat.png);\n"
+"}")
+        self.btn_repeat_all.setObjectName("btn_repeat_all")
         self.btn_back = QtWidgets.QPushButton(self.widget_current)
         self.btn_back.setGeometry(QtCore.QRect(300, 10, 30, 30))
         font = QtGui.QFont()
@@ -287,12 +290,48 @@ class Ui_PlayScreen(object):
 "}")
         self.btn_back.setText("")
         self.btn_back.setObjectName("btn_back")
+        self.btn_shuffle_off = QtWidgets.QPushButton(self.widget_current)
+        self.btn_shuffle_off.setGeometry(QtCore.QRect(50, 90, 40, 40))
+        self.btn_shuffle_off.setStyleSheet("QPushButton#btn_shuffle_off {\n"
+"    border-image: url(:/play/images/play/shuffle_off.png);\n"
+"}\n"
+"QPushButton#btn_shuffle_off:hover {\n"
+"    border-image: url(:/play/images/play/hover_shuffle_off.png);\n"
+"}")
+        self.btn_shuffle_off.setText("")
+        self.btn_shuffle_off.setObjectName("btn_shuffle_off")
+        self.btn_repeat_one = QtWidgets.QPushButton(self.widget_current)
+        self.btn_repeat_one.setGeometry(QtCore.QRect(250, 90, 40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_repeat_one.setFont(font)
+        self.btn_repeat_one.setStyleSheet("QPushButton#btn_repeat_one {\n"
+"    border-image: url(:/play/images/play/repeat.png);\n"
+"    color: rgb(224,224,226);\n"
+"}\n"
+"QPushButton#btn_repeat_one:hover {\n"
+"    border-image: url(:/play/images/play/hover_repeat.png);\n"
+"}")
+        self.btn_repeat_one.setObjectName("btn_repeat_one")
+        self.btn_pause = QtWidgets.QPushButton(self.widget_current)
+        self.btn_pause.setGeometry(QtCore.QRect(150, 90, 40, 40))
+        self.btn_pause.setStyleSheet("QPushButton#btn_pause {\n"
+"    border-image: url(:/play/images/play/pause.png);\n"
+"}\n"
+"QPushButton#btn_pause:hover {\n"
+"    border-image: url(:/play/images/play/hover_pause.png);\n"
+"}")
+        self.btn_pause.setText("")
+        self.btn_pause.setObjectName("btn_pause")
         self.widget_playlist = QtWidgets.QWidget(self.page_songs)
-        self.widget_playlist.setGeometry(QtCore.QRect(0, 150, 340, 420))
+        self.widget_playlist.setGeometry(QtCore.QRect(0, 159, 340, 411))
         self.widget_playlist.setStyleSheet("")
         self.widget_playlist.setObjectName("widget_playlist")
         self.list_songs = QtWidgets.QListWidget(self.widget_playlist)
-        self.list_songs.setGeometry(QtCore.QRect(10, 0, 320, 420))
+        self.list_songs.setGeometry(QtCore.QRect(10, 0, 320, 410))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(14)
@@ -350,56 +389,15 @@ class Ui_PlayScreen(object):
         item = self.list_playlist.item(0)
         item.setText(_translate("PlayScreen", "1"))
         item = self.list_playlist.item(1)
-        item.setText(_translate("PlayScreen", "2"))
+        item.setText(_translate("PlayScreen", "22"))
         item = self.list_playlist.item(2)
-        item.setText(_translate("PlayScreen", "3"))
-        item = self.list_playlist.item(3)
-        item.setText(_translate("PlayScreen", "4"))
-        item = self.list_playlist.item(4)
-        item.setText(_translate("PlayScreen", "5"))
-        item = self.list_playlist.item(5)
-        item.setText(_translate("PlayScreen", "6"))
-        item = self.list_playlist.item(6)
-        item.setText(_translate("PlayScreen", "7"))
-        item = self.list_playlist.item(7)
-        item.setText(_translate("PlayScreen", "7"))
-        item = self.list_playlist.item(8)
-        item.setText(_translate("PlayScreen", "88"))
-        item = self.list_playlist.item(9)
-        item.setText(_translate("PlayScreen", "8"))
-        item = self.list_playlist.item(10)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(11)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(12)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(13)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(14)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(15)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(16)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(17)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(18)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(19)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(20)
-        item.setText(_translate("PlayScreen", "New Item"))
-        item = self.list_playlist.item(21)
-        item.setText(_translate("PlayScreen", "New Item"))
+        item.setText(_translate("PlayScreen", "333"))
         self.list_playlist.setSortingEnabled(__sortingEnabled)
         self.label_art.setText(_translate("PlayScreen", "ART"))
         self.label_name.setText(_translate("PlayScreen", "Артис"))
         self.label_artist.setText(_translate("PlayScreen", "Пјесмица"))
-        self.pushButton.setText(_translate("PlayScreen", "<"))
-        self.pushButton_2.setText(_translate("PlayScreen", "<"))
-        self.pushButton_3.setText(_translate("PlayScreen", "="))
-        self.pushButton_4.setText(_translate("PlayScreen", ">"))
-        self.pushButton_5.setText(_translate("PlayScreen", "<"))
+        self.btn_repeat_all.setText(_translate("PlayScreen", "A"))
+        self.btn_repeat_one.setText(_translate("PlayScreen", "1"))
         __sortingEnabled = self.list_songs.isSortingEnabled()
         self.list_songs.setSortingEnabled(False)
         item = self.list_songs.item(0)
