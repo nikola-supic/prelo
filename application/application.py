@@ -21,7 +21,7 @@ from ui.screen_welcome import Ui_WelcomeScreen
 
 # Import the modules
 from module.main_menu import MenuScreen
-# from module.popup import PopupError
+from module.popup import PopupError
 
 # Import database functions
 import database as db
@@ -41,8 +41,8 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
         self.setupUi(self)
         self.frame_border.setGeometry(QtCore.QRect(0, 0, 0, 0))
         self.frame.setGeometry(QtCore.QRect(10, 10, 0, 0))
-        # self.input_email.setText('username')
-        # self.input_pw.setText('123456789')
+        self.login_username.setText('dzast_nikola')
+        self.login_pw.setText('123456789')
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -89,13 +89,38 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
 
 
     def register(self):
-        self.menu = MenuScreen(db_user)
-        self.close()
+        first_name = self.reg_first.text()
+        last_name = self.reg_last.text()
+        username = self.reg_username.text()
+        email = self.reg_email.text()
+        password = self.reg_pw.text()
+        confirm_pw = self.reg_pw_2.text()
+
+        registered = db.check_register(first_name, last_name, username, email, password, confirm_pw)
+        if not registered:
+            self.popup = PopupError(self, 'Неку од информација сте унијели погрешно.', 'Неуспјешна регистрација')
+            self.close()
+        else:
+            global db_user
+            user = db.check_login(username, password)
+            db_user = user
+            self.menu = MenuScreen(user)
+            self.close()
 
 
     def login(self):
-        self.menu = MenuScreen(db_user)
-        self.close()
+        username = self.login_username.text()
+        password = self.login_pw.text()
+
+        user = db.check_login(username, password)
+        if not user:
+            self.popup = PopupError(self, 'Погрешно корисничко име или лозинка.', 'Неуспјешна пријава')
+            self.close()
+        else:
+            global db_user
+            db_user = user
+            self.menu = MenuScreen(user)
+            self.close()
 
 
 # Loading screen

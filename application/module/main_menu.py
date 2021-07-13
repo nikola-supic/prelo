@@ -105,6 +105,8 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
         if self.click_time > get_time():
             return False
         self.click_time = get_time()+1
+        
+        self.user.user_quit()
         sys.exit()
 
 
