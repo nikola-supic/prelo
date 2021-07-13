@@ -2,6 +2,22 @@
   <qresource prefix="images">
     <file>images/welcome_bg.png</file>
   </qresource>
+  <qresource prefix="play">
+    <file>images/play/hover_next.png</file>
+    <file>images/play/hover_pause.png</file>
+    <file>images/play/hover_play.png</file>
+    <file>images/play/hover_previous.png</file>
+    <file>images/play/hover_shuffle.png</file>
+    <file>images/play/hover_shuffle_off.png</file>
+    <file>images/play/next.png</file>
+    <file>images/play/pause.png</file>
+    <file>images/play/play.png</file>
+    <file>images/play/previous.png</file>
+    <file>images/play/shuffle.png</file>
+    <file>images/play/hover_repeat.png</file>
+    <file>images/play/repeat.png</file>
+    <file>images/play/shuffle_off.png</file>
+  </qresource>
   <qresource prefix="menu">
     <file>images/menu/admin.png</file>
     <file>images/menu/chat.png</file>
