@@ -32,6 +32,7 @@ from social_media import links
 
 # Global variables
 counter = 0
+db_conn = False
 db_user = None
 
 # Welcome screen (login/register)
@@ -104,7 +105,7 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
             global db_user
             user = db.check_login(username, password)
             db_user = user
-            self.menu = MenuScreen(user)
+            self.menu = MenuScreen(user, True)
             self.close()
 
 
@@ -119,7 +120,7 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
         else:
             global db_user
             db_user = user
-            self.menu = MenuScreen(user)
+            self.menu = MenuScreen(user, True)
             self.close()
 
 
@@ -148,8 +149,18 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
 
 
     def progress(self):
-        global counter
+        global counter, db_conn, db_user
         self.progressBar.setValue(counter)
+
+        # Connect to db
+        if counter == 30:
+            db_conn = db.connect(database='prelo')
+            if not db_conn:
+                self.timer.stop()
+
+                self.menu = MenuScreen(db_user, False)
+                self.popup = PopupError(None, 'Неуспјешно повезивање са базом података.\nАпликацију можете користити у офлајн режиму рада.', 'Провјерите конекцију')
+                self.close()
 
         # Close loading screen and open welcome screen
         if counter > 100:

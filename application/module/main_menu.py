@@ -14,14 +14,16 @@ from module.friend import FriendScreen
 from module.chat import ChatScreen
 from module.settings import SettingsScreen
 from module.about import AboutScreen
+from module.popup import PopupWarning
 
 
 # MAIN SCREEN
 class MenuScreen(QMainWindow, Ui_MenuScreen):
-    def __init__(self, user):
+    def __init__(self, user, online):
         super(MenuScreen, self).__init__()
         self.setupUi(self)
         self.user = user
+        self.online = online
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -55,8 +57,12 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.search = SearchScreen(self)
-        self.close()
+        if self.online:
+            self.search = SearchScreen(self)
+            self.close()
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
 
 
     def friends(self):
@@ -64,8 +70,12 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.friend = FriendScreen(self)
-        self.close()
+        if self.online:
+            self.friend = FriendScreen(self)
+            self.close()
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
 
 
     def chat(self):
@@ -73,8 +83,12 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.chat = ChatScreen(self)
-        self.close()
+        if self.online:
+            self.chat = ChatScreen(self)
+            self.close()
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
 
 
     def settings(self):
@@ -82,8 +96,12 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.settings = SettingsScreen(self)
-        self.close()
+        if self.online:
+            self.settings = SettingsScreen(self)
+            self.close()
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
 
 
     def about(self):
@@ -91,8 +109,12 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
-        self.about = AboutScreen(self)
-        self.close()
+        if self.online:
+            self.about = AboutScreen(self)
+            self.close()
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
 
 
     def admin(self):
@@ -100,13 +122,22 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             return False
         self.click_time = get_time()+1
 
+        if self.online:
+            pass
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
+
+
+
 
     def shutdown(self):
         if self.click_time > get_time():
             return False
         self.click_time = get_time()+1
-        
-        self.user.user_quit()
+
+        if self.online:
+            self.user.user_quit()
         sys.exit()
 
 

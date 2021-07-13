@@ -6,17 +6,23 @@ DOCSTRING:
 from datetime import datetime, timedelta, date
 import mysql.connector
 
-try:
-    mydb = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        passwd='',
-        database='prelo'
-        )
-    mycursor = mydb.cursor(buffered=True)
-    print('[ + ] Successfully connected to database.')
-except mysql.connector.errors.InterfaceError: 
-    print('[ - ] Can not connect to database.')
+global mydb, mycursor
+
+def connect(host='localhost', user='root', password='', database=''):
+    try:
+        global mydb, mycursor
+        mydb = mysql.connector.connect(
+            host=host,
+            user=user,
+            passwd=password,
+            database=database
+            )
+        mycursor = mydb.cursor(buffered=True)
+        print('[ + ] Successfully connected to database.')
+        return True
+    except mysql.connector.errors.InterfaceError: 
+        print('[ - ] Can not connect to database.')
+        return False
 
 
 # user-related functions
