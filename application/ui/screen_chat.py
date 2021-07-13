@@ -199,7 +199,13 @@ class Ui_ChatScreen(object):
         font.setBold(False)
         font.setWeight(50)
         self.btn_send.setFont(font)
-        self.btn_send.setStyleSheet("")
+        self.btn_send.setStyleSheet("QPushButton#btn_send {\n"
+"    border-image: url(:/icons/images/icons/send.png);\n"
+"}\n"
+"QPushButton#btn_send:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_send.png);\n"
+"}")
+        self.btn_send.setText("")
         self.btn_send.setObjectName("btn_send")
         self.input_msg_3 = QtWidgets.QLineEdit(self.page_global)
         self.input_msg_3.setGeometry(QtCore.QRect(10, 460, 270, 40))
@@ -220,7 +226,13 @@ class Ui_ChatScreen(object):
         font.setBold(False)
         font.setWeight(50)
         self.btn_send_2.setFont(font)
-        self.btn_send_2.setStyleSheet("")
+        self.btn_send_2.setStyleSheet("QPushButton#btn_send_2 {\n"
+"    border-image: url(:/icons/images/icons/send.png);\n"
+"}\n"
+"QPushButton#btn_send_2:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_send.png);\n"
+"}")
+        self.btn_send_2.setText("")
         self.btn_send_2.setObjectName("btn_send_2")
         self.list_friend = QtWidgets.QListWidget(self.page_friend)
         self.list_friend.setGeometry(QtCore.QRect(10, 80, 320, 370))
@@ -276,7 +288,7 @@ class Ui_ChatScreen(object):
         ChatScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(ChatScreen)
-        self.stacked_pages.setCurrentIndex(0)
+        self.stacked_pages.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(ChatScreen)
 
     def retranslateUi(self, ChatScreen):
@@ -296,8 +308,6 @@ class Ui_ChatScreen(object):
         item = self.list_friends.item(2)
         item.setText(_translate("ChatScreen", "333"))
         self.list_friends.setSortingEnabled(__sortingEnabled)
-        self.btn_send.setText(_translate("ChatScreen", "Пошаљи"))
-        self.btn_send_2.setText(_translate("ChatScreen", "Пошаљи"))
         self.label_art.setText(_translate("ChatScreen", "ART"))
         self.label_name.setText(_translate("ChatScreen", "Артис"))
         self.label_user.setText(_translate("ChatScreen", "Пјесмица"))

@@ -352,7 +352,7 @@ QListWidget::item:selected {
 }</string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="page_global">
         <property name="styleSheet">
@@ -397,10 +397,15 @@ QListWidget::item:selected {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QPushButton#btn_send {
+	border-image: url(:/icons/images/icons/send.png);
+}
+QPushButton#btn_send:hover {
+	border-image: url(:/icons/images/icons/hover_send.png);
+}</string>
          </property>
          <property name="text">
-          <string>Пошаљи</string>
+          <string/>
          </property>
         </widget>
         <widget class="QLineEdit" name="input_msg_3">
@@ -442,10 +447,15 @@ QListWidget::item:selected {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QPushButton#btn_send_2 {
+	border-image: url(:/icons/images/icons/send.png);
+}
+QPushButton#btn_send_2:hover {
+	border-image: url(:/icons/images/icons/hover_send.png);
+}</string>
          </property>
          <property name="text">
-          <string>Пошаљи</string>
+          <string/>
          </property>
         </widget>
         <widget class="QListWidget" name="list_friend">
