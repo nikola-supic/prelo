@@ -2,6 +2,14 @@
   <qresource prefix="images">
     <file>images/welcome_bg.png</file>
   </qresource>
+  <qresource prefix="icons">
+    <file>images/icons/delete.png</file>
+    <file>images/icons/hover_delete.png</file>
+    <file>images/icons/hover_search.png</file>
+    <file>images/icons/hover_send.png</file>
+    <file>images/icons/search.png</file>
+    <file>images/icons/send.png</file>
+  </qresource>
   <qresource prefix="play">
     <file>images/play/hover_next.png</file>
     <file>images/play/hover_pause.png</file>
