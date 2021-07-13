@@ -112,7 +112,7 @@ class Ui_FriendScreen(object):
         self.options.setAlignment(QtCore.Qt.AlignCenter)
         self.options.setObjectName("options")
         self.friends = QtWidgets.QLabel(self.frame_left)
-        self.friends.setGeometry(QtCore.QRect(0, 80, 130, 40))
+        self.friends.setGeometry(QtCore.QRect(0, 120, 130, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -123,7 +123,7 @@ class Ui_FriendScreen(object):
         self.friends.setAlignment(QtCore.Qt.AlignCenter)
         self.friends.setObjectName("friends")
         self.list_friends = QtWidgets.QListWidget(self.frame_left)
-        self.list_friends.setGeometry(QtCore.QRect(0, 120, 130, 450))
+        self.list_friends.setGeometry(QtCore.QRect(0, 160, 130, 410))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         self.list_friends.setFont(font)
@@ -147,6 +147,16 @@ class Ui_FriendScreen(object):
         self.list_friends.addItem(item)
         item = QtWidgets.QListWidgetItem()
         self.list_friends.addItem(item)
+        self.btn_song_2 = QtWidgets.QPushButton(self.frame_left)
+        self.btn_song_2.setGeometry(QtCore.QRect(0, 80, 130, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_song_2.setFont(font)
+        self.btn_song_2.setStyleSheet("")
+        self.btn_song_2.setObjectName("btn_song_2")
         self.stacked_pages = QtWidgets.QStackedWidget(self.widget)
         self.stacked_pages.setGeometry(QtCore.QRect(130, 70, 340, 510))
         self.stacked_pages.setStyleSheet("QStackedWidget#stacked_pages {\n"
@@ -241,6 +251,126 @@ class Ui_FriendScreen(object):
         self.btn_add.setStyleSheet("")
         self.btn_add.setObjectName("btn_add")
         self.stacked_pages.addWidget(self.page_add)
+        self.page_request = QtWidgets.QWidget()
+        self.page_request.setStyleSheet("QPushButton#req_delete, #req_accept, #req_refuse {\n"
+"    background-color: rgb(20, 92, 158);\n"
+"    color: rgb(224, 224, 226);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton#req_delete:hover, #req_accept:hover, #req_refuse:hover {\n"
+"    background-color: rgb(19, 55, 88);\n"
+"}\n"
+"QPushButton#req_delete:pressed, #req_accept:pressed, #req_refuse:pressed {\n"
+"    background-color: rgb(19, 37, 53);\n"
+"}")
+        self.page_request.setObjectName("page_request")
+        self.req_delete = QtWidgets.QPushButton(self.page_request)
+        self.req_delete.setGeometry(QtCore.QRect(10, 210, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.req_delete.setFont(font)
+        self.req_delete.setStyleSheet("")
+        self.req_delete.setObjectName("req_delete")
+        self.list_sent = QtWidgets.QListWidget(self.page_request)
+        self.list_sent.setGeometry(QtCore.QRect(10, 30, 320, 171))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(12)
+        self.list_sent.setFont(font)
+        self.list_sent.setStyleSheet("QListWidget#list_sent {\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QListWidget::item:hover {\n"
+"    background-color: rgb(20,92,158);\n"
+"}\n"
+"QListWidget::item:selected {\n"
+"    background-color: rgb(19,55,88);\n"
+"}")
+        self.list_sent.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_sent.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_sent.setObjectName("list_sent")
+        item = QtWidgets.QListWidgetItem()
+        self.list_sent.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.list_sent.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.list_sent.addItem(item)
+        self.list_received = QtWidgets.QListWidget(self.page_request)
+        self.list_received.setGeometry(QtCore.QRect(10, 280, 320, 171))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(12)
+        self.list_received.setFont(font)
+        self.list_received.setStyleSheet("QListWidget#list_received {\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QListWidget::item:hover {\n"
+"    background-color: rgb(20,92,158);\n"
+"}\n"
+"QListWidget::item:selected {\n"
+"    background-color: rgb(19,55,88);\n"
+"}")
+        self.list_received.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_received.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_received.setObjectName("list_received")
+        item = QtWidgets.QListWidgetItem()
+        self.list_received.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.list_received.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.list_received.addItem(item)
+        self.req_accept = QtWidgets.QPushButton(self.page_request)
+        self.req_accept.setGeometry(QtCore.QRect(10, 460, 155, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.req_accept.setFont(font)
+        self.req_accept.setStyleSheet("")
+        self.req_accept.setObjectName("req_accept")
+        self.req_refuse = QtWidgets.QPushButton(self.page_request)
+        self.req_refuse.setGeometry(QtCore.QRect(175, 460, 155, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.req_refuse.setFont(font)
+        self.req_refuse.setStyleSheet("")
+        self.req_refuse.setObjectName("req_refuse")
+        self.friends_2 = QtWidgets.QLabel(self.page_request)
+        self.friends_2.setGeometry(QtCore.QRect(10, 0, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.friends_2.setFont(font)
+        self.friends_2.setStyleSheet("color: rgb(224, 224, 226);")
+        self.friends_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.friends_2.setObjectName("friends_2")
+        self.friends_3 = QtWidgets.QLabel(self.page_request)
+        self.friends_3.setGeometry(QtCore.QRect(10, 250, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.friends_3.setFont(font)
+        self.friends_3.setStyleSheet("color: rgb(224, 224, 226);")
+        self.friends_3.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.friends_3.setObjectName("friends_3")
+        self.stacked_pages.addWidget(self.page_request)
         self.page_friend = QtWidgets.QWidget()
         self.page_friend.setStyleSheet("QPushButton#btn_send, #btn_delete {\n"
 "    background-color: rgb(20, 92, 158);\n"
@@ -427,6 +557,7 @@ class Ui_FriendScreen(object):
         item = self.list_friends.item(2)
         item.setText(_translate("FriendScreen", "333"))
         self.list_friends.setSortingEnabled(__sortingEnabled)
+        self.btn_song_2.setText(_translate("FriendScreen", "Захтјеви"))
         __sortingEnabled = self.list_search.isSortingEnabled()
         self.list_search.setSortingEnabled(False)
         item = self.list_search.item(0)
@@ -438,6 +569,29 @@ class Ui_FriendScreen(object):
         self.list_search.setSortingEnabled(__sortingEnabled)
         self.input_name.setPlaceholderText(_translate("FriendScreen", "Корисничко име"))
         self.btn_add.setText(_translate("FriendScreen", "Пошаљи захтјев"))
+        self.req_delete.setText(_translate("FriendScreen", "Избришии"))
+        __sortingEnabled = self.list_sent.isSortingEnabled()
+        self.list_sent.setSortingEnabled(False)
+        item = self.list_sent.item(0)
+        item.setText(_translate("FriendScreen", "1"))
+        item = self.list_sent.item(1)
+        item.setText(_translate("FriendScreen", "22"))
+        item = self.list_sent.item(2)
+        item.setText(_translate("FriendScreen", "333"))
+        self.list_sent.setSortingEnabled(__sortingEnabled)
+        __sortingEnabled = self.list_received.isSortingEnabled()
+        self.list_received.setSortingEnabled(False)
+        item = self.list_received.item(0)
+        item.setText(_translate("FriendScreen", "1"))
+        item = self.list_received.item(1)
+        item.setText(_translate("FriendScreen", "22"))
+        item = self.list_received.item(2)
+        item.setText(_translate("FriendScreen", "333"))
+        self.list_received.setSortingEnabled(__sortingEnabled)
+        self.req_accept.setText(_translate("FriendScreen", "Прихвати"))
+        self.req_refuse.setText(_translate("FriendScreen", "Одбиј"))
+        self.friends_2.setText(_translate("FriendScreen", "Послати захтјеви"))
+        self.friends_3.setText(_translate("FriendScreen", "Примљени захтјеви"))
         self.input_msg.setPlaceholderText(_translate("FriendScreen", "Унесите поруку..."))
         self.label_playlist.setText(_translate("FriendScreen", "Албуми"))
         self.label_recent.setText(_translate("FriendScreen", "Недавно слушано"))
