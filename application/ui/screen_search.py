@@ -106,7 +106,7 @@ class Ui_SearchScreen(object):
         self.list_search.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_search.setObjectName("list_search")
         self.input_search = QtWidgets.QLineEdit(self.widget)
-        self.input_search.setGeometry(QtCore.QRect(10, 80, 330, 40))
+        self.input_search.setGeometry(QtCore.QRect(10, 80, 400, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(10)
@@ -125,14 +125,20 @@ class Ui_SearchScreen(object):
         self.input_search.setClearButtonEnabled(True)
         self.input_search.setObjectName("input_search")
         self.btn_search = QtWidgets.QPushButton(self.widget)
-        self.btn_search.setGeometry(QtCore.QRect(350, 80, 110, 40))
+        self.btn_search.setGeometry(QtCore.QRect(419, 80, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
         self.btn_search.setFont(font)
-        self.btn_search.setStyleSheet("")
+        self.btn_search.setStyleSheet("QPushButton#btn_search {\n"
+"    border-image: url(:/icons/images/icons/search.png);\n"
+"}\n"
+"QPushButton#btn_search:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_search.png);\n"
+"}")
+        self.btn_search.setText("")
         self.btn_search.setObjectName("btn_search")
         self.btn_add = QtWidgets.QPushButton(self.widget)
         self.btn_add.setGeometry(QtCore.QRect(10, 530, 450, 40))
@@ -172,6 +178,5 @@ class Ui_SearchScreen(object):
         self.app_name.setText(_translate("SearchScreen", "Прело"))
         self.label.setText(_translate("SearchScreen", "СНАГА КРАЈИНЕ"))
         self.input_search.setPlaceholderText(_translate("SearchScreen", "Име аутора / пјесме / албума"))
-        self.btn_search.setText(_translate("SearchScreen", "Претражи"))
         self.btn_add.setText(_translate("SearchScreen", "Преузми"))
 import res_rc
