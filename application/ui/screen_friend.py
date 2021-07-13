@@ -196,7 +196,7 @@ class Ui_FriendScreen(object):
         item = QtWidgets.QListWidgetItem()
         self.list_search.addItem(item)
         self.input_name = QtWidgets.QLineEdit(self.page_add)
-        self.input_name.setGeometry(QtCore.QRect(10, 10, 210, 40))
+        self.input_name.setGeometry(QtCore.QRect(10, 10, 270, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -215,14 +215,20 @@ class Ui_FriendScreen(object):
         self.input_name.setClearButtonEnabled(True)
         self.input_name.setObjectName("input_name")
         self.btn_search = QtWidgets.QPushButton(self.page_add)
-        self.btn_search.setGeometry(QtCore.QRect(230, 10, 100, 40))
+        self.btn_search.setGeometry(QtCore.QRect(290, 10, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
         font.setBold(False)
         font.setWeight(50)
         self.btn_search.setFont(font)
-        self.btn_search.setStyleSheet("")
+        self.btn_search.setStyleSheet("QPushButton#btn_search {\n"
+"    border-image: url(:/icons/images/icons/search.png);\n"
+"}\n"
+"QPushButton#btn_search:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_search.png);\n"
+"}")
+        self.btn_search.setText("")
         self.btn_search.setObjectName("btn_search")
         self.btn_add = QtWidgets.QPushButton(self.page_add)
         self.btn_add.setGeometry(QtCore.QRect(10, 460, 320, 40))
@@ -236,18 +242,16 @@ class Ui_FriendScreen(object):
         self.btn_add.setObjectName("btn_add")
         self.stacked_pages.addWidget(self.page_add)
         self.page_friend = QtWidgets.QWidget()
-        self.page_friend.setStyleSheet("QPushButton#btn_send {\n"
+        self.page_friend.setStyleSheet("QPushButton#btn_send, #btn_delete {\n"
 "    background-color: rgb(20, 92, 158);\n"
 "    color: rgb(224, 224, 226);\n"
 "    border: none;\n"
 "    border-radius: 5px;\n"
-"    border-top-left-radius: 0px;\n"
-"    border-top-right-radius: 0px;\n"
 "}\n"
-"QPushButton#btn_send:hover {\n"
+"QPushButton#btn_send:hover, #btn_delete:hover {\n"
 "    background-color: rgb(19, 55, 88);\n"
 "}\n"
-"QPushButton#btn_send:pressed {\n"
+"QPushButton#btn_send:pressed, #btn_delete:pressed {\n"
 "    background-color: rgb(19, 37, 53);\n"
 "}\n"
 "\n"
@@ -297,7 +301,7 @@ class Ui_FriendScreen(object):
         self.list_recent.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_recent.setObjectName("list_recent")
         self.input_msg = QtWidgets.QPlainTextEdit(self.page_friend)
-        self.input_msg.setGeometry(QtCore.QRect(10, 110, 320, 91))
+        self.input_msg.setGeometry(QtCore.QRect(10, 110, 320, 130))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -307,21 +311,25 @@ class Ui_FriendScreen(object):
 "    background-color:rgba(0,0,0,0);\n"
 "    border: 2px solid rgb(20,92,158);\n"
 "    border-radius: 5px;\n"
-"    border-bottom-left-radius: 0px;\n"
-"    border-bottom-right-radius: 0px;\n"
 "}")
         self.input_msg.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.input_msg.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.input_msg.setObjectName("input_msg")
         self.btn_delete = QtWidgets.QPushButton(self.page_friend)
-        self.btn_delete.setGeometry(QtCore.QRect(270, 10, 61, 61))
+        self.btn_delete.setGeometry(QtCore.QRect(290, 20, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
         font.setBold(False)
         font.setWeight(50)
         self.btn_delete.setFont(font)
-        self.btn_delete.setStyleSheet("")
+        self.btn_delete.setStyleSheet("QPushButton#btn_delete {\n"
+"    border-image: url(:/icons/images/icons/delete.png);\n"
+"}\n"
+"QPushButton#btn_delete:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_delete.png);\n"
+"}")
+        self.btn_delete.setText("")
         self.btn_delete.setObjectName("btn_delete")
         self.label_playlist = QtWidgets.QLabel(self.page_friend)
         self.label_playlist.setGeometry(QtCore.QRect(10, 250, 155, 31))
@@ -341,13 +349,6 @@ class Ui_FriendScreen(object):
         self.label_recent.setStyleSheet("")
         self.label_recent.setAlignment(QtCore.Qt.AlignCenter)
         self.label_recent.setObjectName("label_recent")
-        self.btn_send = QtWidgets.QPushButton(self.page_friend)
-        self.btn_send.setGeometry(QtCore.QRect(10, 200, 320, 40))
-        font = QtGui.QFont()
-        font.setFamily("Courier New")
-        font.setPointSize(9)
-        self.btn_send.setFont(font)
-        self.btn_send.setObjectName("btn_send")
         self.label_art = QtWidgets.QLabel(self.page_friend)
         self.label_art.setGeometry(QtCore.QRect(10, 10, 61, 61))
         font = QtGui.QFont()
@@ -379,6 +380,22 @@ class Ui_FriendScreen(object):
         self.label_user.setStyleSheet("color: rgb(224, 224, 226);")
         self.label_user.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_user.setObjectName("label_user")
+        self.btn_send = QtWidgets.QPushButton(self.page_friend)
+        self.btn_send.setGeometry(QtCore.QRect(290, 200, 40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_send.setFont(font)
+        self.btn_send.setStyleSheet("QPushButton#btn_send {\n"
+"    border-image: url(:/icons/images/icons/send.png);\n"
+"}\n"
+"QPushButton#btn_send:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_send.png);\n"
+"}")
+        self.btn_send.setText("")
+        self.btn_send.setObjectName("btn_send")
         self.stacked_pages.addWidget(self.page_friend)
         self.app_bg = QtWidgets.QLabel(self.frame_border)
         self.app_bg.setGeometry(QtCore.QRect(0, 0, 491, 601))
@@ -390,7 +407,7 @@ class Ui_FriendScreen(object):
         FriendScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(FriendScreen)
-        self.stacked_pages.setCurrentIndex(0)
+        self.stacked_pages.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(FriendScreen)
 
     def retranslateUi(self, FriendScreen):
@@ -420,13 +437,10 @@ class Ui_FriendScreen(object):
         item.setText(_translate("FriendScreen", "333"))
         self.list_search.setSortingEnabled(__sortingEnabled)
         self.input_name.setPlaceholderText(_translate("FriendScreen", "Корисничко име"))
-        self.btn_search.setText(_translate("FriendScreen", "Претражи"))
         self.btn_add.setText(_translate("FriendScreen", "Пошаљи захтјев"))
         self.input_msg.setPlaceholderText(_translate("FriendScreen", "Унесите поруку..."))
-        self.btn_delete.setText(_translate("FriendScreen", "Избриши"))
         self.label_playlist.setText(_translate("FriendScreen", "Албуми"))
         self.label_recent.setText(_translate("FriendScreen", "Недавно слушано"))
-        self.btn_send.setText(_translate("FriendScreen", "Пошаљи поруку"))
         self.label_art.setText(_translate("FriendScreen", "ART"))
         self.label_name.setText(_translate("FriendScreen", "Артис"))
         self.label_user.setText(_translate("FriendScreen", "Пјесмица"))

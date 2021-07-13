@@ -327,7 +327,7 @@ QListWidget::item:selected {
 </string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="page_add">
         <property name="styleSheet">
@@ -399,7 +399,7 @@ QListWidget::item:selected {
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>210</width>
+           <width>270</width>
            <height>40</height>
           </rect>
          </property>
@@ -436,9 +436,9 @@ QListWidget::item:selected {
         <widget class="QPushButton" name="btn_search">
          <property name="geometry">
           <rect>
-           <x>230</x>
+           <x>290</x>
            <y>10</y>
-           <width>100</width>
+           <width>40</width>
            <height>40</height>
           </rect>
          </property>
@@ -451,10 +451,15 @@ QListWidget::item:selected {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QPushButton#btn_search {
+	border-image: url(:/icons/images/icons/search.png);
+}
+QPushButton#btn_search:hover {
+	border-image: url(:/icons/images/icons/hover_search.png);
+}</string>
          </property>
          <property name="text">
-          <string>Претражи</string>
+          <string/>
          </property>
         </widget>
         <widget class="QPushButton" name="btn_add">
@@ -484,18 +489,16 @@ QListWidget::item:selected {
        </widget>
        <widget class="QWidget" name="page_friend">
         <property name="styleSheet">
-         <string notr="true">QPushButton#btn_send {
+         <string notr="true">QPushButton#btn_send, #btn_delete {
 	background-color: rgb(20, 92, 158);
 	color: rgb(224, 224, 226);
 	border: none;
 	border-radius: 5px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
 }
-QPushButton#btn_send:hover {
+QPushButton#btn_send:hover, #btn_delete:hover {
 	background-color: rgb(19, 55, 88);
 }
-QPushButton#btn_send:pressed {
+QPushButton#btn_send:pressed, #btn_delete:pressed {
 	background-color: rgb(19, 37, 53);
 }
 
@@ -580,7 +583,7 @@ QLabel#label_art {
            <x>10</x>
            <y>110</y>
            <width>320</width>
-           <height>91</height>
+           <height>130</height>
           </rect>
          </property>
          <property name="font">
@@ -595,8 +598,6 @@ QLabel#label_art {
 	background-color:rgba(0,0,0,0);
 	border: 2px solid rgb(20,92,158);
 	border-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
 }</string>
          </property>
          <property name="verticalScrollBarPolicy">
@@ -612,10 +613,10 @@ QLabel#label_art {
         <widget class="QPushButton" name="btn_delete">
          <property name="geometry">
           <rect>
-           <x>270</x>
-           <y>10</y>
-           <width>61</width>
-           <height>61</height>
+           <x>290</x>
+           <y>20</y>
+           <width>40</width>
+           <height>40</height>
           </rect>
          </property>
          <property name="font">
@@ -627,10 +628,15 @@ QLabel#label_art {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QPushButton#btn_delete {
+	border-image: url(:/icons/images/icons/delete.png);
+}
+QPushButton#btn_delete:hover {
+	border-image: url(:/icons/images/icons/hover_delete.png);
+}</string>
          </property>
          <property name="text">
-          <string>Избриши</string>
+          <string/>
          </property>
         </widget>
         <widget class="QLabel" name="label_playlist">
@@ -681,25 +687,6 @@ QLabel#label_art {
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="btn_send">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>200</y>
-           <width>320</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Courier New</family>
-           <pointsize>9</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Пошаљи поруку</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_art">
@@ -779,6 +766,35 @@ QLabel#label_art {
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_send">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>200</y>
+           <width>40</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#btn_send {
+	border-image: url(:/icons/images/icons/send.png);
+}
+QPushButton#btn_send:hover {
+	border-image: url(:/icons/images/icons/hover_send.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
