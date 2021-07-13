@@ -91,7 +91,7 @@ class Ui_SettingsScreen(object):
         self.frame_left.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_left.setObjectName("frame_left")
         self.btn_song = QtWidgets.QPushButton(self.frame_left)
-        self.btn_song.setGeometry(QtCore.QRect(0, 40, 130, 40))
+        self.btn_song.setGeometry(QtCore.QRect(0, 80, 130, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -112,7 +112,7 @@ class Ui_SettingsScreen(object):
         self.options.setAlignment(QtCore.Qt.AlignCenter)
         self.options.setObjectName("options")
         self.btn_song_2 = QtWidgets.QPushButton(self.frame_left)
-        self.btn_song_2.setGeometry(QtCore.QRect(0, 80, 130, 40))
+        self.btn_song_2.setGeometry(QtCore.QRect(0, 120, 130, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -121,6 +121,16 @@ class Ui_SettingsScreen(object):
         self.btn_song_2.setFont(font)
         self.btn_song_2.setStyleSheet("")
         self.btn_song_2.setObjectName("btn_song_2")
+        self.btn_song_3 = QtWidgets.QPushButton(self.frame_left)
+        self.btn_song_3.setGeometry(QtCore.QRect(0, 40, 130, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_song_3.setFont(font)
+        self.btn_song_3.setStyleSheet("")
+        self.btn_song_3.setObjectName("btn_song_3")
         self.stacked_pages = QtWidgets.QStackedWidget(self.widget)
         self.stacked_pages.setGeometry(QtCore.QRect(130, 70, 340, 510))
         self.stacked_pages.setStyleSheet("QStackedWidget#stacked_pages {\n"
@@ -149,6 +159,66 @@ class Ui_SettingsScreen(object):
 "\n"
 "")
         self.stacked_pages.setObjectName("stacked_pages")
+        self.page_info = QtWidgets.QWidget()
+        self.page_info.setStyleSheet("QPlainTextEdit#info, #info_2 {\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"    padding-left: 2px;\n"
+"}")
+        self.page_info.setObjectName("page_info")
+        self.info = QtWidgets.QPlainTextEdit(self.page_info)
+        self.info.setGeometry(QtCore.QRect(10, 30, 320, 81))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        self.info.setFont(font)
+        self.info.setStyleSheet("")
+        self.info.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.info.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.info.setReadOnly(True)
+        self.info.setObjectName("info")
+        self.settings_5 = QtWidgets.QLabel(self.page_info)
+        self.settings_5.setGeometry(QtCore.QRect(10, 0, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.settings_5.setFont(font)
+        self.settings_5.setStyleSheet("color: rgb(224, 224, 226);")
+        self.settings_5.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.settings_5.setObjectName("settings_5")
+        self.info_2 = QtWidgets.QPlainTextEdit(self.page_info)
+        self.info_2.setGeometry(QtCore.QRect(10, 140, 320, 81))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        self.info_2.setFont(font)
+        self.info_2.setStyleSheet("QPlainTextEdit#input_msg{\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"    padding-left: 2px;\n"
+"}")
+        self.info_2.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.info_2.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.info_2.setReadOnly(True)
+        self.info_2.setObjectName("info_2")
+        self.settings_6 = QtWidgets.QLabel(self.page_info)
+        self.settings_6.setGeometry(QtCore.QRect(10, 110, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.settings_6.setFont(font)
+        self.settings_6.setStyleSheet("color: rgb(224, 224, 226);")
+        self.settings_6.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.settings_6.setObjectName("settings_6")
+        self.stacked_pages.addWidget(self.page_info)
         self.page_acc = QtWidgets.QWidget()
         self.page_acc.setStyleSheet("")
         self.page_acc.setObjectName("page_acc")
@@ -329,7 +399,7 @@ class Ui_SettingsScreen(object):
         SettingsScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(SettingsScreen)
-        self.stacked_pages.setCurrentIndex(1)
+        self.stacked_pages.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(SettingsScreen)
 
     def retranslateUi(self, SettingsScreen):
@@ -340,6 +410,18 @@ class Ui_SettingsScreen(object):
         self.btn_song.setText(_translate("SettingsScreen", "Налог"))
         self.options.setText(_translate("SettingsScreen", "Опције"))
         self.btn_song_2.setText(_translate("SettingsScreen", "Сигурност"))
+        self.btn_song_3.setText(_translate("SettingsScreen", "Информације"))
+        self.info.setPlainText(_translate("SettingsScreen", "Име и презиме: \n"
+"Корисничко име: \n"
+"Рођендан: \n"
+""))
+        self.info.setPlaceholderText(_translate("SettingsScreen", "Унесите поруку..."))
+        self.settings_5.setText(_translate("SettingsScreen", "Информације #1"))
+        self.info_2.setPlainText(_translate("SettingsScreen", "Ваш мејл: \n"
+"Админ: \n"
+"Датум регистрације: "))
+        self.info_2.setPlaceholderText(_translate("SettingsScreen", "Унесите поруку..."))
+        self.settings_6.setText(_translate("SettingsScreen", "Информације #2"))
         self.input_first.setPlaceholderText(_translate("SettingsScreen", "Име"))
         self.btn_save.setText(_translate("SettingsScreen", "Сачувај измјене"))
         self.input_last.setPlaceholderText(_translate("SettingsScreen", "Презиме"))
