@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChatScreen</class>
+ <widget class="QMainWindow" name="ChatScreen">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>490</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame_border">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>490</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {	
+	background-color: rgba(18, 18, 18, 175);
+}
+QLabel {
+	background-color: rgba(0,0,0,0);
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>470</width>
+       <height>580</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>470</width>
+        <height>580</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <widget class="QLabel" name="app_name">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>0</y>
+         <width>190</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>42</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(20, 92, 158);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="text">
+        <string>Прело</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>194</x>
+         <y>35</y>
+         <width>110</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(224,224,226);</string>
+       </property>
+       <property name="text">
+        <string>СНАГА КРАЈИНЕ</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_back">
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>10</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_back {
+	border-image: url(:/menu/images/menu/exit.png);
+}
+QPushButton#btn_back:hover {
+	border-image: url(:/menu/images/menu/hover_exit.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QFrame" name="frame_left">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>130</width>
+         <height>580</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border: none;
+}
+QPushButton:hover {
+	background-color: rgb(19, 55, 88);
+}
+QPushButton:pressed {
+	background-color: rgb(19, 37, 53);
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QPushButton" name="btn_global">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>40</y>
+          <width>130</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Јавно дописивање</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="options">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>130</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(224, 224, 226);</string>
+        </property>
+        <property name="text">
+         <string>Опције</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="friends">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>80</y>
+          <width>130</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(224, 224, 226);</string>
+        </property>
+        <property name="text">
+         <string>Пријатељи</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="list_friends">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>120</y>
+          <width>130</width>
+          <height>451</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QListWidget#list_friends {
+	color: rgb(224,224,226);
+	background-color:rgba(0,0,0,0);
+	border-radius: 0px;
+}
+QListWidget::item:hover {
+	background-color: rgb(20,92,158);
+}
+QListWidget::item:selected {
+	background-color: rgb(19,55,88);
+}</string>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>22</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>333</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QStackedWidget" name="stacked_pages">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>70</y>
+         <width>340</width>
+         <height>510</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	background-color: rgba(0,0,0,0);
+	border-radius: 5px;
+	border: 2px solid rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	padding-left: 5px;
+}
+QPushButton#btn_send, #btn_send_2 {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border-radius: 5px;
+}
+QPushButton#btn_send:hover, #btn_send_2:hover {
+	background-color: rgb(19, 55, 88);
+}
+QPushButton#btn_send:pressed, #btn_send_2:pressed {
+	background-color: rgb(19, 37, 53);
+}
+QListWidget#list_global, #list_friend {
+	color: rgb(224,224,226);
+	background-color:rgba(0,0,0,0);
+	border: 2px solid rgb(20,92,158);
+	border-radius: 5px;
+}
+QListWidget::item:hover {
+	background-color: rgb(20,92,158);
+}
+QListWidget::item:selected {
+	background-color: rgb(19,55,88);
+}</string>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="page_global">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <widget class="QListWidget" name="list_global">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>320</width>
+           <height>440</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_send">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>460</y>
+           <width>40</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Пошаљи</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="input_msg_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>460</y>
+           <width>270</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_friend">
+        <property name="styleSheet">
+         <string notr="true">QLabel#label_art {
+	border: 2px solid;
+	background-color: rgb(224,224,226);
+}</string>
+        </property>
+        <widget class="QPushButton" name="btn_send_2">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>460</y>
+           <width>40</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Пошаљи</string>
+         </property>
+        </widget>
+        <widget class="QListWidget" name="list_friend">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>80</y>
+           <width>320</width>
+           <height>370</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_art">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>61</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>ART</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_name">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>10</y>
+           <width>171</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>14</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>Артис</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_user">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>30</y>
+           <width>171</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>Пјесмица</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="input_msg_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>460</y>
+           <width>270</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="app_bg">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>490</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/images/images/welcome_bg.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>app_bg</zorder>
+    <zorder>frame</zorder>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
