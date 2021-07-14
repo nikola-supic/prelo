@@ -84,12 +84,20 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
 
 
     def server_logs(self):
+        if self.click_time > get_time():
+            return False
+        self.click_time = get_time()+1
+
         if self.server is not None:
             self.logs = LogScreen(self, self.server.get_log())
             self.close()
 
 
     def server_start(self):
+        if self.click_time > get_time():
+            return False
+        self.click_time = get_time()+1
+
         if self.server is None:
             self.server = Server()
             self.server.start()
@@ -98,6 +106,10 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
 
 
     def server_restart(self):
+        if self.click_time > get_time():
+            return False
+        self.click_time = get_time()+1
+
         if self.server is not None:
             self.server.restart()
 
@@ -105,6 +117,10 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
 
 
     def server_shutdown(self):
+        if self.click_time > get_time():
+            return False
+        self.click_time = get_time()+1
+        
         if self.server is not None:
             self.server.shutdown()
             del self.server
