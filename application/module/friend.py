@@ -32,6 +32,7 @@ class FriendScreen(QMainWindow, Ui_FriendScreen):
 
         self.btn_search.clicked.connect(self.search_user)
         self.btn_add.clicked.connect(self.send_request)
+        
         self.req_delete.clicked.connect(self.delete_request)
         self.req_accept.clicked.connect(self.accept_request)
         self.req_refuse.clicked.connect(self.refuse_request)
