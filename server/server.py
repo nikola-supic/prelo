@@ -85,7 +85,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
 
     def server_logs(self):
         if self.server is not None:
-            self.logs = LogScreen(self, self.server.log_msgs)
+            self.logs = LogScreen(self, self.server.get_log())
             self.close()
 
 

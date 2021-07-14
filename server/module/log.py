@@ -10,7 +10,7 @@ from ui.screen_logs import Ui_LogScreen
 
 # LOG SCREEN
 class LogScreen(QMainWindow, Ui_LogScreen):
-    def __init__(self, last_screen, log_msgs):
+    def __init__(self, last_screen, log_file):
         super(LogScreen, self).__init__()
         self.setupUi(self)
         self.frame_border.setGeometry(QtCore.QRect(0, 0, 0, 0))
@@ -51,11 +51,9 @@ class LogScreen(QMainWindow, Ui_LogScreen):
         QtCore.QTimer.singleShot(anim_time, lambda: self.widget.show())
 
         # Enter logs
-        output = ''
-        for msg in log_msgs:
-            output += f'{msg}\n'
-        self.log.setPlainText(output)
-
+        with open(log_file, 'r') as file:
+            self.log.setPlainText(file.read())
+        
 
     def exit(self):
         self.back.show()

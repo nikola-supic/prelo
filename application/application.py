@@ -34,10 +34,7 @@ import webbrowser
 from social_media import links
 
 # Global variables
-counter = 0
-db_conn = False
 db_user = None
-network_conn = None
 
 # Welcome screen (login/register)
 class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
@@ -151,43 +148,43 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
 
         self.show()
 
+        # Variables
+        self.counter = 0
+        self.network_conn = Network('localhost', 5555)
+
 
     def progress(self):
-        global counter, db_conn, db_user, network_conn
-        self.progressBar.setValue(counter)
+        self.progressBar.setValue(self.counter)
 
         # Connect to db
-        if counter == 30:
+        if self.counter == 30:
             db_conn = db.connect(database='prelo')
             if not db_conn:
                 self.timer.stop()
 
-                self.menu = MenuScreen(db_user, False)
+                self.menu = MenuScreen(None, False)
                 self.popup = PopupError(None, 'Неуспјешно повезивање са базом података.\nАпликацију можете користити у офлајн режиму рада.', 'Провјерите конекцију')
                 self.close()
 
-        if counter == 60:
-            
-            network_conn.connect()
-            if not network_conn.connected:
+        if self.counter == 60:
+            self.network_conn.connect()
+            if not self.network_conn.connected:
                 self.timer.stop()
 
-                self.menu = MenuScreen(db_user, False)
+                self.menu = MenuScreen(None, False)
                 self.popup = PopupError(None, 'Неуспјешно повезивање са сервером.\nАпликацију можете користити у офлајн режиму рада.', 'Провјерите конекцију')
                 self.close()
 
         # Close loading screen and open welcome screen
-        if counter > 100:
+        if self.counter > 100:
             self.timer.stop()
             self.welcome = WelcomeScreen()
             self.close()
 
-        counter += 1
+        self.counter += 1
 
 
 if __name__ == '__main__':
-    network_conn = Network('localhost', 5555)
-    
     app = QtWidgets.QApplication(sys.argv)
     window = LoadingScreen()
     app.exec_()
