@@ -815,7 +815,7 @@ QLabel#label_art {
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
          <property name="plainText">
-          <string>dadadada</string>
+          <string/>
          </property>
          <property name="placeholderText">
           <string>Унесите поруку...</string>
