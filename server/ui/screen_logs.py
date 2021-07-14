@@ -59,7 +59,7 @@ class Ui_LogScreen(object):
         self.log.setGeometry(QtCore.QRect(0, 0, 620, 540))
         font = QtGui.QFont()
         font.setFamily("Courier New")
-        font.setPointSize(11)
+        font.setPointSize(9)
         self.log.setFont(font)
         self.log.setStyleSheet("background-color: rgba(0,0,0,0);\n"
 "color: rgb(224,224,226);\n"

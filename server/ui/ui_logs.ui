@@ -107,7 +107,7 @@ QPushButton#btn_back:hover {
        <property name="font">
         <font>
          <family>Courier New</family>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="styleSheet">
