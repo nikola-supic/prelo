@@ -3,10 +3,7 @@ DOCSTRING:
 
 """
 import socket
-import sys
-import threading
-import time
-import functools
+import pickle
 
 class Network():
 	def __init__(self, host, port):
@@ -43,8 +40,8 @@ class Network():
 		try:
 			self.client.send(str.encode(data))
 			return pickle.loads(self.client.recv(2048*4))
-		except socket.error as e:
-			print(e)
+		except Exception as e:
+			print(str(e))
 
 
 	def get_first_data(self):

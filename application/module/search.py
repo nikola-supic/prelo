@@ -15,6 +15,7 @@ class SearchScreen(QMainWindow, Ui_SearchScreen):
         self.setupUi(self)
         self.back = last_screen
         self.user = last_screen.user
+        self.network = last_screen.network
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)

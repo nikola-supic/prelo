@@ -16,6 +16,7 @@ class FriendScreen(QMainWindow, Ui_FriendScreen):
         self.setupUi(self)
         self.back = last_screen
         self.user = last_screen.user
+        self.network = last_screen.network
         self.friend_id = None
         self.stacked_pages.setCurrentWidget(self.page_add)
         self.update_friend()
@@ -32,7 +33,7 @@ class FriendScreen(QMainWindow, Ui_FriendScreen):
 
         self.btn_search.clicked.connect(self.search_user)
         self.btn_add.clicked.connect(self.send_request)
-        
+
         self.req_delete.clicked.connect(self.delete_request)
         self.req_accept.clicked.connect(self.accept_request)
         self.req_refuse.clicked.connect(self.refuse_request)

@@ -19,10 +19,11 @@ from module.popup import PopupWarning
 
 # MAIN SCREEN
 class MenuScreen(QMainWindow, Ui_MenuScreen):
-    def __init__(self, user, online):
+    def __init__(self, user=None, network=None, online=False):
         super(MenuScreen, self).__init__()
         self.setupUi(self)
         self.user = user
+        self.network = network
         self.online = online
 
         # Remove title bar
