@@ -74,7 +74,7 @@ QLabel {
 	border: none;
 }</string>
       </property>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="app">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -101,7 +101,7 @@ QLabel {
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="app_2">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -285,7 +285,7 @@ QPushButton#btn_shutdown:hover {
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="label_restart">
        <property name="geometry">
         <rect>
          <x>410</x>
@@ -381,7 +381,7 @@ QPushButton#btn_logs:hover {
         <string/>
        </property>
       </widget>
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="label_shutdown">
        <property name="geometry">
         <rect>
          <x>540</x>
@@ -404,6 +404,48 @@ QPushButton#btn_logs:hover {
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_start">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>150</y>
+         <width>120</width>
+         <height>120</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_start {
+	border-image: url(:/images/images/start.png);
+}
+QPushButton#btn_start:hover {
+	border-image: url(:/images/images/hover_start.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_exit">
+       <property name="geometry">
+        <rect>
+         <x>620</x>
+         <y>20</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_exit {
+	border-image: url(:/images/images/exit.png);
+}
+QPushButton#btn_exit:hover {
+	border-image: url(:/images/images/hover_exit.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
