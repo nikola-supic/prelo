@@ -320,16 +320,10 @@ QLineEdit {
 	color: rgb(224, 224, 226);
 	padding-left: 5px;
 }
-QPushButton#btn_send, #btn_send_2 {
+QPushButton#btn_send, #btn_send_2, #btn_refresh {
 	background-color: rgb(20, 92, 158);
 	color: rgb(224, 224, 226);
 	border-radius: 5px;
-}
-QPushButton#btn_send:hover, #btn_send_2:hover {
-	background-color: rgb(19, 55, 88);
-}
-QPushButton#btn_send:pressed, #btn_send_2:pressed {
-	background-color: rgb(19, 37, 53);
 }
 QListWidget#list_global, #list_friend {
 	color: rgb(224,224,226);
