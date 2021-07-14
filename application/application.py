@@ -38,13 +38,14 @@ db_user = None
 
 # Welcome screen (login/register)
 class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
-    def __init__(self):
+    def __init__(self, network):
         super(WelcomeScreen, self).__init__()
         self.setupUi(self)
         self.frame_border.setGeometry(QtCore.QRect(0, 0, 0, 0))
         self.frame.setGeometry(QtCore.QRect(10, 10, 0, 0))
         self.login_username.setText('dzast_nikola')
         self.login_pw.setText('123456789')
+        self.network = network
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -106,7 +107,7 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
             global db_user
             user = db.check_login(username, password)
             db_user = user
-            self.menu = MenuScreen(user, True)
+            self.menu = MenuScreen(user=user, network=self.network, online=True)
             self.close()
 
 
@@ -121,7 +122,7 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
         else:
             global db_user
             db_user = user
-            self.menu = MenuScreen(user, True)
+            self.menu = MenuScreen(user=user, network=self.network, online=True)
             self.close()
 
 
@@ -150,7 +151,7 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
 
         # Variables
         self.counter = 0
-        self.network_conn = Network('localhost', 5555)
+        self.network = Network('localhost', 5555)
 
 
     def progress(self):
@@ -162,23 +163,23 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
             if not db_conn:
                 self.timer.stop()
 
-                self.menu = MenuScreen(None, False)
+                self.menu = MenuScreen(user=None, network=None, online=False)
                 self.popup = PopupError(None, 'Неуспјешно повезивање са базом података.\nАпликацију можете користити у офлајн режиму рада.', 'Провјерите конекцију')
                 self.close()
 
         if self.counter == 60:
-            self.network_conn.connect()
-            if not self.network_conn.connected:
+            self.network.connect()
+            if not self.network.connected:
                 self.timer.stop()
 
-                self.menu = MenuScreen(None, False)
+                self.menu = MenuScreen(user=None, network=None, online=False)
                 self.popup = PopupError(None, 'Неуспјешно повезивање са сервером.\nАпликацију можете користити у офлајн режиму рада.', 'Провјерите конекцију')
                 self.close()
 
         # Close loading screen and open welcome screen
         if self.counter > 100:
             self.timer.stop()
-            self.welcome = WelcomeScreen()
+            self.welcome = WelcomeScreen(self.network)
             self.close()
 
         self.counter += 1
