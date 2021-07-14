@@ -26,6 +26,9 @@ from module.popup import PopupError
 # Import database functions
 import database as db
 
+# Import network
+from network import Network
+
 # Importing libraries for social media buttons
 import webbrowser
 from social_media import links
@@ -34,6 +37,7 @@ from social_media import links
 counter = 0
 db_conn = False
 db_user = None
+network_conn = None
 
 # Welcome screen (login/register)
 class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
@@ -149,7 +153,7 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
 
 
     def progress(self):
-        global counter, db_conn, db_user
+        global counter, db_conn, db_user, network_conn
         self.progressBar.setValue(counter)
 
         # Connect to db
@@ -162,6 +166,16 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
                 self.popup = PopupError(None, 'Неуспјешно повезивање са базом података.\nАпликацију можете користити у офлајн режиму рада.', 'Провјерите конекцију')
                 self.close()
 
+        if counter == 60:
+            
+            network_conn.connect()
+            if not network_conn.connected:
+                self.timer.stop()
+
+                self.menu = MenuScreen(db_user, False)
+                self.popup = PopupError(None, 'Неуспјешно повезивање са сервером.\nАпликацију можете користити у офлајн режиму рада.', 'Провјерите конекцију')
+                self.close()
+
         # Close loading screen and open welcome screen
         if counter > 100:
             self.timer.stop()
@@ -172,6 +186,8 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
 
 
 if __name__ == '__main__':
+    network_conn = Network('localhost', 5555)
+    
     app = QtWidgets.QApplication(sys.argv)
     window = LoadingScreen()
     app.exec_()
