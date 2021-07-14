@@ -182,7 +182,7 @@ QPushButton:pressed {
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QPushButton" name="btn_song">
+       <widget class="QPushButton" name="btn_page_add">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -272,6 +272,7 @@ QPushButton:pressed {
         <property name="font">
          <font>
           <family>Courier New</family>
+          <pointsize>8</pointsize>
          </font>
         </property>
         <property name="styleSheet">
@@ -293,23 +294,8 @@ QListWidget::item:selected {
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>22</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>333</string>
-         </property>
-        </item>
        </widget>
-       <widget class="QPushButton" name="btn_song_2">
+       <widget class="QPushButton" name="btn_page_request">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -351,7 +337,7 @@ QListWidget::item:selected {
 </string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="page_add">
         <property name="styleSheet">
@@ -379,7 +365,7 @@ QPushButton#btn_search:pressed, #btn_add:pressed {
          <property name="font">
           <font>
            <family>Courier New</family>
-           <pointsize>12</pointsize>
+           <pointsize>8</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -402,21 +388,6 @@ QListWidget::item:selected {
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>22</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>333</string>
-          </property>
-         </item>
         </widget>
         <widget class="QLineEdit" name="input_name">
          <property name="geometry">
@@ -561,7 +532,7 @@ QPushButton#req_delete:pressed, #req_accept:pressed, #req_refuse:pressed {
          <property name="font">
           <font>
            <family>Courier New</family>
-           <pointsize>12</pointsize>
+           <pointsize>8</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -584,21 +555,6 @@ QListWidget::item:selected {
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>22</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>333</string>
-          </property>
-         </item>
         </widget>
         <widget class="QListWidget" name="list_received">
          <property name="geometry">
@@ -612,7 +568,7 @@ QListWidget::item:selected {
          <property name="font">
           <font>
            <family>Courier New</family>
-           <pointsize>12</pointsize>
+           <pointsize>8</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -635,21 +591,6 @@ QListWidget::item:selected {
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>22</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>333</string>
-          </property>
-         </item>
         </widget>
         <widget class="QPushButton" name="req_accept">
          <property name="geometry">
@@ -872,6 +813,9 @@ QLabel#label_art {
          </property>
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="plainText">
+          <string>dadadada</string>
          </property>
          <property name="placeholderText">
           <string>Унесите поруку...</string>
