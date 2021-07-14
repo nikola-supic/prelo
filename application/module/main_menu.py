@@ -129,8 +129,6 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
             self.close()
 
 
-
-
     def shutdown(self):
         if self.click_time > get_time():
             return False
