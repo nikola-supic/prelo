@@ -3,6 +3,8 @@
     <file>images/welcome_bg.png</file>
   </qresource>
   <qresource prefix="icons">
+    <file>images/icons/hover_refresh.png</file>
+    <file>images/icons/refresh.png</file>
     <file>images/icons/delete.png</file>
     <file>images/icons/hover_delete.png</file>
     <file>images/icons/hover_search.png</file>
