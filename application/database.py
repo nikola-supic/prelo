@@ -108,11 +108,11 @@ def check_register(first_name, last_name, username, email, password, confirm_pw)
 
 
 def search_user(username):
-    sql = "SELECT id, username FROM user WHERE username LIKE %s"
+    sql = "SELECT id, first_name, last_name, username FROM user WHERE username LIKE CONCAT('%',%s,'%')"
     val = (username, )
 
     mycursor.execute(sql, val)
-    result = mycursor.fetchone()
+    result = mycursor.fetchall()
     return result
 
 
@@ -154,3 +154,71 @@ def get_username(user_id):
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
     return result[0]
+
+
+# friends related functions
+def add_friend(user_id, friend_id):
+    sql = "SELECT id FROM friends WHERE (user_id=%s AND friend_id=%s) OR (friend_id=%s AND user_id=%s)"
+    val = (user_id, friend_id, user_id, friend_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+
+    if result is None:
+        sql = "INSERT INTO friends (user_id, friend_id, request) VALUES (%s, %s, %s)"
+        val = (user_id, friend_id, True)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return True
+    return False
+
+
+def get_sent_requests(user_id):
+    sql = "SELECT id, friend_id FROM friends WHERE user_id=%s AND request=1"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
+def get_requests(friend_id):
+    sql = "SELECT id, user_id FROM friends WHERE friend_id=%s AND request=1"
+    val = (friend_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
+def get_friends(user_id):
+    sql = "SELECT friend_id, user_id, id FROM friends WHERE (friend_id=%s OR user_id=%s) AND request=0"
+    val = (user_id, user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
+def delete_request(request_id):
+    sql = "DELETE FROM friends WHERE id=%s"
+    val = (request_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+
+def accept_request(request_id):
+    sql = "UPDATE friends SET request=0 WHERE id=%s"
+    val = (request_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+
+def delete_friend(user_id, friend_id):
+    sql = "DELETE FROM friends WHERE (user_id=%s AND friend_id=%s) OR (friend_id=%s AND user_id=%s)"
+    val = (user_id, friend_id, user_id, friend_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+
+def send_message(user_id, friend_id, message):
+    sql = "INSERT INTO chat (user_id, friend_id, message) VALUES (%s, %s, %s)"
+    val = (user_id, friend_id, message, )
+    mycursor.execute(sql, val)
+    mydb.commit()
