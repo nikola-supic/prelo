@@ -16,6 +16,8 @@ class Server():
         self.log_file = 'logs/server_log.log'
 
         logging.basicConfig(filename=self.log_file, filemode='a', format='[ %(asctime)s ] %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
+        logging.warning('')
+        logging.warning('='*40)
         logging.warning(f'Binding {self.host}:{self.port}')
         
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -39,6 +41,7 @@ class Server():
 
     def shutdown(self):
         logging.warning('Shutting down server...')
+
 
     def get_log(self):
         return self.log_file
