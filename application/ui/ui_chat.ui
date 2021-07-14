@@ -272,6 +272,7 @@ QPushButton:pressed {
         <property name="font">
          <font>
           <family>Courier New</family>
+          <pointsize>8</pointsize>
          </font>
         </property>
         <property name="styleSheet">
@@ -293,21 +294,6 @@ QListWidget::item:selected {
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>22</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>333</string>
-         </property>
-        </item>
        </widget>
       </widget>
       <widget class="QStackedWidget" name="stacked_pages">
@@ -320,7 +306,14 @@ QListWidget::item:selected {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLineEdit {
+        <string notr="true">QPlainTextEdit#chat_global, #chat_friend {
+	color: rgb(224,224,226);
+	background-color:rgba(0,0,0,0);
+	border: 2px solid rgb(20,92,158);
+	border-radius: 5px;
+}
+
+QLineEdit {
 	background-color: rgba(0,0,0,0);
 	border-radius: 5px;
 	border: 2px solid rgb(20, 92, 158);
@@ -352,37 +345,16 @@ QListWidget::item:selected {
 }</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page_global">
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <widget class="QListWidget" name="list_global">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>320</width>
-           <height>440</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Courier New</family>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="verticalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOff</enum>
-         </property>
-        </widget>
         <widget class="QPushButton" name="btn_send">
          <property name="geometry">
           <rect>
-           <x>290</x>
+           <x>240</x>
            <y>460</y>
            <width>40</width>
            <height>40</height>
@@ -408,17 +380,83 @@ QPushButton#btn_send:hover {
           <string/>
          </property>
         </widget>
-        <widget class="QLineEdit" name="input_msg_3">
+        <widget class="QLineEdit" name="input_msg">
          <property name="geometry">
           <rect>
            <x>10</x>
            <y>460</y>
-           <width>270</width>
+           <width>220</width>
            <height>40</height>
           </rect>
          </property>
+         <property name="placeholderText">
+          <string>Унесите поруку...</string>
+         </property>
          <property name="clearButtonEnabled">
           <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="chat_global">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>320</width>
+           <height>440</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Учитавање порука...</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_refresh">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>460</y>
+           <width>40</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#btn_refresh {
+	border-image: url(:/icons/images/icons/refresh.png);
+}
+QPushButton#btn_refresh:hover {
+	border-image: url(:/icons/images/icons/hover_refresh.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
@@ -456,27 +494,6 @@ QPushButton#btn_send_2:hover {
          </property>
          <property name="text">
           <string/>
-         </property>
-        </widget>
-        <widget class="QListWidget" name="list_friend">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>80</y>
-           <width>320</width>
-           <height>370</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Courier New</family>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="verticalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
         </widget>
         <widget class="QLabel" name="label_art">
@@ -567,8 +584,45 @@ QPushButton#btn_send_2:hover {
            <height>40</height>
           </rect>
          </property>
+         <property name="placeholderText">
+          <string>Унесите поруку...</string>
+         </property>
          <property name="clearButtonEnabled">
           <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="chat_friend">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>80</y>
+           <width>320</width>
+           <height>370</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Учитавање порука...</string>
          </property>
         </widget>
        </widget>

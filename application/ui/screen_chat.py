@@ -126,6 +126,7 @@ class Ui_ChatScreen(object):
         self.list_friends.setGeometry(QtCore.QRect(0, 120, 130, 451))
         font = QtGui.QFont()
         font.setFamily("Courier New")
+        font.setPointSize(8)
         self.list_friends.setFont(font)
         self.list_friends.setStyleSheet("QListWidget#list_friends {\n"
 "    color: rgb(224,224,226);\n"
@@ -141,15 +142,16 @@ class Ui_ChatScreen(object):
         self.list_friends.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_friends.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_friends.setObjectName("list_friends")
-        item = QtWidgets.QListWidgetItem()
-        self.list_friends.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_friends.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_friends.addItem(item)
         self.stacked_pages = QtWidgets.QStackedWidget(self.widget)
         self.stacked_pages.setGeometry(QtCore.QRect(130, 70, 340, 510))
-        self.stacked_pages.setStyleSheet("QLineEdit {\n"
+        self.stacked_pages.setStyleSheet("QPlainTextEdit#chat_global, #chat_friend {\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
 "    background-color: rgba(0,0,0,0);\n"
 "    border-radius: 5px;\n"
 "    border: 2px solid rgb(20, 92, 158);\n"
@@ -183,16 +185,8 @@ class Ui_ChatScreen(object):
         self.page_global = QtWidgets.QWidget()
         self.page_global.setStyleSheet("")
         self.page_global.setObjectName("page_global")
-        self.list_global = QtWidgets.QListWidget(self.page_global)
-        self.list_global.setGeometry(QtCore.QRect(10, 10, 320, 440))
-        font = QtGui.QFont()
-        font.setFamily("Courier New")
-        self.list_global.setFont(font)
-        self.list_global.setStyleSheet("")
-        self.list_global.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-        self.list_global.setObjectName("list_global")
         self.btn_send = QtWidgets.QPushButton(self.page_global)
-        self.btn_send.setGeometry(QtCore.QRect(290, 460, 40, 40))
+        self.btn_send.setGeometry(QtCore.QRect(240, 460, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -207,10 +201,38 @@ class Ui_ChatScreen(object):
 "}")
         self.btn_send.setText("")
         self.btn_send.setObjectName("btn_send")
-        self.input_msg_3 = QtWidgets.QLineEdit(self.page_global)
-        self.input_msg_3.setGeometry(QtCore.QRect(10, 460, 270, 40))
-        self.input_msg_3.setClearButtonEnabled(True)
-        self.input_msg_3.setObjectName("input_msg_3")
+        self.input_msg = QtWidgets.QLineEdit(self.page_global)
+        self.input_msg.setGeometry(QtCore.QRect(10, 460, 220, 40))
+        self.input_msg.setClearButtonEnabled(True)
+        self.input_msg.setObjectName("input_msg")
+        self.chat_global = QtWidgets.QPlainTextEdit(self.page_global)
+        self.chat_global.setGeometry(QtCore.QRect(10, 10, 320, 440))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(8)
+        self.chat_global.setFont(font)
+        self.chat_global.setStyleSheet("")
+        self.chat_global.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.chat_global.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.chat_global.setReadOnly(True)
+        self.chat_global.setPlainText("")
+        self.chat_global.setObjectName("chat_global")
+        self.btn_refresh = QtWidgets.QPushButton(self.page_global)
+        self.btn_refresh.setGeometry(QtCore.QRect(290, 460, 40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_refresh.setFont(font)
+        self.btn_refresh.setStyleSheet("QPushButton#btn_refresh {\n"
+"    border-image: url(:/icons/images/icons/refresh.png);\n"
+"}\n"
+"QPushButton#btn_refresh:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_refresh.png);\n"
+"}")
+        self.btn_refresh.setText("")
+        self.btn_refresh.setObjectName("btn_refresh")
         self.stacked_pages.addWidget(self.page_global)
         self.page_friend = QtWidgets.QWidget()
         self.page_friend.setStyleSheet("QLabel#label_art {\n"
@@ -234,14 +256,6 @@ class Ui_ChatScreen(object):
 "}")
         self.btn_send_2.setText("")
         self.btn_send_2.setObjectName("btn_send_2")
-        self.list_friend = QtWidgets.QListWidget(self.page_friend)
-        self.list_friend.setGeometry(QtCore.QRect(10, 80, 320, 370))
-        font = QtGui.QFont()
-        font.setFamily("Courier New")
-        self.list_friend.setFont(font)
-        self.list_friend.setStyleSheet("")
-        self.list_friend.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-        self.list_friend.setObjectName("list_friend")
         self.label_art = QtWidgets.QLabel(self.page_friend)
         self.label_art.setGeometry(QtCore.QRect(10, 10, 61, 61))
         font = QtGui.QFont()
@@ -277,6 +291,18 @@ class Ui_ChatScreen(object):
         self.input_msg_2.setGeometry(QtCore.QRect(10, 460, 270, 40))
         self.input_msg_2.setClearButtonEnabled(True)
         self.input_msg_2.setObjectName("input_msg_2")
+        self.chat_friend = QtWidgets.QPlainTextEdit(self.page_friend)
+        self.chat_friend.setGeometry(QtCore.QRect(10, 80, 320, 370))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(8)
+        self.chat_friend.setFont(font)
+        self.chat_friend.setStyleSheet("")
+        self.chat_friend.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.chat_friend.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.chat_friend.setReadOnly(True)
+        self.chat_friend.setPlainText("")
+        self.chat_friend.setObjectName("chat_friend")
         self.stacked_pages.addWidget(self.page_friend)
         self.app_bg = QtWidgets.QLabel(self.frame_border)
         self.app_bg.setGeometry(QtCore.QRect(0, 0, 490, 600))
@@ -288,7 +314,7 @@ class Ui_ChatScreen(object):
         ChatScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(ChatScreen)
-        self.stacked_pages.setCurrentIndex(1)
+        self.stacked_pages.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(ChatScreen)
 
     def retranslateUi(self, ChatScreen):
@@ -299,16 +325,11 @@ class Ui_ChatScreen(object):
         self.btn_global.setText(_translate("ChatScreen", "Јавно дописивање"))
         self.options.setText(_translate("ChatScreen", "Опције"))
         self.friends.setText(_translate("ChatScreen", "Пријатељи"))
-        __sortingEnabled = self.list_friends.isSortingEnabled()
-        self.list_friends.setSortingEnabled(False)
-        item = self.list_friends.item(0)
-        item.setText(_translate("ChatScreen", "1"))
-        item = self.list_friends.item(1)
-        item.setText(_translate("ChatScreen", "22"))
-        item = self.list_friends.item(2)
-        item.setText(_translate("ChatScreen", "333"))
-        self.list_friends.setSortingEnabled(__sortingEnabled)
+        self.input_msg.setPlaceholderText(_translate("ChatScreen", "Унесите поруку..."))
+        self.chat_global.setPlaceholderText(_translate("ChatScreen", "Учитавање порука..."))
         self.label_art.setText(_translate("ChatScreen", "ART"))
         self.label_name.setText(_translate("ChatScreen", "Артис"))
         self.label_user.setText(_translate("ChatScreen", "Пјесмица"))
+        self.input_msg_2.setPlaceholderText(_translate("ChatScreen", "Унесите поруку..."))
+        self.chat_friend.setPlaceholderText(_translate("ChatScreen", "Учитавање порука..."))
 import res_rc
