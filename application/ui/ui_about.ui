@@ -388,7 +388,7 @@ QPushButton#btn_follow:pressed {
        </property>
        <property name="plainText">
         <string>      Пратите пројекат и на гитхабу.
-      https://github.com/nikola-supic/</string>
+      github.com/nikola-supic/</string>
        </property>
       </widget>
       <widget class="QPlainTextEdit" name="text_ig">
@@ -490,7 +490,7 @@ QPushButton#btn_follow:pressed {
        </property>
        <property name="plainText">
         <string>      Потражите нас на фејсбуку.
-      https://www.facebook.com/nikola.supic01/</string>
+      www.facebook.com/nikola.supic01/</string>
        </property>
       </widget>
       <widget class="QPlainTextEdit" name="text_in">
@@ -527,7 +527,7 @@ QPushButton#btn_follow:pressed {
        </property>
        <property name="plainText">
         <string>      Пронађите нас и овде.
-      https://www.linkedin.com/in/nikola-šupić/</string>
+      www.linkedin.com/in/nikola-šupić/</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btn_ig">

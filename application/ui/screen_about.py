@@ -279,13 +279,13 @@ class Ui_AboutScreen(object):
         self.btn_follow.setText(_translate("AboutScreen", "ПРАТИТЕ НАС"))
         self.text_app.setPlainText(_translate("AboutScreen", "Прело је апликација намјењена љубитељима народне музике."))
         self.text_git.setPlainText(_translate("AboutScreen", "      Пратите пројекат и на гитхабу.\n"
-"      https://github.com/nikola-supic/"))
+"      github.com/nikola-supic/"))
         self.text_ig.setPlainText(_translate("AboutScreen", "      Запратите нас на инстаграму.\n"
 "      www.instagram.com/dzast_nikola/"))
         self.btn_fb.setText(_translate("AboutScreen", "E"))
         self.text_fb.setPlainText(_translate("AboutScreen", "      Потражите нас на фејсбуку.\n"
-"      https://www.facebook.com/nikola.supic01/"))
+"      www.facebook.com/nikola.supic01/"))
         self.text_in.setPlainText(_translate("AboutScreen", "      Пронађите нас и овде.\n"
-"      https://www.linkedin.com/in/nikola-šupić/"))
+"      www.linkedin.com/in/nikola-šupić/"))
         self.btn_ig.setText(_translate("AboutScreen", "Q"))
 import res_rc
