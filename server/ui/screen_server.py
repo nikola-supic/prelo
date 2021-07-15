@@ -30,12 +30,7 @@ class Ui_ServerScreen(object):
         self.frame_border.setObjectName("frame_border")
         self.frame = QtWidgets.QFrame(self.frame_border)
         self.frame.setGeometry(QtCore.QRect(10, 10, 680, 340))
-        self.frame.setStyleSheet("QFrame {    \n"
-"    background-color: rgba(18, 18, 18, 225);    \n"
-"}\n"
-"QLabel {\n"
-"    background-color: rgba(0,0,0,0);\n"
-"}")
+        self.frame.setStyleSheet("")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -198,6 +193,26 @@ class Ui_ServerScreen(object):
 "}")
         self.btn_exit.setText("")
         self.btn_exit.setObjectName("btn_exit")
+        self.btn_global = QtWidgets.QPushButton(self.widget)
+        self.btn_global.setGeometry(QtCore.QRect(20, 20, 41, 41))
+        self.btn_global.setStyleSheet("QPushButton#btn_global {\n"
+"    border-image: url(:/images/images/global.png);\n"
+"}\n"
+"QPushButton#btn_global:hover {\n"
+"    border-image: url(:/images/images/hover_global.png);\n"
+"}")
+        self.btn_global.setText("")
+        self.btn_global.setObjectName("btn_global")
+        self.btn_upload = QtWidgets.QPushButton(self.widget)
+        self.btn_upload.setGeometry(QtCore.QRect(80, 20, 41, 41))
+        self.btn_upload.setStyleSheet("QPushButton#btn_upload {\n"
+"    border-image: url(:/images/images/upload.png);\n"
+"}\n"
+"QPushButton#btn_upload:hover {\n"
+"    border-image: url(:/images/images/hover_upload.png);\n"
+"}")
+        self.btn_upload.setText("")
+        self.btn_upload.setObjectName("btn_upload")
         ServerScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(ServerScreen)

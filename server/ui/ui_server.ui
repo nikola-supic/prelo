@@ -47,12 +47,7 @@ QLabel {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QFrame {	
-	background-color: rgba(18, 18, 18, 225);	
-}
-QLabel {
-	background-color: rgba(0,0,0,0);
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -442,6 +437,48 @@ QPushButton#btn_start:hover {
 }
 QPushButton#btn_exit:hover {
 	border-image: url(:/images/images/hover_exit.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_global">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_global {
+	border-image: url(:/images/images/global.png);
+}
+QPushButton#btn_global:hover {
+	border-image: url(:/images/images/hover_global.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_upload">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>20</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_upload {
+	border-image: url(:/images/images/upload.png);
+}
+QPushButton#btn_upload:hover {
+	border-image: url(:/images/images/hover_upload.png);
 }</string>
        </property>
        <property name="text">
