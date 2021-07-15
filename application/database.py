@@ -222,3 +222,13 @@ def send_message(user_id, friend_id, message):
     val = (user_id, friend_id, message, )
     mycursor.execute(sql, val)
     mydb.commit()
+
+
+def get_chat(user_id, friend_id):
+    mydb.commit()
+    
+    sql = "SELECT * FROM chat WHERE (user_id=%s AND friend_id=%s) OR (friend_id=%s AND user_id=%s)"
+    val = (user_id, friend_id, user_id, friend_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result

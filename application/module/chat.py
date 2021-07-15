@@ -34,6 +34,7 @@ class ChatScreen(QMainWindow, Ui_ChatScreen):
         self.btn_send.clicked.connect(self.send_msg_global)
         self.btn_refresh.clicked.connect(self.refresh_global)
         self.btn_send_2.clicked.connect(self.send_msg_friend)
+        self.btn_refresh_2.clicked.connect(lambda: self.refresh_friend(self.friend_id))
         self.click_time = get_time() + 1
 
         self.show()
@@ -57,6 +58,29 @@ class ChatScreen(QMainWindow, Ui_ChatScreen):
         self.label_name.setText(name)
         self.label_user.setText(username)
 
+        self.refresh_friend(self.friend_id)
+
+
+    def send_msg_friend(self):
+        msg = self.input_msg_2.text()
+        if msg:
+            db.send_message(self.user.id, self.friend_id, msg)
+            self.refresh_friend(self.friend_id)
+            self.input_msg_2.setText('')
+
+
+    def refresh_friend(self, friend_id):
+        chat = db.get_chat(self.user.id, friend_id)
+        output = ''
+        for msg in chat:
+            user_id = msg[1]
+            username = db.get_username(user_id)
+            message = msg[3]
+            time = msg[4]
+
+            output += f'[{time:%H:%M:%S}] [{username}] {message}\n'
+        self.chat_friend.setPlainText(output)
+
 
     def send_msg_global(self):
         msg = self.input_msg.text().replace(' ', '_')
@@ -78,10 +102,6 @@ class ChatScreen(QMainWindow, Ui_ChatScreen):
             self.chat_global.setPlainText(global_chat)
         except Exception:
             print('Error')
-
-
-    def send_msg_friend(self):
-        pass
 
 
     def update_friend(self):
