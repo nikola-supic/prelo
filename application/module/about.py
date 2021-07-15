@@ -6,6 +6,8 @@ from PyQt5.QtCore import QPropertyAnimation, QSequentialAnimationGroup
 from ui.screen_about import Ui_AboutScreen
 
 from datetime import datetime
+import webbrowser
+from social_media import links
 
 
 # ABOUT SCREEN
@@ -23,7 +25,12 @@ class AboutScreen(QMainWindow, Ui_AboutScreen):
 
         # Events
         self.btn_back.clicked.connect(self.exit)
-        self.click_time = get_time() + 2
+        self.btn_fb.clicked.connect(lambda: webbrowser.open(links['fb']))
+        self.btn_ig.clicked.connect(lambda: webbrowser.open(links['ig']))
+        self.btn_yt.clicked.connect(lambda: webbrowser.open(links['yt']))
+        self.btn_in.clicked.connect(lambda: webbrowser.open(links['in']))
+        self.btn_git.clicked.connect(lambda: webbrowser.open(links['git']))
+        self.click_time = get_time() + 1
 
         self.show()
 
