@@ -237,6 +237,24 @@ def get_artist_name(artist_id):
 
 
 # songs-releated functions
+class Song():
+    def __init__(self, song_id):
+        super(Song, self).__init__()
+        self.song_id = song_id
+
+        sql = "SELECT * FROM song WHERE id=%s"
+        val = (song_id, )
+        mycursor.execute(sql, val)
+        result = mycursor.fetchone()
+
+        self.artist_id = result[1]
+        self.name = result[2]
+        self.art = result[3]
+        self.path = result[4]
+        self.length = result[5]
+        self.added_by = result[6]
+
+
 def search_song(name):
     sql = "SELECT id, artist_id, name FROM song WHERE name LIKE CONCAT('%',%s,'%')"
     val = (name, )
@@ -244,6 +262,7 @@ def search_song(name):
     mycursor.execute(sql, val)
     result = mycursor.fetchall()
     return result
+
 
 def add_user_song(user_id, song_id):
     sql = "INSERT INTO user_song (user_id, song_id) VALUES (%s, %s)"

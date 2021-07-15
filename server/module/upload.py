@@ -77,9 +77,9 @@ class UploadScreen(QMainWindow, Ui_UploadScreen):
 
             for song in self.songs:
                 print(f'[ + ] Uploading song... (( {song} ))')
-                server_path = '\\songs\\' + song
+                server_path = 'songs\\' + song
                 original = self.folder_path + '\\' + song
-                target = self.old_path + server_path
+                target = self.old_path + '\\' + server_path
 
                 audio = MP3(song)
                 length = audio.info.length

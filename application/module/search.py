@@ -1,13 +1,14 @@
 # Importing the libraries
 import sys
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import QPropertyAnimation, QSequentialAnimationGroup
 from ui.screen_search import Ui_SearchScreen
 from datetime import datetime
+from _thread import start_new_thread
 
 import database as db
-from module.popup import PopupWarning
 
 # SEARCH SCREEN
 class SearchScreen(QMainWindow, Ui_SearchScreen):
@@ -30,6 +31,7 @@ class SearchScreen(QMainWindow, Ui_SearchScreen):
         self.click_time = get_time() + 2
 
         self.show()
+        self.downloading.hide()
 
 
     def search_song(self):
@@ -49,16 +51,32 @@ class SearchScreen(QMainWindow, Ui_SearchScreen):
 
 
     def add_song(self):
-        selected = self.list_friends.selectedItems()
+        selected = self.list_search.selectedItems()
         if selected:
             song_id = selected[0].text()[1:]
-            song_id = song_id.split('-')[0]
+            song_id = song_id.split(' ')[0]
 
             db.add_user_song(self.user.id, song_id)
 
 
     def download_song(self):
-        pass
+        selected = self.list_search.selectedItems()
+        if selected:
+            song_id = selected[0].text()[1:]
+            song_id = song_id.split(' ')[0]
+
+            start_new_thread(self.download_thread, (song_id, ))
+
+    def download_thread(self, song_id):
+        try:
+            song = db.Song(song_id)
+            self.downloading.show()
+            song_size = self.network.download_song(f'download {self.user.id} {song.song_id} {song.path}')
+            self.downloading.hide()
+
+        except Exception as e:
+            print(str(e))
+            print('Error')
 
 
     def exit(self):

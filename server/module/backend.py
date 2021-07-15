@@ -5,6 +5,7 @@ import pickle
 
 from datetime import datetime
 import os
+from pathlib import Path
 
 # BACKEND CLASS
 class Server():
@@ -79,6 +80,20 @@ class Server():
                     elif data_list[0] == 'get_global':
                         chat = self.get_global_chat()
                         client.sendall(pickle.dumps(chat))
+
+                    elif data_list[0] == 'download':
+                        user_id = data_list[1]
+                        song_id = data_list[2]
+                        song_path = ' '.join(data_list[3:])
+
+                        song_size = os.path.getsize(song_path)
+                        client.sendall(pickle.dumps(song_size))
+
+                        with open(song_path, 'rb') as file:
+                            client.sendall(pickle.dumps(file.read()))
+
+                        self.root_log.info(f'Downloading song (User ID: {user_id}) (Song ID: {song_id})')
+
 
             except Exception as e:
                 print(str(e))
