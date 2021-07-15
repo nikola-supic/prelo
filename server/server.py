@@ -42,6 +42,9 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.btn_start.clicked.connect(self.server_start)
         self.btn_restart.clicked.connect(self.server_restart)
         self.btn_shutdown.clicked.connect(self.server_shutdown)
+
+        self.btn_global.clicked.connect(self.global_chat)
+        self.btn_upload.clicked.connect(self.upload)
         self.btn_exit.clicked.connect(self.exit)
         self.click_time = get_time() + 1
 
@@ -49,22 +52,6 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
 
         self.server = None
         self.check_buttons()
-
-    def check_buttons(self):
-        if self.server is None:
-            self.btn_restart.hide()
-            self.btn_shutdown.hide()
-            self.btn_start.show()
-
-            self.label_shutdown.hide()
-            self.label_restart.setText('Упали')
-        else:
-            self.btn_start.hide()
-            self.btn_restart.show()
-            self.btn_shutdown.show()
-
-            self.label_shutdown.show()
-            self.label_restart.setText('Рестарт')
 
 
     def toggle_chat(self):
@@ -127,6 +114,37 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
             self.server = None
 
             self.check_buttons()
+
+
+    def check_buttons(self):
+        if self.server is None:
+            self.btn_restart.hide()
+            self.btn_shutdown.hide()
+            self.btn_start.show()
+
+            self.label_shutdown.hide()
+            self.label_restart.setText('Упали')
+        else:
+            self.btn_start.hide()
+            self.btn_restart.show()
+            self.btn_shutdown.show()
+
+            self.label_shutdown.show()
+            self.label_restart.setText('Рестарт')
+
+
+    def global_chat(self):
+        if self.click_time > get_time():
+            return False
+        self.click_time = get_time()+1
+
+        if self.server is not None:
+            self.chat = LogScreen(self, self.server.get_chat())
+            self.close()
+
+
+    def upload(self):
+        pass
 
 
     def exit(self):

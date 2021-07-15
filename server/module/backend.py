@@ -64,6 +64,9 @@ class Server():
     def get_log(self):
         return self.log_file
 
+    def get_chat(self):
+        return self.global_file
+
 
     def listening_thread(self):
         while True:
