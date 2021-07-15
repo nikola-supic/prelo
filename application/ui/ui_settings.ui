@@ -182,7 +182,7 @@ QPushButton:pressed {
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QPushButton" name="btn_song">
+       <widget class="QPushButton" name="btn_page_acc">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -233,7 +233,7 @@ QPushButton:pressed {
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QPushButton" name="btn_song_2">
+       <widget class="QPushButton" name="btn_page_security">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -257,7 +257,7 @@ QPushButton:pressed {
          <string>Сигурност</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="btn_song_3">
+       <widget class="QPushButton" name="btn_page_info">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -296,8 +296,7 @@ QPushButton:pressed {
 	background-color: rgba(0,0,0,0);
 }
 
-
-QPushButton#btn_save, #btn_save_2 {
+QPushButton#btn_acc_save, #btn_security_save{
 	background-color: rgb(20, 92, 158);
 	color: rgb(224, 224, 226);
 	border-radius: 5px;
@@ -319,7 +318,7 @@ QLineEdit {
 </string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="page_info">
         <property name="styleSheet">
@@ -335,73 +334,9 @@ QLineEdit {
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>30</y>
+           <y>100</y>
            <width>320</width>
-           <height>81</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Courier New</family>
-           <pointsize>9</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="verticalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOff</enum>
-         </property>
-         <property name="horizontalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOff</enum>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="plainText">
-          <string>Име и презиме: 
-Корисничко име: 
-Рођендан: 
-</string>
-         </property>
-         <property name="placeholderText">
-          <string>Унесите поруку...</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="settings_5">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>0</y>
-           <width>320</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Courier New</family>
-           <pointsize>9</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(224, 224, 226);</string>
-         </property>
-         <property name="text">
-          <string>Информације #1</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="info_2">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>140</y>
-           <width>320</width>
-           <height>81</height>
+           <height>100</height>
           </rect>
          </property>
          <property name="font">
@@ -429,7 +364,8 @@ QLineEdit {
           <bool>true</bool>
          </property>
          <property name="plainText">
-          <string>Ваш мејл: 
+          <string>Рођендан: 
+Ваш мејл: 
 Админ: 
 Датум регистрације: </string>
          </property>
@@ -437,11 +373,11 @@ QLineEdit {
           <string>Унесите поруку...</string>
          </property>
         </widget>
-        <widget class="QLabel" name="settings_6">
+        <widget class="QLabel" name="settings_5">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>110</y>
+           <x>12</x>
+           <y>70</y>
            <width>320</width>
            <height>40</height>
           </rect>
@@ -458,10 +394,92 @@ QLineEdit {
           <string notr="true">color: rgb(224, 224, 226);</string>
          </property>
          <property name="text">
-          <string>Информације #2</string>
+          <string>Информације</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_name">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>10</y>
+           <width>170</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>14</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>Артис</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_user">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>30</y>
+           <width>170</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>Пјесмица</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_art">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>60</width>
+           <height>60</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel#label_art {
+	border: 2px solid;
+	background-color: rgb(224,224,226);
+}</string>
+         </property>
+         <property name="text">
+          <string>ART</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </widget>
@@ -500,7 +518,7 @@ QLineEdit {
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QPushButton" name="btn_save">
+        <widget class="QPushButton" name="btn_acc_save">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -555,7 +573,7 @@ QLineEdit {
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QLineEdit" name="input_name">
+        <widget class="QLineEdit" name="input_username">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -682,7 +700,7 @@ QLineEdit {
         <widget class="QLabel" name="settings">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>12</x>
            <y>0</y>
            <width>320</width>
            <height>40</height>
@@ -709,7 +727,7 @@ QLineEdit {
         <widget class="QLabel" name="settings_2">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>12</x>
            <y>120</y>
            <width>320</width>
            <height>40</height>
@@ -797,7 +815,7 @@ QLineEdit {
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QLineEdit" name="input_mail">
+        <widget class="QLineEdit" name="input_email">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -828,7 +846,7 @@ QLineEdit {
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QPushButton" name="btn_save_2">
+        <widget class="QPushButton" name="btn_security_save">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -855,7 +873,7 @@ QLineEdit {
         <widget class="QLabel" name="settings_3">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>12</x>
            <y>0</y>
            <width>320</width>
            <height>40</height>
@@ -882,7 +900,7 @@ QLineEdit {
         <widget class="QLabel" name="settings_4">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>12</x>
            <y>120</y>
            <width>320</width>
            <height>40</height>
