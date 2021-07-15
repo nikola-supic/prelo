@@ -16,20 +16,25 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 from PyQt5.QtCore import QPropertyAnimation, QSequentialAnimationGroup
 
 from datetime import datetime
+import logging
 
 # Importing UI
 from ui.screen_server import Ui_ServerScreen
 
 # Import the modules
 from module.log import LogScreen
+from module.upload import UploadScreen
 from module.backend import Server
-
 
 # SERVER SCREEN
 class ServerScreen(QMainWindow, Ui_ServerScreen):
     def __init__(self):
         super(ServerScreen, self).__init__()
         self.setupUi(self)
+        self.log_file = 'logs/server_log.log'
+        self.global_file = 'logs/global_chat.log'
+        self.upload_file = 'logs/uploading.log'
+        self.create_loggers()
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -54,6 +59,29 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.check_buttons()
 
 
+    def create_loggers(self):
+        self.root_log = logging.getLogger('ROOT')
+        self.root_log.setLevel(logging.INFO)
+        handler = logging.FileHandler(self.log_file, 'a', 'utf-8')
+        formatter = logging.Formatter('[ %(asctime)s ] %(message)s', datefmt='%d.%m.%y. %H:%M:%S')
+        handler.setFormatter(formatter)
+        self.root_log.addHandler(handler)
+        
+        self.upload_log = logging.getLogger('UPLOAD')
+        self.upload_log.setLevel(logging.INFO)
+        handler = logging.FileHandler(self.upload_file, 'a', 'utf-8')
+        formatter = logging.Formatter('[ %(asctime)s ] %(message)s', datefmt='%d.%m.%y. %H:%M:%S')
+        handler.setFormatter(formatter)
+        self.upload_log.addHandler(handler)
+
+        self.global_log = logging.getLogger('GLOBAL')
+        self.global_log.setLevel(logging.INFO)
+        handler = logging.FileHandler(self.global_file, 'w', 'utf-8')
+        formatter = logging.Formatter('[ %(asctime)s ] %(message)s', datefmt='%d.%m.%y. %H:%M:%S')
+        handler.setFormatter(formatter)
+        self.global_log.addHandler(handler)
+
+
     def toggle_chat(self):
         if self.click_time > get_time():
             return False
@@ -76,7 +104,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.click_time = get_time()+1
 
         if self.server is not None:
-            self.logs = LogScreen(self, self.server.get_log())
+            self.logs = LogScreen(self, self.log_file)
             self.close()
 
 
@@ -86,7 +114,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.click_time = get_time()+1
 
         if self.server is None:
-            self.server = Server()
+            self.server = Server(self.root_log, self.global_log)
             self.server.start()
 
             self.check_buttons()
@@ -139,12 +167,17 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.click_time = get_time()+1
 
         if self.server is not None:
-            self.chat = LogScreen(self, self.server.get_chat())
+            self.chat = LogScreen(self, self.global_file)
             self.close()
 
 
     def upload(self):
-        pass
+        if self.click_time > get_time():
+            return False
+        self.click_time = get_time()+1
+
+        self.upload = UploadScreen(self, self.upload_log)
+        self.close()
 
 
     def exit(self):
