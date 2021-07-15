@@ -209,6 +209,7 @@ def delete_friend(user_id, friend_id):
     mydb.commit()
 
 
+# chat-related functions
 def send_message(user_id, friend_id, message):
     sql = "INSERT INTO chat (user_id, friend_id, message) VALUES (%s, %s, %s)"
     val = (user_id, friend_id, message, )
@@ -224,3 +225,28 @@ def get_chat(user_id, friend_id):
     mycursor.execute(sql, val)
     result = mycursor.fetchall()
     return result
+
+# artist-related functions
+def get_artist_name(artist_id):
+    sql = "SELECT name FROM artist WHERE id = %s"
+    val = (artist_id, )
+
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    return result[0]
+
+
+# songs-releated functions
+def search_song(name):
+    sql = "SELECT id, artist_id, name FROM song WHERE name LIKE CONCAT('%',%s,'%')"
+    val = (name, )
+
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+def add_user_song(user_id, song_id):
+    sql = "INSERT INTO user_song (user_id, song_id) VALUES (%s, %s)"
+    val = (user_id, song_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
