@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="images">
+    <file>images/global.png</file>
+    <file>images/hover_global.png</file>
+    <file>images/hover_upload.png</file>
+    <file>images/upload.png</file>
     <file>images/exit.png</file>
     <file>images/hover_exit.png</file>
     <file>images/hover_start.png</file>
