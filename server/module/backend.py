@@ -1,9 +1,12 @@
 # Importing the libraries
 import socket
 from _thread import start_new_thread
-from datetime import datetime
+import pickle
+
 import logging
-from io import StringIO
+from datetime import datetime
+import os
+
 
 # BACKEND CLASS
 class Server():
@@ -14,6 +17,7 @@ class Server():
         self.id_count = 0
         self.addresses = {}
         self.log_file = 'logs/server_log.log'
+        self.global_file = 'logs/global_chat.log'
 
         logging.basicConfig(filename=self.log_file, filemode='a', format='[ %(asctime)s ] %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
         logging.warning('')
@@ -34,8 +38,22 @@ class Server():
         self.server.listen()
         start_new_thread(self.listening_thread, ())
 
+        if os.path.exists(self.global_file):
+            os.remove(self.global_file)
+            
+        time = datetime.now()
+        with open(self.global_file, 'a') as file:
+            file.write(f'[ {time:%H:%M:%S} ] Started new chat session...\n')
+
 
     def restart(self):
+        if os.path.exists(self.global_file):
+            os.remove(self.global_file)
+            
+        time = datetime.now()
+        with open(self.global_file, 'a') as file:
+            file.write(f'[ {time:%H:%M:%S} ] Started new chat session...\n')
+
         logging.warning('Restarting server...')
 
 
@@ -69,8 +87,17 @@ class Server():
                     break
                 else:
                     data_list = data.split()
-                    if data_list[0] == 'create':
-                        pass
+                    if data_list[0] == 'global':
+                        user_id = data_list[1]
+                        username = data_list[2]
+                        message = data_list[3].replace('_', ' ')
+
+                        chat = self.global_chat(int(user_id), username, message)
+                        client.sendall(pickle.dumps(chat))
+
+                    elif data_list[0] == 'get_global':
+                        chat = self.get_global_chat()
+                        client.sendall(pickle.dumps(chat))
 
             except Exception as e:
                 print(str(e))
@@ -79,3 +106,18 @@ class Server():
 
         self.id_count -= 1
         client.close()
+
+
+    def global_chat(self, user_id, username, message):
+        time = datetime.now()
+
+        with open(self.global_file, 'a') as file:
+            file.write(f'[ {time:%H:%M:%S} ] {username}#{user_id:04} // {message}\n')
+
+        with open(self.global_file, 'r') as file:
+            return file.read()
+
+
+    def get_global_chat(self):
+        with open(self.global_file, 'r') as file:
+            return file.read()
