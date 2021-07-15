@@ -30,12 +30,7 @@ class Ui_LogScreen(object):
         self.frame_border.setObjectName("frame_border")
         self.frame = QtWidgets.QFrame(self.frame_border)
         self.frame.setGeometry(QtCore.QRect(10, 10, 680, 540))
-        self.frame.setStyleSheet("QFrame {    \n"
-"    background-color: rgba(18, 18, 18, 225);    \n"
-"}\n"
-"QLabel {\n"
-"    background-color: rgba(0,0,0,0);\n"
-"}")
+        self.frame.setStyleSheet("")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")

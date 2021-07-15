@@ -47,12 +47,7 @@ QLabel {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QFrame {	
-	background-color: rgba(18, 18, 18, 225);	
-}
-QLabel {
-	background-color: rgba(0,0,0,0);
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
