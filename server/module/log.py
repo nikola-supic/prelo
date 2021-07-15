@@ -4,7 +4,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import QPropertyAnimation, QParallelAnimationGroup
 
-
 # Importing UI
 from ui.screen_logs import Ui_LogScreen
 

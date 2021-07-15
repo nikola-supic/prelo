@@ -7,7 +7,6 @@ import logging
 from datetime import datetime
 import os
 
-
 # BACKEND CLASS
 class Server():
     def __init__(self):

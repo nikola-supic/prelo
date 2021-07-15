@@ -3,7 +3,7 @@ DOCSTRING:
 
 """
 
-from datetime import datetime, timedelta, date
+from datetime import datetime, date
 import mysql.connector
 
 global mydb, mycursor
