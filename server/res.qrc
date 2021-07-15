@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="images">
+    <file>images/delete.png</file>
+    <file>images/hover_delete.png</file>
+    <file>images/hover_open.png</file>
+    <file>images/open.png</file>
     <file>images/global.png</file>
     <file>images/hover_global.png</file>
     <file>images/hover_upload.png</file>
