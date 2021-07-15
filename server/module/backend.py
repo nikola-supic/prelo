@@ -19,7 +19,7 @@ class Server():
         self.log_file = 'logs/server_log.log'
         self.global_file = 'logs/global_chat.log'
 
-        logging.basicConfig(filename=self.log_file, filemode='a', format='[ %(asctime)s ] %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
+        logging.basicConfig(filename=self.log_file, filemode='a', format='[ %(asctime)s ] %(message)s', datefmt='%d.%m.%y. %H:%M:%S', level=logging.INFO)
         logging.warning('')
         logging.warning('='*40)
         logging.warning(f'Binding {self.host}:{self.port}')

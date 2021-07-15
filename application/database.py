@@ -87,9 +87,9 @@ def check_register(first_name, last_name, username, email, password, confirm_pw)
         return False
     if len(username) < 4:
         return False
-    if len(email) < 4:
+    if len(email) < 8:
         return False
-    if len(password) < 8 or len(password) > 24:
+    if len(password) < 8 or len(password) > 48:
         return False
     if password != confirm_pw:
         return False
@@ -114,14 +114,6 @@ def search_user(username):
     mycursor.execute(sql, val)
     result = mycursor.fetchall()
     return result
-
-
-def change_name(user_id, first_name, last_name):
-    sql = "UPDATE user SET first_name = %s, last_name = %s WHERE id = %s"
-    val = (first_name, last_name, user_id, )
-
-    mycursor.execute(sql, val)
-    mydb.commit()
 
 
 def delete_user(user_id):
@@ -226,7 +218,7 @@ def send_message(user_id, friend_id, message):
 
 def get_chat(user_id, friend_id):
     mydb.commit()
-    
+
     sql = "SELECT * FROM chat WHERE (user_id=%s AND friend_id=%s) OR (friend_id=%s AND user_id=%s)"
     val = (user_id, friend_id, user_id, friend_id, )
     mycursor.execute(sql, val)
