@@ -464,7 +464,7 @@ QPushButton#btn_refresh:hover {
         <widget class="QPushButton" name="btn_send_2">
          <property name="geometry">
           <rect>
-           <x>290</x>
+           <x>240</x>
            <y>460</y>
            <width>40</width>
            <height>40</height>
@@ -574,7 +574,7 @@ QPushButton#btn_send_2:hover {
           <rect>
            <x>10</x>
            <y>460</y>
-           <width>270</width>
+           <width>220</width>
            <height>40</height>
           </rect>
          </property>
@@ -617,6 +617,35 @@ QPushButton#btn_send_2:hover {
          </property>
          <property name="placeholderText">
           <string>Учитавање порука...</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_refresh_2">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>460</y>
+           <width>40</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#btn_refresh_2 {
+	border-image: url(:/icons/images/icons/refresh.png);
+}
+QPushButton#btn_refresh_2:hover {
+	border-image: url(:/icons/images/icons/hover_refresh.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>

@@ -235,7 +235,7 @@ class Ui_ChatScreen(object):
 "}")
         self.page_friend.setObjectName("page_friend")
         self.btn_send_2 = QtWidgets.QPushButton(self.page_friend)
-        self.btn_send_2.setGeometry(QtCore.QRect(290, 460, 40, 40))
+        self.btn_send_2.setGeometry(QtCore.QRect(240, 460, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -282,7 +282,7 @@ class Ui_ChatScreen(object):
         self.label_user.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_user.setObjectName("label_user")
         self.input_msg_2 = QtWidgets.QLineEdit(self.page_friend)
-        self.input_msg_2.setGeometry(QtCore.QRect(10, 460, 270, 40))
+        self.input_msg_2.setGeometry(QtCore.QRect(10, 460, 220, 40))
         self.input_msg_2.setClearButtonEnabled(True)
         self.input_msg_2.setObjectName("input_msg_2")
         self.chat_friend = QtWidgets.QPlainTextEdit(self.page_friend)
@@ -297,6 +297,22 @@ class Ui_ChatScreen(object):
         self.chat_friend.setReadOnly(True)
         self.chat_friend.setPlainText("")
         self.chat_friend.setObjectName("chat_friend")
+        self.btn_refresh_2 = QtWidgets.QPushButton(self.page_friend)
+        self.btn_refresh_2.setGeometry(QtCore.QRect(290, 460, 40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_refresh_2.setFont(font)
+        self.btn_refresh_2.setStyleSheet("QPushButton#btn_refresh_2 {\n"
+"    border-image: url(:/icons/images/icons/refresh.png);\n"
+"}\n"
+"QPushButton#btn_refresh_2:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_refresh.png);\n"
+"}")
+        self.btn_refresh_2.setText("")
+        self.btn_refresh_2.setObjectName("btn_refresh_2")
         self.stacked_pages.addWidget(self.page_friend)
         self.app_bg = QtWidgets.QLabel(self.frame_border)
         self.app_bg.setGeometry(QtCore.QRect(0, 0, 490, 600))
