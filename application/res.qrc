@@ -15,6 +15,12 @@
     <file>images/icons/send.png</file>
   </qresource>
   <qresource prefix="play">
+    <file>images/play/add.png</file>
+    <file>images/play/download.png</file>
+    <file>images/play/hover_add.png</file>
+    <file>images/play/hover_download.png</file>
+    <file>images/play/hover_share.png</file>
+    <file>images/play/share.png</file>
     <file>images/play/hover_next.png</file>
     <file>images/play/hover_pause.png</file>
     <file>images/play/hover_play.png</file>
