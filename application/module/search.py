@@ -71,7 +71,7 @@ class SearchScreen(QMainWindow, Ui_SearchScreen):
         try:
             song = db.Song(song_id)
             self.downloading.show()
-            song_size = self.network.download_song(f'download {self.user.id} {song.song_id} {song.path}')
+            file_path, song_size = self.network.download_song(self.user.id, song.song_id, song.path, False)
             self.downloading.hide()
 
         except Exception as e:

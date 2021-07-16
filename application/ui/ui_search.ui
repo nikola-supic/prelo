@@ -334,9 +334,9 @@ QPushButton#btn_download:hover {
       <widget class="QLabel" name="downloading">
        <property name="geometry">
         <rect>
-         <x>250</x>
+         <x>210</x>
          <y>35</y>
-         <width>161</width>
+         <width>200</width>
          <height>40</height>
         </rect>
        </property>
@@ -352,7 +352,7 @@ QPushButton#btn_download:hover {
         <string notr="true">color: rgb(224,224,226);</string>
        </property>
        <property name="text">
-        <string>СКИДАЊЕ У ТОКУ...</string>
+        <string>ПРЕУЗИМАЊЕ У ТОКУ...</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

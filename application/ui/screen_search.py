@@ -177,7 +177,7 @@ class Ui_SearchScreen(object):
         self.btn_download.setText("")
         self.btn_download.setObjectName("btn_download")
         self.downloading = QtWidgets.QLabel(self.widget)
-        self.downloading.setGeometry(QtCore.QRect(250, 35, 161, 40))
+        self.downloading.setGeometry(QtCore.QRect(210, 35, 200, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(10)
@@ -206,5 +206,5 @@ class Ui_SearchScreen(object):
         self.label.setText(_translate("SearchScreen", "СНАГА КРАЈИНЕ"))
         self.input_search.setPlaceholderText(_translate("SearchScreen", "Име аутора / пјесме / албума"))
         self.btn_add.setText(_translate("SearchScreen", "Додај у своје пјесме"))
-        self.downloading.setText(_translate("SearchScreen", "СКИДАЊЕ У ТОКУ..."))
+        self.downloading.setText(_translate("SearchScreen", "ПРЕУЗИМАЊЕ У ТОКУ..."))
 import res_rc
