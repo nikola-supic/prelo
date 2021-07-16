@@ -78,16 +78,16 @@ class Ui_PlayScreen(object):
         self.songs.setStyleSheet("color: rgb(224, 224, 226);")
         self.songs.setAlignment(QtCore.Qt.AlignCenter)
         self.songs.setObjectName("songs")
-        self.btn_artists = QtWidgets.QPushButton(self.frame_left)
-        self.btn_artists.setGeometry(QtCore.QRect(0, 80, 130, 40))
+        self.btn_artist = QtWidgets.QPushButton(self.frame_left)
+        self.btn_artist.setGeometry(QtCore.QRect(0, 80, 130, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
         font.setBold(False)
         font.setWeight(50)
-        self.btn_artists.setFont(font)
-        self.btn_artists.setStyleSheet("")
-        self.btn_artists.setObjectName("btn_artists")
+        self.btn_artist.setFont(font)
+        self.btn_artist.setStyleSheet("")
+        self.btn_artist.setObjectName("btn_artist")
         self.btn_local = QtWidgets.QPushButton(self.frame_left)
         self.btn_local.setGeometry(QtCore.QRect(0, 120, 130, 40))
         font = QtGui.QFont()
@@ -133,6 +133,7 @@ class Ui_PlayScreen(object):
         self.list_playlist.setGeometry(QtCore.QRect(0, 240, 130, 290))
         font = QtGui.QFont()
         font.setFamily("Courier New")
+        font.setPointSize(8)
         self.list_playlist.setFont(font)
         self.list_playlist.setStyleSheet("QListWidget#list_playlist {\n"
 "    color: rgb(224,224,226);\n"
@@ -148,12 +149,6 @@ class Ui_PlayScreen(object):
         self.list_playlist.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_playlist.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_playlist.setObjectName("list_playlist")
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_playlist.addItem(item)
         self.stacked_pages = QtWidgets.QStackedWidget(self.widget)
         self.stacked_pages.setGeometry(QtCore.QRect(130, 0, 340, 580))
         self.stacked_pages.setStyleSheet("QStackedWidget {\n"
@@ -163,23 +158,25 @@ class Ui_PlayScreen(object):
         self.page_songs = QtWidgets.QWidget()
         self.page_songs.setObjectName("page_songs")
         self.widget_current = QtWidgets.QWidget(self.page_songs)
-        self.widget_current.setGeometry(QtCore.QRect(0, 0, 340, 161))
+        self.widget_current.setGeometry(QtCore.QRect(0, 390, 340, 190))
         self.widget_current.setStyleSheet("")
         self.widget_current.setObjectName("widget_current")
         self.label_art = QtWidgets.QLabel(self.widget_current)
-        self.label_art.setGeometry(QtCore.QRect(10, 10, 61, 61))
+        self.label_art.setGeometry(QtCore.QRect(10, 10, 60, 60))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
         self.label_art.setFont(font)
         self.label_art.setStyleSheet("QLabel#label_art {\n"
-"    border: 2px solid;\n"
-"    background-color: rgb(224,224,226);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 30px;\n"
+"    background-color: rgba(0,0,0,0);\n"
+"    color: rgb(224,224,226);\n"
 "}")
         self.label_art.setAlignment(QtCore.Qt.AlignCenter)
         self.label_art.setObjectName("label_art")
         self.label_name = QtWidgets.QLabel(self.widget_current)
-        self.label_name.setGeometry(QtCore.QRect(80, 10, 251, 40))
+        self.label_name.setGeometry(QtCore.QRect(80, 10, 250, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(14)
@@ -189,20 +186,20 @@ class Ui_PlayScreen(object):
         self.label_name.setStyleSheet("color: rgb(224, 224, 226);")
         self.label_name.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_name.setObjectName("label_name")
-        self.label_artist = QtWidgets.QLabel(self.widget_current)
-        self.label_artist.setGeometry(QtCore.QRect(80, 30, 251, 40))
+        self.label_time = QtWidgets.QLabel(self.widget_current)
+        self.label_time.setGeometry(QtCore.QRect(10, 99, 61, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
         font.setBold(False)
         font.setWeight(50)
-        self.label_artist.setFont(font)
-        self.label_artist.setStyleSheet("color: rgb(224, 224, 226);")
-        self.label_artist.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.label_artist.setObjectName("label_artist")
-        self.horizontalSlider = QtWidgets.QSlider(self.widget_current)
-        self.horizontalSlider.setGeometry(QtCore.QRect(10, 140, 320, 15))
-        self.horizontalSlider.setStyleSheet("QSlider::groove:horizontal {\n"
+        self.label_time.setFont(font)
+        self.label_time.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label_time.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_time.setObjectName("label_time")
+        self.song_status = QtWidgets.QSlider(self.widget_current)
+        self.song_status.setGeometry(QtCore.QRect(10, 130, 320, 15))
+        self.song_status.setStyleSheet("QSlider::groove:horizontal {\n"
 "    background-color: rgb(224,224,226);\n"
 "    height: 4px;\n"
 "    border-radius: 2px;\n"
@@ -213,16 +210,16 @@ class Ui_PlayScreen(object):
 "    border-radius: 5px;\n"
 "    margin: -5px 0;\n"
 "}")
-        self.horizontalSlider.setSingleStep(1)
-        self.horizontalSlider.setPageStep(0)
-        self.horizontalSlider.setProperty("value", 13)
-        self.horizontalSlider.setSliderPosition(13)
-        self.horizontalSlider.setTracking(True)
-        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.horizontalSlider.setTickInterval(0)
-        self.horizontalSlider.setObjectName("horizontalSlider")
+        self.song_status.setSingleStep(1)
+        self.song_status.setPageStep(0)
+        self.song_status.setProperty("value", 13)
+        self.song_status.setSliderPosition(13)
+        self.song_status.setTracking(True)
+        self.song_status.setOrientation(QtCore.Qt.Horizontal)
+        self.song_status.setTickInterval(0)
+        self.song_status.setObjectName("song_status")
         self.btn_shuffle = QtWidgets.QPushButton(self.widget_current)
-        self.btn_shuffle.setGeometry(QtCore.QRect(50, 90, 40, 40))
+        self.btn_shuffle.setGeometry(QtCore.QRect(70, 90, 30, 30))
         self.btn_shuffle.setStyleSheet("QPushButton#btn_shuffle {\n"
 "    border-image: url(:/play/images/play/shuffle.png);\n"
 "}\n"
@@ -232,7 +229,7 @@ class Ui_PlayScreen(object):
         self.btn_shuffle.setText("")
         self.btn_shuffle.setObjectName("btn_shuffle")
         self.btn_previous = QtWidgets.QPushButton(self.widget_current)
-        self.btn_previous.setGeometry(QtCore.QRect(100, 90, 40, 40))
+        self.btn_previous.setGeometry(QtCore.QRect(110, 90, 30, 30))
         self.btn_previous.setStyleSheet("QPushButton#btn_previous {\n"
 "    border-image: url(:/play/images/play/previous.png);\n"
 "}\n"
@@ -242,7 +239,7 @@ class Ui_PlayScreen(object):
         self.btn_previous.setText("")
         self.btn_previous.setObjectName("btn_previous")
         self.btn_play = QtWidgets.QPushButton(self.widget_current)
-        self.btn_play.setGeometry(QtCore.QRect(150, 90, 40, 40))
+        self.btn_play.setGeometry(QtCore.QRect(150, 90, 30, 30))
         self.btn_play.setStyleSheet("QPushButton#btn_play {\n"
 "    border-image: url(:/play/images/play/play.png);\n"
 "}\n"
@@ -252,7 +249,7 @@ class Ui_PlayScreen(object):
         self.btn_play.setText("")
         self.btn_play.setObjectName("btn_play")
         self.btn_next = QtWidgets.QPushButton(self.widget_current)
-        self.btn_next.setGeometry(QtCore.QRect(200, 90, 40, 40))
+        self.btn_next.setGeometry(QtCore.QRect(190, 90, 30, 30))
         self.btn_next.setStyleSheet("QPushButton#btn_next {\n"
 "    border-image: url(:/play/images/play/next.png);\n"
 "}\n"
@@ -262,7 +259,7 @@ class Ui_PlayScreen(object):
         self.btn_next.setText("")
         self.btn_next.setObjectName("btn_next")
         self.btn_repeat_all = QtWidgets.QPushButton(self.widget_current)
-        self.btn_repeat_all.setGeometry(QtCore.QRect(250, 90, 40, 40))
+        self.btn_repeat_all.setGeometry(QtCore.QRect(230, 90, 30, 30))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(10)
@@ -277,21 +274,8 @@ class Ui_PlayScreen(object):
 "    border-image: url(:/play/images/play/hover_repeat.png);\n"
 "}")
         self.btn_repeat_all.setObjectName("btn_repeat_all")
-        self.btn_back = QtWidgets.QPushButton(self.widget_current)
-        self.btn_back.setGeometry(QtCore.QRect(300, 10, 30, 30))
-        font = QtGui.QFont()
-        font.setFamily("Courier New")
-        self.btn_back.setFont(font)
-        self.btn_back.setStyleSheet("QPushButton#btn_back {\n"
-"    border-image: url(:/menu/images/menu/exit.png);\n"
-"}\n"
-"QPushButton#btn_back:hover {\n"
-"    border-image: url(:/menu/images/menu/hover_exit.png);\n"
-"}")
-        self.btn_back.setText("")
-        self.btn_back.setObjectName("btn_back")
         self.btn_shuffle_off = QtWidgets.QPushButton(self.widget_current)
-        self.btn_shuffle_off.setGeometry(QtCore.QRect(50, 90, 40, 40))
+        self.btn_shuffle_off.setGeometry(QtCore.QRect(70, 90, 30, 30))
         self.btn_shuffle_off.setStyleSheet("QPushButton#btn_shuffle_off {\n"
 "    border-image: url(:/play/images/play/shuffle_off.png);\n"
 "}\n"
@@ -301,7 +285,7 @@ class Ui_PlayScreen(object):
         self.btn_shuffle_off.setText("")
         self.btn_shuffle_off.setObjectName("btn_shuffle_off")
         self.btn_repeat_one = QtWidgets.QPushButton(self.widget_current)
-        self.btn_repeat_one.setGeometry(QtCore.QRect(250, 90, 40, 40))
+        self.btn_repeat_one.setGeometry(QtCore.QRect(230, 90, 30, 30))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(10)
@@ -317,7 +301,7 @@ class Ui_PlayScreen(object):
 "}")
         self.btn_repeat_one.setObjectName("btn_repeat_one")
         self.btn_pause = QtWidgets.QPushButton(self.widget_current)
-        self.btn_pause.setGeometry(QtCore.QRect(150, 90, 40, 40))
+        self.btn_pause.setGeometry(QtCore.QRect(150, 90, 30, 30))
         self.btn_pause.setStyleSheet("QPushButton#btn_pause {\n"
 "    border-image: url(:/play/images/play/pause.png);\n"
 "}\n"
@@ -326,15 +310,76 @@ class Ui_PlayScreen(object):
 "}")
         self.btn_pause.setText("")
         self.btn_pause.setObjectName("btn_pause")
+        self.btn_share = QtWidgets.QPushButton(self.widget_current)
+        self.btn_share.setGeometry(QtCore.QRect(190, 150, 30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.btn_share.setFont(font)
+        self.btn_share.setStyleSheet("QPushButton#btn_share {\n"
+"    border-image: url(:/play/images/play/share.png);\n"
+"}\n"
+"QPushButton#btn_share:hover {\n"
+"    border-image: url(:/play/images/play/hover_share.png);\n"
+"}")
+        self.btn_share.setText("")
+        self.btn_share.setObjectName("btn_share")
+        self.btn_add = QtWidgets.QPushButton(self.widget_current)
+        self.btn_add.setGeometry(QtCore.QRect(150, 150, 30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.btn_add.setFont(font)
+        self.btn_add.setStyleSheet("QPushButton#btn_add {\n"
+"    border-image: url(:/play/images/play/add.png);\n"
+"}\n"
+"QPushButton#btn_add:hover {\n"
+"    border-image: url(:/play/images/play/hover_add.png);\n"
+"}")
+        self.btn_add.setText("")
+        self.btn_add.setObjectName("btn_add")
+        self.btn_download = QtWidgets.QPushButton(self.widget_current)
+        self.btn_download.setGeometry(QtCore.QRect(110, 150, 30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.btn_download.setFont(font)
+        self.btn_download.setStyleSheet("QPushButton#btn_download {\n"
+"    border-image: url(:/play/images/play/download.png);\n"
+"}\n"
+"QPushButton#btn_download:hover {\n"
+"    border-image: url(:/play/images/play/hover_download.png);\n"
+"}")
+        self.btn_download.setText("")
+        self.btn_download.setObjectName("btn_download")
+        self.label_length = QtWidgets.QLabel(self.widget_current)
+        self.label_length.setGeometry(QtCore.QRect(270, 100, 61, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_length.setFont(font)
+        self.label_length.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label_length.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_length.setObjectName("label_length")
+        self.label_artist = QtWidgets.QLabel(self.widget_current)
+        self.label_artist.setGeometry(QtCore.QRect(80, 30, 250, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_artist.setFont(font)
+        self.label_artist.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label_artist.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_artist.setObjectName("label_artist")
         self.widget_playlist = QtWidgets.QWidget(self.page_songs)
-        self.widget_playlist.setGeometry(QtCore.QRect(0, 159, 340, 411))
+        self.widget_playlist.setGeometry(QtCore.QRect(0, 0, 340, 391))
         self.widget_playlist.setStyleSheet("")
         self.widget_playlist.setObjectName("widget_playlist")
         self.list_songs = QtWidgets.QListWidget(self.widget_playlist)
-        self.list_songs.setGeometry(QtCore.QRect(10, 0, 320, 410))
+        self.list_songs.setGeometry(QtCore.QRect(10, 50, 320, 340))
         font = QtGui.QFont()
         font.setFamily("Courier New")
-        font.setPointSize(14)
+        font.setPointSize(9)
         self.list_songs.setFont(font)
         self.list_songs.setStyleSheet("QListWidget#list_songs {\n"
 "    color: rgb(224,224,226);\n"
@@ -351,15 +396,174 @@ class Ui_PlayScreen(object):
         self.list_songs.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_songs.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_songs.setObjectName("list_songs")
-        item = QtWidgets.QListWidgetItem()
-        self.list_songs.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_songs.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_songs.addItem(item)
+        self.btn_back = QtWidgets.QPushButton(self.widget_playlist)
+        self.btn_back.setGeometry(QtCore.QRect(300, 10, 30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.btn_back.setFont(font)
+        self.btn_back.setStyleSheet("QPushButton#btn_back {\n"
+"    border-image: url(:/menu/images/menu/exit.png);\n"
+"}\n"
+"QPushButton#btn_back:hover {\n"
+"    border-image: url(:/menu/images/menu/hover_exit.png);\n"
+"}")
+        self.btn_back.setText("")
+        self.btn_back.setObjectName("btn_back")
+        self.label = QtWidgets.QLabel(self.widget_playlist)
+        self.label.setGeometry(QtCore.QRect(12, 0, 285, 50))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label.setObjectName("label")
         self.stacked_pages.addWidget(self.page_songs)
         self.page_new = QtWidgets.QWidget()
+        self.page_new.setStyleSheet("QPushButton#btn_search {\n"
+"    background-color: rgb(20, 92, 158);\n"
+"    color: rgb(224, 224, 226);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton#btn_search:hover {\n"
+"    background-color: rgb(19, 55, 88);\n"
+"}\n"
+"QPushButton#btn_search:pressed {\n"
+"    background-color: rgb(19, 37, 53);\n"
+"}\n"
+"\n"
+"QLineEdit#input_name, #input_desc, #input_search {\n"
+"    background-color: rgba(0,0,0,0);\n"
+"    border-radius: 5px;\n"
+"    border: 2px solid rgb(20, 92, 158);\n"
+"    color: rgb(224, 224, 226);\n"
+"    padding-left: 5px;\n"
+"}\n"
+"\n"
+"QListWidget#list_search, #list_added {\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QListWidget::item:hover {\n"
+"    background-color: rgb(20,92,158);\n"
+"}\n"
+"QListWidget::item:selected {\n"
+"    background-color: rgb(19,55,88);\n"
+"}\n"
+"\n"
+"QPushButton#btn_create {\n"
+"    background-color: rgb(20, 92, 158);\n"
+"    color: rgb(224, 224, 226);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton#btn_create:hover {\n"
+"    background-color: rgb(19, 55, 88);\n"
+"}\n"
+"QPushButton#btn_create:pressed {\n"
+"    background-color: rgb(19, 37, 53);\n"
+"}")
         self.page_new.setObjectName("page_new")
+        self.input_name = QtWidgets.QLineEdit(self.page_new)
+        self.input_name.setGeometry(QtCore.QRect(10, 10, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        self.input_name.setFont(font)
+        self.input_name.setStyleSheet("")
+        self.input_name.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.input_name.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.input_name.setClearButtonEnabled(True)
+        self.input_name.setObjectName("input_name")
+        self.input_desc = QtWidgets.QLineEdit(self.page_new)
+        self.input_desc.setGeometry(QtCore.QRect(10, 60, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        self.input_desc.setFont(font)
+        self.input_desc.setStyleSheet("")
+        self.input_desc.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.input_desc.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.input_desc.setClearButtonEnabled(True)
+        self.input_desc.setObjectName("input_desc")
+        self.check_public = QtWidgets.QCheckBox(self.page_new)
+        self.check_public.setGeometry(QtCore.QRect(10, 100, 321, 41))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.check_public.setFont(font)
+        self.check_public.setStyleSheet("color: rgb(224,224,226);")
+        self.check_public.setObjectName("check_public")
+        self.btn_create = QtWidgets.QPushButton(self.page_new)
+        self.btn_create.setGeometry(QtCore.QRect(10, 530, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_create.setFont(font)
+        self.btn_create.setStyleSheet("")
+        self.btn_create.setObjectName("btn_create")
+        self.input_search = QtWidgets.QLineEdit(self.page_new)
+        self.input_search.setGeometry(QtCore.QRect(10, 140, 270, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        self.input_search.setFont(font)
+        self.input_search.setStyleSheet("")
+        self.input_search.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.input_search.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.input_search.setClearButtonEnabled(True)
+        self.input_search.setObjectName("input_search")
+        self.btn_search = QtWidgets.QPushButton(self.page_new)
+        self.btn_search.setGeometry(QtCore.QRect(290, 140, 40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_search.setFont(font)
+        self.btn_search.setStyleSheet("QPushButton#btn_search {\n"
+"    border-image: url(:/icons/images/icons/search.png);\n"
+"}\n"
+"QPushButton#btn_search:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_search.png);\n"
+"}")
+        self.btn_search.setText("")
+        self.btn_search.setObjectName("btn_search")
+        self.list_search = QtWidgets.QListWidget(self.page_new)
+        self.list_search.setGeometry(QtCore.QRect(10, 190, 320, 120))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(8)
+        self.list_search.setFont(font)
+        self.list_search.setStyleSheet("")
+        self.list_search.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_search.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_search.setObjectName("list_search")
+        self.list_added = QtWidgets.QListWidget(self.page_new)
+        self.list_added.setGeometry(QtCore.QRect(10, 320, 320, 200))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(8)
+        self.list_added.setFont(font)
+        self.list_added.setStyleSheet("QListWidget#list_search {\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QListWidget::item:hover {\n"
+"    background-color: rgb(20,92,158);\n"
+"}\n"
+"QListWidget::item:selected {\n"
+"    background-color: rgb(19,55,88);\n"
+"}")
+        self.list_added.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_added.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_added.setObjectName("list_added")
         self.stacked_pages.addWidget(self.page_new)
         self.app_bg = QtWidgets.QLabel(self.frame_border)
         self.app_bg.setGeometry(QtCore.QRect(0, 0, 491, 601))
@@ -379,32 +583,22 @@ class Ui_PlayScreen(object):
         PlayScreen.setWindowTitle(_translate("PlayScreen", "MainWindow"))
         self.btn_song.setText(_translate("PlayScreen", "Пјесме"))
         self.songs.setText(_translate("PlayScreen", "Ваша музика"))
-        self.btn_artists.setText(_translate("PlayScreen", "Умјетници"))
-        self.btn_local.setText(_translate("PlayScreen", "Скинуте пјесме"))
+        self.btn_artist.setText(_translate("PlayScreen", "Умјетници"))
+        self.btn_local.setText(_translate("PlayScreen", "Преузете пјесме"))
         self.btn_recent.setText(_translate("PlayScreen", "Недавно слушано"))
         self.playlist.setText(_translate("PlayScreen", "Албуми"))
         self.btn_new.setText(_translate("PlayScreen", "Нови албум"))
-        __sortingEnabled = self.list_playlist.isSortingEnabled()
-        self.list_playlist.setSortingEnabled(False)
-        item = self.list_playlist.item(0)
-        item.setText(_translate("PlayScreen", "1"))
-        item = self.list_playlist.item(1)
-        item.setText(_translate("PlayScreen", "22"))
-        item = self.list_playlist.item(2)
-        item.setText(_translate("PlayScreen", "333"))
-        self.list_playlist.setSortingEnabled(__sortingEnabled)
         self.label_art.setText(_translate("PlayScreen", "ART"))
-        self.label_name.setText(_translate("PlayScreen", "Артис"))
-        self.label_artist.setText(_translate("PlayScreen", "Пјесмица"))
+        self.label_name.setText(_translate("PlayScreen", "PJESMA"))
+        self.label_time.setText(_translate("PlayScreen", "00:00"))
         self.btn_repeat_all.setText(_translate("PlayScreen", "A"))
         self.btn_repeat_one.setText(_translate("PlayScreen", "1"))
-        __sortingEnabled = self.list_songs.isSortingEnabled()
-        self.list_songs.setSortingEnabled(False)
-        item = self.list_songs.item(0)
-        item.setText(_translate("PlayScreen", "1"))
-        item = self.list_songs.item(1)
-        item.setText(_translate("PlayScreen", "22"))
-        item = self.list_songs.item(2)
-        item.setText(_translate("PlayScreen", "333"))
-        self.list_songs.setSortingEnabled(__sortingEnabled)
+        self.label_length.setText(_translate("PlayScreen", "00:00"))
+        self.label_artist.setText(_translate("PlayScreen", "ARTT"))
+        self.label.setText(_translate("PlayScreen", "Изаберите пјесму"))
+        self.input_name.setPlaceholderText(_translate("PlayScreen", "Име за плејлисту"))
+        self.input_desc.setPlaceholderText(_translate("PlayScreen", "Опис плејлисте"))
+        self.check_public.setText(_translate("PlayScreen", "Јавна плејлиста"))
+        self.btn_create.setText(_translate("PlayScreen", "Направи нову плејлисту"))
+        self.input_search.setPlaceholderText(_translate("PlayScreen", "Тражи пјесму"))
 import res_rc
