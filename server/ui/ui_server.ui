@@ -249,7 +249,7 @@ QPushButton#btn_shutdown:hover {
         <string notr="true">color: rgb(224,224,226);</string>
        </property>
        <property name="text">
-        <string>Скидање музике</string>
+        <string>Преузимање</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

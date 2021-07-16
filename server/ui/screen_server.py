@@ -224,7 +224,7 @@ class Ui_ServerScreen(object):
         self.app.setText(_translate("ServerScreen", "Прело"))
         self.app_2.setText(_translate("ServerScreen", "Подешавања сервера"))
         self.label_3.setText(_translate("ServerScreen", "Дописивање"))
-        self.label_4.setText(_translate("ServerScreen", "Скидање музике"))
+        self.label_4.setText(_translate("ServerScreen", "Преузимање"))
         self.label_5.setText(_translate("ServerScreen", "Лог фајл"))
         self.label_restart.setText(_translate("ServerScreen", "Рестарт"))
         self.label_chat.setText(_translate("ServerScreen", "УКЉУЧЕНО"))
