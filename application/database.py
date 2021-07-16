@@ -5,9 +5,10 @@ DOCSTRING:
 
 from datetime import datetime, date
 import mysql.connector
+from utils import empty_temp
 
+# Global variables
 global mydb, mycursor
-
 def connect(host='localhost', user='root', password='', database=''):
     try:
         global mydb, mycursor
@@ -24,8 +25,8 @@ def connect(host='localhost', user='root', password='', database=''):
         print('[ - ] Can not connect to database.')
         return False
 
-
 # user-related functions
+
 class User():
     """
     DOCSTRING:
@@ -59,6 +60,8 @@ class User():
 
         mycursor.execute(sql, val)
         mydb.commit()
+
+        empty_temp()
 
 
     def update_sql(self, column, value):
@@ -116,33 +119,17 @@ def search_user(username):
     return result
 
 
-def delete_user(user_id):
-    sql = "DELETE FROM user WHERE id = %s"
-    val = (user_id, )
-
-    mycursor.execute(sql, val)
-    mydb.commit()
-
-
-def get_online():
-    mycursor.execute("SELECT id, first_name, last_name FROM user WHERE online=1")
-    result = mycursor.fetchall()
-    return result
-
-
 def get_name(user_id):
-    sql = "SELECT first_name, last_name FROM user WHERE id = %s"
+    sql = "SELECT first_name, last_name FROM user WHERE id=%s"
     val = (user_id, )
-
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
     return f'{result[0]} {result[1]}'
 
 
 def get_username(user_id):
-    sql = "SELECT username FROM user WHERE id = %s"
+    sql = "SELECT username FROM user WHERE id=%s"
     val = (user_id, )
-
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
     return result[0]
@@ -226,14 +213,30 @@ def get_chat(user_id, friend_id):
     result = mycursor.fetchall()
     return result
 
+
 # artist-related functions
 def get_artist_name(artist_id):
-    sql = "SELECT name FROM artist WHERE id = %s"
+    sql = "SELECT name FROM artist WHERE id=%s"
     val = (artist_id, )
-
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
     return result[0]
+
+
+def get_artist_count(artist_id):
+    sql = "SELECT COUNT(id) AS count FROM song WHERE artist_id=%s"
+    val = (artist_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    return result[0]
+
+def get_artist_songs(artist_id):
+    sql = "SELECT id FROM song WHERE artist_id=%s"
+    val = (artist_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
 
 
 # songs-releated functions
@@ -264,8 +267,108 @@ def search_song(name):
     return result
 
 
+# user-songs
 def add_user_song(user_id, song_id):
-    sql = "INSERT INTO user_song (user_id, song_id) VALUES (%s, %s)"
+    sql = "SELECT id FROM user_song WHERE user_id=%s AND song_id=%s"
     val = (user_id, song_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+
+    if result is None:
+        sql = "INSERT INTO user_song (user_id, song_id) VALUES (%s, %s)"
+        val = (user_id, song_id, )
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return True
+    return False
+
+
+def get_user_songs(user_id):
+    sql = "SELECT song_id FROM user_song WHERE user_id=%s"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
+def get_user_artist(user_id):
+    sql = "SELECT DISTINCT artist_id FROM song WHERE id IN (SELECT song_id FROM user_song WHERE user_id=%s)"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
+# user-recent functions
+def add_user_recent(user_id, song_id):
+    sql = "SELECT COUNT(id) AS count FROM user_recent WHERE user_id=%s"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    count = mycursor.fetchone()[0]
+
+    if count >= 20:
+        sql = "DELETE FROM user_recent WHERE user_id=%s LIMIT 1"
+        val = (user_id, )
+        mycursor.execute(sql, val)
+        mydb.commit()
+
+    sql = "INSERT INTO user_recent (user_id, song_id) VALUES (%s, %s)"
+    val = (user_id, song_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+
+def get_user_recent(user_id):
+    sql = "SELECT song_id FROM user_recent WHERE user_id=%s"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
+# playlist functions
+def create_playlist(user_id, name, description, public):
+    sql = "INSERT INTO playlist (creator_id, name, description, public) VALUES (%s, %s, %s, %s)"
+    val = (user_id, name, description, public, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+    return mycursor.lastrowid
+
+
+def get_playlist_name(playlist_id):
+    sql = "SELECT name FROM playlist WHERE id=%s"
+    val = (playlist_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    return result[0]
+
+
+def add_playlist_song(playlist_id, song_id):
+    sql = "INSERT INTO playlist_song (playlist_id, song_id) VALUES (%s, %s)"
+    val = (playlist_id, song_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+
+def get_playlist_songs(playlist_id):
+    sql = "SELECT song_id FROM playlist_song WHERE playlist_id=%s"
+    val = (playlist_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
+# user-playlist functions
+def get_user_playlist(user_id):
+    sql = "SELECT playlist_id FROM user_playlist WHERE user_id=%s"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
+def add_user_playlist(user_id, playlist_id):
+    sql = "INSERT INTO user_playlist (user_id, playlist_id) VALUES (%s, %s)"
+    val = (user_id, playlist_id, )
     mycursor.execute(sql, val)
     mydb.commit()
