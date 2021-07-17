@@ -264,6 +264,14 @@ def search_song(name):
     return result
 
 
+def get_song_path(song_id):
+    sql = "SELECT path FROM song WHERE id=%s"
+    val = (song_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    return result[0]
+
+
 # user-songs
 def add_user_song(user_id, song_id):
     sql = "SELECT id FROM user_song WHERE user_id=%s AND song_id=%s"

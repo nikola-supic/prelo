@@ -55,8 +55,11 @@ class SearchScreen(QMainWindow, Ui_SearchScreen):
         if selected:
             song_id = selected[0].text()[1:]
             song_id = song_id.split(' ')[0]
+            song_path = db.get_song_path(song_id)
 
             db.add_user_song(self.user.id, song_id)
+            if not os.path.isfile(song_path):
+                start_new_thread(self.download_thread, (song_id, ))
 
 
     def download_song(self):

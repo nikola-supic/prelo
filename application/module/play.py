@@ -438,7 +438,6 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
 
 
     def check_status(self):
-        print('STATUS: ', self.player.state())
         if self.player.state() == QMediaPlayer.PlayingState:
             self.player.pause()
         else:
