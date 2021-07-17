@@ -74,7 +74,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.list_added.itemDoubleClicked.connect(self.delete_song)
         self.btn_create.clicked.connect(self.create_playlist)
 
-        self.btn_download.clicked.connect(lambda: self.download_song(self.active_song, False))
+        self.btn_download.clicked.connect(lambda: self.download_song(self.active_song))
         self.btn_add.clicked.connect(self.add_song)
         self.btn_share.clicked.connect(self.share_song)
 
@@ -245,7 +245,8 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
             for song in self.song_list.values():
                 self.active_list.append(song)
 
-            self.setup_playlist()
+            self.setup_playlist(selected)
+            self.check_buttons()
 
     # # # # # # # #
     # NEW PLAYLIST
@@ -363,7 +364,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
             self.btn_mute.show()
 
 
-    def setup_playlist(self):
+    def setup_playlist(self, start_index):
         if self.playmode == LOCAL:
             pass
         else:
@@ -372,6 +373,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
 
             self.player_playlist = QMediaPlaylist()
             self.player_playlist.currentIndexChanged.connect(self.setup_song)
+            self.check_mode()
 
             for song in self.active_list:
                 if os.path.isfile(song.path):
@@ -379,12 +381,11 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
                     url = QtCore.QUrl.fromLocalFile(full_path)
                     content = QMediaContent(url)
                     self.player_playlist.addMedia(content)
-
                 else:
                     self.download_song(song, True)
 
             self.player.setPlaylist(self.player_playlist)
-            self.player_playlist.setCurrentIndex(0)
+            self.player_playlist.setCurrentIndex(start_index)
             self.player.play()
 
 
@@ -402,26 +403,19 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.song_status.setMaximum(song.length)
 
         self.active_song = song
-        db.add_user_recent(self.user.id, song.id)
+        db.add_user_recent(self.user.id, song.song_id)
 
 
-    def download_song(self, song, temp):
-        start_new_thread(self.download_thread, (song, temp, ))
+    def download_song(self, song):
+        start_new_thread(self.download_thread, (song, ))
 
 
-    def download_thread(self, song, temp):
+    def download_thread(self, song):
         try:
             old_text = self.label.text()
             self.label.setText('Преузимање у току...')
-            file_path, song_size = self.network.download_song(self.user.id, song.song_id, song.path, temp)
+            file_path, song_size = self.network.download_song(self.user.id, song.song_id, song.path)
             self.label.setText(old_text)
-
-            if temp:
-                full_path = os.path.join(os.getcwd(), file_path)
-                url = QtCore.QUrl.fromLocalFile(full_path)
-                content = QMediaContent(url)
-                self.player_playlist.addMedia(content)
-                print(f'Added to playlist: {full_path}')
 
         except Exception as e:
             print(str(e))
@@ -439,12 +433,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
     def check_shuffle(self):
         self.shuffle = False if self.shuffle else True
 
-        if self.player_playlist.playbackMode() != QMediaPlaylist.CurrentItemInLoop:
-            if self.shuffle:
-                self.player_playlist.setPlaybackMode(QMediaPlaylist.Random)
-            else:
-                self.player_playlist.setPlaybackMode(QMediaPlaylist.Loop)
-
+        self.check_mode()
         self.check_buttons()
 
 
@@ -461,17 +450,18 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
     def check_repeat(self):
         self.repeat = REPEAT_ONE if self.repeat == REPEAT_ALL else REPEAT_ALL
 
-        if self.player_playlist.playbackMode() == QMediaPlaylist.CurrentItemInLoop:
+        self.check_mode()
+        self.check_buttons()
+
+    def check_mode(self):
+        if self.repeat == REPEAT_ONE:
+            self.player_playlist.setPlaybackMode(QMediaPlaylist.CurrentItemInLoop)
+        else:
             if self.shuffle:
                 self.player_playlist.setPlaybackMode(QMediaPlaylist.Random)
             else:
                 self.player_playlist.setPlaybackMode(QMediaPlaylist.Loop)
-        else:
-           self.player_playlist.setPlaybackMode(QMediaPlaylist.CurrentItemInLoop)
 
-
-
-        self.check_buttons()
 
     # # # # # # # # # # # #
     # VOLUME BUTTONS

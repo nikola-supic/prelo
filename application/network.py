@@ -44,14 +44,8 @@ class Network():
             print(str(e))
 
 
-    def download_song(self, user_id, song_id, song_path, temp):
+    def download_song(self, user_id, song_id, song_path):
         try:
-            if temp:
-                file_path = 'temp\\' + song_path[6:]
-            else:
-                file_path = song_path
-            print(file_path)
-
             self.client.send(str.encode(f'download {user_id} {song_id} {song_path}'))
             song_size = pickle.loads(self.client.recv(2048*4))
 
@@ -65,10 +59,10 @@ class Network():
 
                 if recived_size > song_size:
                     data_arr = pickle.loads(recived_data) 
-                    with open(file_path, 'wb') as file:
+                    with open(song_path, 'wb') as file:
                         file.write(data_arr)
 
-                    return (file_path, song_size)
+                    return song_path, song_size
 
 
         except Exception as e:

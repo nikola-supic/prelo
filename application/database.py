@@ -5,7 +5,6 @@ DOCSTRING:
 
 from datetime import datetime, date
 import mysql.connector
-from utils import empty_temp
 
 # Global variables
 global mydb, mycursor
@@ -60,8 +59,6 @@ class User():
 
         mycursor.execute(sql, val)
         mydb.commit()
-
-        empty_temp()
 
 
     def update_sql(self, column, value):

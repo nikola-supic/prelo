@@ -67,11 +67,12 @@ class SearchScreen(QMainWindow, Ui_SearchScreen):
 
             start_new_thread(self.download_thread, (song_id, ))
 
+
     def download_thread(self, song_id):
         try:
             song = db.Song(song_id)
             self.downloading.show()
-            file_path, song_size = self.network.download_song(self.user.id, song.song_id, song.path, False)
+            file_path, song_size = self.network.download_song(self.user.id, song.song_id, song.path)
             self.downloading.hide()
 
         except Exception as e:
