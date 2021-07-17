@@ -40,9 +40,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.song_list = {}
         self.new_list = set()
         self.active_list = {}
-        self.previous_song = None
         self.active_song = None
-        self.active_idx = None
         self.shuffle = True
         self.repeat = REPEAT_ALL
 
@@ -381,7 +379,6 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
                     url = QtCore.QUrl.fromLocalFile(full_path)
                     content = QMediaContent(url)
                     self.player_playlist.addMedia(content)
-                    print(f'Added to playlist: {full_path}')
 
                 else:
                     self.download_song(song, True)
@@ -392,7 +389,6 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
 
 
     def setup_song(self):
-        print('Index changed')
         current_index = self.player_playlist.currentIndex()
         song = self.active_list[current_index]
         artist = db.get_artist_name(song.song_id)
@@ -406,8 +402,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.song_status.setMaximum(song.length)
 
         self.active_song = song
-        # if self.player.state() == 0:
-            # self.song_play()
+        db.add_user_recent(self.user.id, song.id)
 
 
     def download_song(self, song, temp):
