@@ -2,6 +2,16 @@
   <qresource prefix="images">
     <file>images/welcome_bg.png</file>
   </qresource>
+  <qresource prefix="sound">
+    <file>images/sound/down.png</file>
+    <file>images/sound/hover_down.png</file>
+    <file>images/sound/hover_muted.png</file>
+    <file>images/sound/hover_unmuted.png</file>
+    <file>images/sound/hover_up.png</file>
+    <file>images/sound/muted.png</file>
+    <file>images/sound/unmuted.png</file>
+    <file>images/sound/up.png</file>
+  </qresource>
   <qresource prefix="icons">
     <file>images/icons/download.png</file>
     <file>images/icons/hover_download.png</file>
