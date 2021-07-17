@@ -311,7 +311,7 @@ class Ui_PlayScreen(object):
         self.btn_pause.setText("")
         self.btn_pause.setObjectName("btn_pause")
         self.btn_share = QtWidgets.QPushButton(self.widget_current)
-        self.btn_share.setGeometry(QtCore.QRect(190, 150, 30, 30))
+        self.btn_share.setGeometry(QtCore.QRect(90, 150, 30, 30))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         self.btn_share.setFont(font)
@@ -324,7 +324,7 @@ class Ui_PlayScreen(object):
         self.btn_share.setText("")
         self.btn_share.setObjectName("btn_share")
         self.btn_add = QtWidgets.QPushButton(self.widget_current)
-        self.btn_add.setGeometry(QtCore.QRect(150, 150, 30, 30))
+        self.btn_add.setGeometry(QtCore.QRect(50, 150, 30, 30))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         self.btn_add.setFont(font)
@@ -337,7 +337,7 @@ class Ui_PlayScreen(object):
         self.btn_add.setText("")
         self.btn_add.setObjectName("btn_add")
         self.btn_download = QtWidgets.QPushButton(self.widget_current)
-        self.btn_download.setGeometry(QtCore.QRect(110, 150, 30, 30))
+        self.btn_download.setGeometry(QtCore.QRect(10, 150, 30, 30))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         self.btn_download.setFont(font)
@@ -371,6 +371,58 @@ class Ui_PlayScreen(object):
         self.label_artist.setStyleSheet("color: rgb(224, 224, 226);")
         self.label_artist.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_artist.setObjectName("label_artist")
+        self.btn_up = QtWidgets.QPushButton(self.widget_current)
+        self.btn_up.setGeometry(QtCore.QRect(300, 150, 30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.btn_up.setFont(font)
+        self.btn_up.setStyleSheet("QPushButton#btn_up {\n"
+"    border-image: url(:/sound/images/sound/up.png);\n"
+"}\n"
+"QPushButton#btn_up:hover {\n"
+"    border-image: url(:/sound/images/sound/hover_up.png);\n"
+"}")
+        self.btn_up.setText("")
+        self.btn_up.setObjectName("btn_up")
+        self.btn_mute = QtWidgets.QPushButton(self.widget_current)
+        self.btn_mute.setGeometry(QtCore.QRect(260, 150, 30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.btn_mute.setFont(font)
+        self.btn_mute.setStyleSheet("QPushButton#btn_mute {\n"
+"    border-image: url(:/sound/images/sound/unmuted.png);\n"
+"}\n"
+"QPushButton#btn_mute:hover {\n"
+"    border-image: url(:/sound/images/sound/hover_unmuted.png);\n"
+"}")
+        self.btn_mute.setText("")
+        self.btn_mute.setObjectName("btn_mute")
+        self.btn_down = QtWidgets.QPushButton(self.widget_current)
+        self.btn_down.setGeometry(QtCore.QRect(220, 150, 30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.btn_down.setFont(font)
+        self.btn_down.setStyleSheet("QPushButton#btn_down {\n"
+"    border-image: url(:/sound/images/sound/down.png);\n"
+"}\n"
+"QPushButton#btn_down:hover {\n"
+"    border-image: url(:/sound/images/sound/hover_down.png);\n"
+"}")
+        self.btn_down.setText("")
+        self.btn_down.setObjectName("btn_down")
+        self.btn_unmute = QtWidgets.QPushButton(self.widget_current)
+        self.btn_unmute.setGeometry(QtCore.QRect(260, 150, 30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        self.btn_unmute.setFont(font)
+        self.btn_unmute.setStyleSheet("QPushButton#btn_unmute {\n"
+"    border-image: url(:/sound/images/sound/muted.png);\n"
+"}\n"
+"QPushButton#btn_unmute:hover {\n"
+"    border-image: url(:/sound/images/sound/hover_muted.png);\n"
+"}")
+        self.btn_unmute.setText("")
+        self.btn_unmute.setObjectName("btn_unmute")
         self.widget_playlist = QtWidgets.QWidget(self.page_songs)
         self.widget_playlist.setGeometry(QtCore.QRect(0, 0, 340, 391))
         self.widget_playlist.setStyleSheet("")
