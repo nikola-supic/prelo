@@ -1,9 +1,10 @@
 # Importing the libraries
 import sys
 import os
-from PyQt5 import QtCore, QtGui, QtWidgets, QtMultimedia
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import QPropertyAnimation, QSequentialAnimationGroup
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent, QMediaPlaylist
 from ui.screen_play import Ui_PlayScreen
 from datetime import datetime, timedelta
 from _thread import start_new_thread
@@ -22,9 +23,6 @@ ARTIST_LIST = 6
 
 REPEAT_ALL = 1
 REPEAT_ONE = 2
-
-STATUS_PAUSED = 1
-STATUS_STARTED = 2
 
 # PLAY SCREEN
 class PlayScreen(QMainWindow, Ui_PlayScreen):
@@ -47,7 +45,11 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.active_idx = None
         self.shuffle = True
         self.repeat = REPEAT_ALL
-        self.status = STATUS_PAUSED
+
+        # Create media player
+        self.player = QMediaPlayer()
+        self.player.setMuted(False)
+        self.player.setVolume(100)
  
         if self.online:
             self.setup_songs()
@@ -74,18 +76,26 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.list_added.itemDoubleClicked.connect(self.delete_song)
         self.btn_create.clicked.connect(self.create_playlist)
 
-        self.btn_download.clicked.connect(lambda: self.download_song(False))
+        self.btn_download.clicked.connect(lambda: self.download_song(self.active_song, False))
         self.btn_add.clicked.connect(self.add_song)
         self.btn_share.clicked.connect(self.share_song)
 
         self.btn_shuffle.clicked.connect(self.check_shuffle)
         self.btn_shuffle_off.clicked.connect(self.check_shuffle)
-        self.btn_previous.clicked.connect(self.previous)
+        self.btn_previous.clicked.connect(lambda: self.player_playlist.previous())
         self.btn_play.clicked.connect(self.check_status)
         self.btn_pause.clicked.connect(self.check_status)
-        self.btn_next.clicked.connect(self.next)
+        self.btn_next.clicked.connect(lambda: self.player_playlist.next())
         self.btn_repeat_all.clicked.connect(self.check_repeat)
         self.btn_repeat_one.clicked.connect(self.check_repeat)
+
+        self.btn_down.clicked.connect(self.volume_down)
+        self.btn_mute.clicked.connect(self.check_volume)
+        self.btn_unmute.clicked.connect(self.check_volume)
+        self.btn_up.clicked.connect(self.volume_up)
+
+        self.song_status.sliderMoved.connect(self.slider_position)
+        self.player.positionChanged.connect(self.song_position)
 
         self.click_time = get_time() + 2
 
@@ -237,7 +247,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
             for song in self.song_list.values():
                 self.active_list.append(song)
 
-            self.setup_song(self.song_list[selected])
+            self.setup_playlist()
 
     # # # # # # # #
     # NEW PLAYLIST
@@ -340,35 +350,68 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
             self.btn_repeat_one.show()
             self.btn_repeat_all.hide()
 
-        if self.status == STATUS_PAUSED:
-            self.btn_pause.hide()
-            self.btn_play.show()
-        else:
+        if self.player.state() == QMediaPlayer.PlayingState:
             self.btn_play.hide()
             self.btn_pause.show()
+        else:
+            self.btn_pause.hide()
+            self.btn_play.show()
+
+        if self.player.isMuted():
+            self.btn_mute.hide()
+            self.btn_unmute.show()
+        else:
+            self.btn_unmute.hide()
+            self.btn_mute.show()
 
 
-    def setup_song(self, song):
+    def setup_playlist(self):
         if self.playmode == LOCAL:
             pass
         else:
             if not self.widget_current.isVisible():
                 self.widget_current.show()
-            artist = db.get_artist_name(song.song_id)
 
-            self.label_name.setText(song.name)
-            self.label_artist.setText(artist)
-            self.label_time.setText(str(timedelta(seconds=0)))
-            self.label_length.setText(str(timedelta(seconds=song.length)))
+            self.player_playlist = QMediaPlaylist()
+            self.player_playlist.currentIndexChanged.connect(self.setup_song)
 
-            self.song_status.setValue(0)
-            self.song_status.setMaximum(song.length)
+            for song in self.active_list:
+                if os.path.isfile(song.path):
+                    full_path = os.path.join(os.getcwd(), song.path)
+                    url = QtCore.QUrl.fromLocalFile(full_path)
+                    content = QMediaContent(url)
+                    self.player_playlist.addMedia(content)
+                    print(f'Added to playlist: {full_path}')
 
-            self.active_song = song
+                else:
+                    self.download_song(song, True)
+
+            self.player.setPlaylist(self.player_playlist)
+            self.player_playlist.setCurrentIndex(0)
+            self.player.play()
 
 
-    def download_song(self, temp):
-        start_new_thread(self.download_thread, (self.active_song, temp, ))
+    def setup_song(self):
+        print('Index changed')
+        current_index = self.player_playlist.currentIndex()
+        song = self.active_list[current_index]
+        artist = db.get_artist_name(song.song_id)
+
+        self.label_name.setText(song.name)
+        self.label_artist.setText(artist)
+        self.label_time.setText(str(timedelta(seconds=0)))
+        self.label_length.setText(str(timedelta(seconds=song.length)))
+
+        self.song_status.setValue(0)
+        self.song_status.setMaximum(song.length)
+
+        self.active_song = song
+        # if self.player.state() == 0:
+            # self.song_play()
+
+
+    def download_song(self, song, temp):
+        start_new_thread(self.download_thread, (song, temp, ))
 
 
     def download_thread(self, song, temp):
@@ -377,6 +420,13 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
             self.label.setText('Преузимање у току...')
             file_path, song_size = self.network.download_song(self.user.id, song.song_id, song.path, temp)
             self.label.setText(old_text)
+
+            if temp:
+                full_path = os.path.join(os.getcwd(), file_path)
+                url = QtCore.QUrl.fromLocalFile(full_path)
+                content = QMediaContent(url)
+                self.player_playlist.addMedia(content)
+                print(f'Added to playlist: {full_path}')
 
         except Exception as e:
             print(str(e))
@@ -393,77 +443,83 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
 
     def check_shuffle(self):
         self.shuffle = False if self.shuffle else True
-        self.check_buttons()
 
-
-    def previous(self):
-        if len(self.active_list) == 1:
-            return False
-
-        if self.previous_song is None:
+        if self.player_playlist.playbackMode() != QMediaPlaylist.CurrentItemInLoop:
             if self.shuffle:
-                random = choice(self.active_list)
-                self.setup_song(random)
+                self.player_playlist.setPlaybackMode(QMediaPlaylist.Random)
             else:
-                index = self.active_list.index(self.active_song)
-                if index == 0:
-                    index = len(self.active_list)
-                self.setup_song(self.active_list[index - 1])
+                self.player_playlist.setPlaybackMode(QMediaPlaylist.Loop)
 
-        else:
-            self.setup_song(self.previous_song)
-            self.previous_song = self.active_song
+        self.check_buttons()
 
 
     def check_status(self):
-        self.status = STATUS_STARTED if self.status == STATUS_PAUSED else STATUS_PAUSED
-        self.check_buttons()
-
-        if self.status == STATUS_STARTED:
-            song = self.active_song
-            artist = db.get_artist_name(song.artist_id)
-
-            if os.path.isfile(song.path):
-                current_path = os.getcwd()
-                full_path = current_path + '\\' + song.path
-
-                url = QtCore.QUrl.fromLocalFile(full_path)
-                content = QtMultimedia.QMediaContent(url)
-                player = QtMultimedia.QMediaPlayer()
-                player.setMedia(content)
-                player.setMuted(False)
-                player.setVolume(100)
-                player.play()
-
-            else:
-                self.download_song(True)
-
-
-    def next(self):
-        if len(self.active_list) == 1:
-            return False
-
-        self.previous_song = self.active_song
-
-        if self.shuffle:
-            random = choice(self.active_list)
-            while random == self.active_song:
-                random = choice(self.active_list)
-
-            self.setup_song(random)
+        print('STATUS: ', self.player.state())
+        if self.player.state() == QMediaPlayer.PlayingState:
+            self.player.pause()
         else:
-            index = self.active_list.index(self.active_song)
-            if (index+1) == len(self.active_list):
-                index = -1
-            self.setup_song(self.active_list[index + 1])
+            self.player.play()
+
+        self.check_buttons()
 
 
     def check_repeat(self):
         self.repeat = REPEAT_ONE if self.repeat == REPEAT_ALL else REPEAT_ALL
+
+        if self.player_playlist.playbackMode() == QMediaPlaylist.CurrentItemInLoop:
+            if self.shuffle:
+                self.player_playlist.setPlaybackMode(QMediaPlaylist.Random)
+            else:
+                self.player_playlist.setPlaybackMode(QMediaPlaylist.Loop)
+        else:
+           self.player_playlist.setPlaybackMode(QMediaPlaylist.CurrentItemInLoop)
+
+
+
+        self.check_buttons()
+
+    # # # # # # # # # # # #
+    # VOLUME BUTTONS
+    # # # # # # # # # # # #
+
+    def volume_down(self):
+        volume = self.player.volume()
+        self.player.setVolume(volume - 10)
+
+
+    def check_volume(self):
+        if self.player.isMuted():
+            self.player.setMuted(False)
+        else:
+            self.player.setMuted(True)
+
         self.check_buttons()
 
 
+    def volume_up(self):
+        volume = self.player.volume()
+        self.player.setVolume(volume + 10)
+
+    # # # # # # # # # # # #
+    # MEDIA PLAYER FUNCTIONS
+    # # # # # # # # # # # #
+
+    def slider_position(self):
+        seconds = self.song_status.value()
+        ms = seconds * 1000
+        self.player.setPosition(ms)
+
+
+    def song_position(self):
+        seconds = int(self.player.position() / 1000)
+
+        self.label_time.setText(str(timedelta(seconds=seconds)))
+        self.song_status.setValue(seconds)
+
+
     def exit(self):
+        del self.player
+
         self.back.show()
         self.close()
 
