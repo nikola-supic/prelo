@@ -281,6 +281,92 @@ QPushButton:pressed {
          <string>Информације</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="btn_page_song">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>160</y>
+          <width>130</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Пјесме</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="playlist">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>200</y>
+          <width>130</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(224, 224, 226);</string>
+        </property>
+        <property name="text">
+         <string>Албуми</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="list_playlist">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>240</y>
+          <width>130</width>
+          <height>340</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>8</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QListWidget#list_playlist {
+	color: rgb(224,224,226);
+	background-color:rgba(0,0,0,0);
+	border-radius: 0px;
+}
+QListWidget::item:hover {
+	background-color: rgb(20,92,158);
+}
+QListWidget::item:selected {
+	background-color: rgb(19,55,88);
+}</string>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
       </widget>
       <widget class="QStackedWidget" name="stacked_pages">
        <property name="geometry">
@@ -315,10 +401,22 @@ QLineEdit {
 	padding-left: 5px;
 }
 
+QListWidget#list_search, #playlist_songs, #list_recent, #list_song {
+	color: rgb(224,224,226);
+	background-color:rgba(0,0,0,0);
+	border: 2px solid rgb(20,92,158);
+	border-radius: 5px;
+}
+QListWidget::item:hover {
+	background-color: rgb(20,92,158);
+}
+QListWidget::item:selected {
+	background-color: rgb(19,55,88);
+}
 </string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="page_info">
         <property name="styleSheet">
@@ -400,7 +498,7 @@ QLineEdit {
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
-        <widget class="QLabel" name="label_name">
+        <widget class="QLabel" name="user_name">
          <property name="geometry">
           <rect>
            <x>80</x>
@@ -427,7 +525,7 @@ QLineEdit {
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
-        <widget class="QLabel" name="label_user">
+        <widget class="QLabel" name="user_username">
          <property name="geometry">
           <rect>
            <x>80</x>
@@ -454,7 +552,7 @@ QLineEdit {
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
-        <widget class="QLabel" name="label_art">
+        <widget class="QLabel" name="user_art">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -470,9 +568,11 @@ QLineEdit {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QLabel#label_art {
-	border: 2px solid;
-	background-color: rgb(224,224,226);
+          <string notr="true">QLabel#user_art {
+	border: 2px solid rgb(20,92,158);
+	border-radius: 30px;
+	background-color: rgba(0,0,0,0);
+	color: rgb(224,224,226);
 }</string>
          </property>
          <property name="text">
@@ -480,6 +580,58 @@ QLineEdit {
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QListWidget" name="list_recent">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>230</y>
+           <width>320</width>
+           <height>271</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="settings_6">
+         <property name="geometry">
+          <rect>
+           <x>12</x>
+           <y>200</y>
+           <width>320</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>Недавно слушано</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
        </widget>
@@ -923,6 +1075,579 @@ QLineEdit {
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_song">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_remove, #btn_download {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border-radius: 5px;
+}
+QPushButton#btn_remove:hover, #btn_download:hover {
+	background-color: rgb(19, 55, 88);
+}
+QPushButton#btn_remove:pressed, #btn_download:pressed {
+	background-color: rgb(19, 37, 53);
+}</string>
+        </property>
+        <widget class="QListWidget" name="list_song">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>320</width>
+           <height>391</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="settings_7">
+         <property name="geometry">
+          <rect>
+           <x>12</x>
+           <y>0</y>
+           <width>320</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>Твоје пјесме</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QWidget" name="widget_song" native="true">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>420</y>
+           <width>340</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <widget class="QPushButton" name="btn_remove">
+          <property name="geometry">
+           <rect>
+            <x>300</x>
+            <y>10</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#btn_remove {
+	border-image: url(:/icons/images/icons/delete.png);
+}
+QPushButton#btn_remove:hover {
+	border-image: url(:/icons/images/icons/hover_delete.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QLabel" name="song_art">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>70</width>
+            <height>70</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel#song_art {
+	border: 2px solid rgb(20,92,158);
+	border-radius: 35px;
+	background-color: rgba(0,0,0,0);
+	color: rgb(224,224,226);
+}</string>
+          </property>
+          <property name="text">
+           <string>ART</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="song_name">
+          <property name="geometry">
+           <rect>
+            <x>90</x>
+            <y>15</y>
+            <width>200</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(224, 224, 226);</string>
+          </property>
+          <property name="text">
+           <string>PJESMA</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_download">
+          <property name="geometry">
+           <rect>
+            <x>300</x>
+            <y>50</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#btn_download {
+	border-image: url(:/icons/images/icons/download.png);
+}
+QPushButton#btn_download:hover {
+	border-image: url(:/icons/images/icons/hover_download.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QLabel" name="song_artist">
+          <property name="geometry">
+           <rect>
+            <x>90</x>
+            <y>35</y>
+            <width>200</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(224, 224, 226);</string>
+          </property>
+          <property name="text">
+           <string>ARTT</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_playlist">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_playlist_remove, #btn_playlist_download, #btn_save, #btn_search {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border-radius: 5px;
+}
+QPushButton#btn_playlist_remove:hover, #btn_playlist_download :hover, #btn_save:hover, #btn_search:hover {
+	background-color: rgb(19, 55, 88);
+}
+QPushButton#btn_playlist_remove:pressed, #btn_playlist_download :pressed, #btn_save:pressed, #btn_search:pressed {
+	background-color: rgb(19, 37, 53);
+}</string>
+        </property>
+        <widget class="QLabel" name="settings_8">
+         <property name="geometry">
+          <rect>
+           <x>12</x>
+           <y>40</y>
+           <width>320</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>Пјесме у албуму (двоклик да избришеш)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QListWidget" name="playlist_songs">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>70</y>
+           <width>320</width>
+           <height>151</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="playlist_desc">
+         <property name="geometry">
+          <rect>
+           <x>12</x>
+           <y>20</y>
+           <width>320</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>ARTT</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="playlist_name">
+         <property name="geometry">
+          <rect>
+           <x>12</x>
+           <y>0</y>
+           <width>320</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>14</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>PJESMA</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_playlist_download">
+         <property name="geometry">
+          <rect>
+           <x>300</x>
+           <y>10</y>
+           <width>30</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#btn_playlist_download {
+	border-image: url(:/icons/images/icons/download.png);
+}
+QPushButton#btn_playlist_download:hover {
+	border-image: url(:/icons/images/icons/hover_download.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_playlist_remove">
+         <property name="geometry">
+          <rect>
+           <x>260</x>
+           <y>10</y>
+           <width>30</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#btn_playlist_remove {
+	border-image: url(:/icons/images/icons/delete.png);
+}
+QPushButton#btn_playlist_remove:hover {
+	border-image: url(:/icons/images/icons/hover_delete.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QWidget" name="widget_edit" native="true">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>230</y>
+           <width>341</width>
+           <height>281</height>
+          </rect>
+         </property>
+         <widget class="QLabel" name="settings_9">
+          <property name="geometry">
+           <rect>
+            <x>12</x>
+            <y>-10</y>
+            <width>320</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(224, 224, 226);</string>
+          </property>
+          <property name="text">
+           <string>Додај пјесму у албум</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="input_search">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>271</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: rgba(0,0,0,0);
+	border-radius: 5px;
+	border: 2px solid rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	padding-left: 5px;
+}
+
+</string>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Normal</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>Име пјесме</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QListWidget" name="list_search">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>70</y>
+            <width>320</width>
+            <height>151</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="check_public">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>230</y>
+            <width>181</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(224,224,226);</string>
+          </property>
+          <property name="text">
+           <string>Јавна плејлиста</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_save">
+          <property name="geometry">
+           <rect>
+            <x>200</x>
+            <y>230</y>
+            <width>131</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Сачувај</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_search">
+          <property name="geometry">
+           <rect>
+            <x>290</x>
+            <y>20</y>
+            <width>40</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#btn_search {
+	border-image: url(:/icons/images/icons/search.png);
+}
+QPushButton#btn_search:hover {
+	border-image: url(:/icons/images/icons/hover_search.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </widget>
        </widget>
       </widget>
