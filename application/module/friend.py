@@ -64,6 +64,25 @@ class FriendScreen(QMainWindow, Ui_FriendScreen):
         self.label_name.setText(name)
         self.label_user.setText(username)
 
+        # friend's playlists
+        playlist = db.get_user_playlist(friend_id)
+        self.list_playlist.clear()
+        for item in playlist:
+            name = db.get_playlist_name(item[0])
+
+            item = QtWidgets.QListWidgetItem(name)
+            self.list_playlist.addItem(item)
+
+        # friend's recents
+        recent = db.get_user_recent(friend_id)
+        self.list_recent.clear()
+        for item in recent:
+            song = db.Song(item[0])
+            artist = db.get_artist_name(song.artist_id)
+
+            item = QtWidgets.QListWidgetItem(f'{song.name} - {artist}')
+            self.list_recent.addItem(item)
+
 
     def request(self):
         self.stacked_pages.setCurrentWidget(self.page_request)
