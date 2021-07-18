@@ -179,12 +179,8 @@ class Ui_PlayScreen(object):
         font.setFamily("Courier New")
         font.setPointSize(9)
         self.label_art.setFont(font)
-        self.label_art.setStyleSheet("QLabel#label_art {\n"
-"    border: 2px solid rgb(20,92,158);\n"
-"    border-radius: 30px;\n"
-"    background-color: rgba(0,0,0,0);\n"
-"    color: rgb(224,224,226);\n"
-"}")
+        self.label_art.setStyleSheet("border-image: url(:/art/images/art/art_1.png);")
+        self.label_art.setText("")
         self.label_art.setAlignment(QtCore.Qt.AlignCenter)
         self.label_art.setObjectName("label_art")
         self.label_name = QtWidgets.QLabel(self.widget_current)
@@ -662,7 +658,6 @@ class Ui_PlayScreen(object):
         self.btn_recent.setText(_translate("PlayScreen", "Недавно слушано"))
         self.playlist.setText(_translate("PlayScreen", "Албуми"))
         self.btn_new.setText(_translate("PlayScreen", "Нови албум"))
-        self.label_art.setText(_translate("PlayScreen", "ART"))
         self.label_name.setText(_translate("PlayScreen", "PJESMA"))
         self.label_time.setText(_translate("PlayScreen", "00:00"))
         self.btn_repeat_all.setText(_translate("PlayScreen", "A"))

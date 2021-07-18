@@ -731,10 +731,6 @@ QLabel#label_playlist, #label_recent {
 	border-radius: 5px;
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
-}
-QLabel#label_art {
-	border: 2px solid;
-	background-color: rgb(224,224,226);
 }</string>
         </property>
         <widget class="QListWidget" name="list_playlist">
@@ -905,8 +901,8 @@ QPushButton#btn_delete:hover {
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>61</width>
-           <height>61</height>
+           <width>60</width>
+           <height>60</height>
           </rect>
          </property>
          <property name="font">
@@ -916,10 +912,10 @@ QPushButton#btn_delete:hover {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">border-image: url(:/art/images/art/art_1.png);</string>
          </property>
          <property name="text">
-          <string>ART</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

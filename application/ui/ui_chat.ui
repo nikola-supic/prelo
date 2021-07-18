@@ -339,7 +339,7 @@ QListWidget::item:selected {
 }</string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="page_global">
         <property name="styleSheet">
@@ -456,10 +456,7 @@ QPushButton#btn_refresh:hover {
        </widget>
        <widget class="QWidget" name="page_friend">
         <property name="styleSheet">
-         <string notr="true">QLabel#label_art {
-	border: 2px solid;
-	background-color: rgb(224,224,226);
-}</string>
+         <string notr="true"/>
         </property>
         <widget class="QPushButton" name="btn_send_2">
          <property name="geometry">
@@ -506,10 +503,10 @@ QPushButton#btn_send_2:hover {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">border-image: url(:/art/images/art/art_1.png);</string>
          </property>
          <property name="text">
-          <string>ART</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

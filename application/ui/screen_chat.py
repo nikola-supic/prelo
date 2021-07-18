@@ -229,10 +229,7 @@ class Ui_ChatScreen(object):
         self.btn_refresh.setObjectName("btn_refresh")
         self.stacked_pages.addWidget(self.page_global)
         self.page_friend = QtWidgets.QWidget()
-        self.page_friend.setStyleSheet("QLabel#label_art {\n"
-"    border: 2px solid;\n"
-"    background-color: rgb(224,224,226);\n"
-"}")
+        self.page_friend.setStyleSheet("")
         self.page_friend.setObjectName("page_friend")
         self.btn_send_2 = QtWidgets.QPushButton(self.page_friend)
         self.btn_send_2.setGeometry(QtCore.QRect(240, 460, 40, 40))
@@ -256,7 +253,8 @@ class Ui_ChatScreen(object):
         font.setFamily("Courier New")
         font.setPointSize(9)
         self.label_art.setFont(font)
-        self.label_art.setStyleSheet("")
+        self.label_art.setStyleSheet("border-image: url(:/art/images/art/art_1.png);")
+        self.label_art.setText("")
         self.label_art.setAlignment(QtCore.Qt.AlignCenter)
         self.label_art.setObjectName("label_art")
         self.label_name = QtWidgets.QLabel(self.page_friend)
@@ -324,7 +322,7 @@ class Ui_ChatScreen(object):
         ChatScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(ChatScreen)
-        self.stacked_pages.setCurrentIndex(0)
+        self.stacked_pages.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(ChatScreen)
 
     def retranslateUi(self, ChatScreen):
@@ -337,7 +335,6 @@ class Ui_ChatScreen(object):
         self.friends.setText(_translate("ChatScreen", "Пријатељи"))
         self.input_msg.setPlaceholderText(_translate("ChatScreen", "Унесите поруку..."))
         self.chat_global.setPlaceholderText(_translate("ChatScreen", "Учитавање порука..."))
-        self.label_art.setText(_translate("ChatScreen", "ART"))
         self.label_name.setText(_translate("ChatScreen", "Артис"))
         self.label_user.setText(_translate("ChatScreen", "Пјесмица"))
         self.input_msg_2.setPlaceholderText(_translate("ChatScreen", "Унесите поруку..."))

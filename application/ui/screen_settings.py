@@ -276,12 +276,8 @@ class Ui_SettingsScreen(object):
         font.setFamily("Courier New")
         font.setPointSize(9)
         self.user_art.setFont(font)
-        self.user_art.setStyleSheet("QLabel#user_art {\n"
-"    border: 2px solid rgb(20,92,158);\n"
-"    border-radius: 30px;\n"
-"    background-color: rgba(0,0,0,0);\n"
-"    color: rgb(224,224,226);\n"
-"}")
+        self.user_art.setStyleSheet("border-image: url(:/art/images/art/art_1.png);")
+        self.user_art.setText("")
         self.user_art.setAlignment(QtCore.Qt.AlignCenter)
         self.user_art.setObjectName("user_art")
         self.list_recent = QtWidgets.QListWidget(self.page_info)
@@ -535,12 +531,8 @@ class Ui_SettingsScreen(object):
         font.setFamily("Courier New")
         font.setPointSize(9)
         self.song_art.setFont(font)
-        self.song_art.setStyleSheet("QLabel#song_art {\n"
-"    border: 2px solid rgb(20,92,158);\n"
-"    border-radius: 35px;\n"
-"    background-color: rgba(0,0,0,0);\n"
-"    color: rgb(224,224,226);\n"
-"}")
+        self.song_art.setStyleSheet("border-image: url(:/art/images/art/art_1.png);")
+        self.song_art.setText("")
         self.song_art.setAlignment(QtCore.Qt.AlignCenter)
         self.song_art.setObjectName("song_art")
         self.song_name = QtWidgets.QLabel(self.widget_song)
@@ -757,7 +749,7 @@ class Ui_SettingsScreen(object):
         SettingsScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(SettingsScreen)
-        self.stacked_pages.setCurrentIndex(4)
+        self.stacked_pages.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(SettingsScreen)
 
     def retranslateUi(self, SettingsScreen):
@@ -779,7 +771,6 @@ class Ui_SettingsScreen(object):
         self.settings_5.setText(_translate("SettingsScreen", "Информације"))
         self.user_name.setText(_translate("SettingsScreen", "Артис"))
         self.user_username.setText(_translate("SettingsScreen", "Пјесмица"))
-        self.user_art.setText(_translate("SettingsScreen", "ART"))
         self.settings_6.setText(_translate("SettingsScreen", "Недавно слушано"))
         self.input_first.setPlaceholderText(_translate("SettingsScreen", "Име"))
         self.btn_acc_save.setText(_translate("SettingsScreen", "Сачувај измјене"))
@@ -797,7 +788,6 @@ class Ui_SettingsScreen(object):
         self.settings_3.setText(_translate("SettingsScreen", "Промјена лозинке"))
         self.settings_4.setText(_translate("SettingsScreen", "Промјена мејла"))
         self.settings_7.setText(_translate("SettingsScreen", "Твоје пјесме"))
-        self.song_art.setText(_translate("SettingsScreen", "ART"))
         self.song_name.setText(_translate("SettingsScreen", "PJESMA"))
         self.song_artist.setText(_translate("SettingsScreen", "ARTT"))
         self.settings_8.setText(_translate("SettingsScreen", "Пјесме у албуму (двоклик да избришеш)"))

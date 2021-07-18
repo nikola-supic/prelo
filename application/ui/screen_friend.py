@@ -383,10 +383,6 @@ class Ui_FriendScreen(object):
 "    border-radius: 5px;\n"
 "    border-bottom-left-radius: 0px;\n"
 "    border-bottom-right-radius: 0px;\n"
-"}\n"
-"QLabel#label_art {\n"
-"    border: 2px solid;\n"
-"    background-color: rgb(224,224,226);\n"
 "}")
         self.page_friend.setObjectName("page_friend")
         self.list_playlist = QtWidgets.QListWidget(self.page_friend)
@@ -458,12 +454,13 @@ class Ui_FriendScreen(object):
         self.label_recent.setAlignment(QtCore.Qt.AlignCenter)
         self.label_recent.setObjectName("label_recent")
         self.label_art = QtWidgets.QLabel(self.page_friend)
-        self.label_art.setGeometry(QtCore.QRect(10, 10, 61, 61))
+        self.label_art.setGeometry(QtCore.QRect(10, 10, 60, 60))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
         self.label_art.setFont(font)
-        self.label_art.setStyleSheet("")
+        self.label_art.setStyleSheet("border-image: url(:/art/images/art/art_1.png);")
+        self.label_art.setText("")
         self.label_art.setAlignment(QtCore.Qt.AlignCenter)
         self.label_art.setObjectName("label_art")
         self.label_name = QtWidgets.QLabel(self.page_friend)
@@ -537,7 +534,6 @@ class Ui_FriendScreen(object):
         self.input_msg.setPlaceholderText(_translate("FriendScreen", "Унесите поруку..."))
         self.label_playlist.setText(_translate("FriendScreen", "Албуми"))
         self.label_recent.setText(_translate("FriendScreen", "Недавно слушано"))
-        self.label_art.setText(_translate("FriendScreen", "ART"))
         self.label_name.setText(_translate("FriendScreen", "Артис"))
         self.label_user.setText(_translate("FriendScreen", "Пјесмица"))
 import res_rc

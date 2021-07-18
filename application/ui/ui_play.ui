@@ -374,15 +374,10 @@ QListWidget::item:selected {
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">QLabel#label_art {
-	border: 2px solid rgb(20,92,158);
-	border-radius: 30px;
-	background-color: rgba(0,0,0,0);
-	color: rgb(224,224,226);
-}</string>
+           <string notr="true">border-image: url(:/art/images/art/art_1.png);</string>
           </property>
           <property name="text">
-           <string>ART</string>
+           <string/>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
