@@ -228,12 +228,19 @@ def get_artist_count(artist_id):
     return result[0]
 
 def get_artist_songs(artist_id):
-    sql = "SELECT id FROM song WHERE artist_id=%s"
+    sql = "SELECT id, name FROM song WHERE artist_id=%s"
     val = (artist_id, )
     mycursor.execute(sql, val)
     result = mycursor.fetchall()
     return result
 
+
+def search_artist(artist_name):
+    sql = "SELECT id, name FROM artist WHERE name LIKE CONCAT('%',%s,'%')"
+    val = (artist_name, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
 
 
 # songs-releated functions
@@ -258,7 +265,6 @@ class Song():
 def search_song(name):
     sql = "SELECT id, artist_id, name FROM song WHERE name LIKE CONCAT('%',%s,'%')"
     val = (name, )
-
     mycursor.execute(sql, val)
     result = mycursor.fetchall()
     return result
@@ -270,7 +276,6 @@ def get_song_path(song_id):
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
     return result[0]
-
 
 # user-songs
 def add_user_song(user_id, song_id):
@@ -332,6 +337,14 @@ def get_user_recent(user_id):
 
 
 # playlist functions
+def search_playlist(name):
+    sql = "SELECT id, name FROM playlist WHERE name LIKE CONCAT('%',%s,'%')"
+    val = (name, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+
 def create_playlist(user_id, name, description, public):
     sql = "INSERT INTO playlist (creator_id, name, description, public) VALUES (%s, %s, %s, %s)"
     val = (user_id, name, description, public, )
