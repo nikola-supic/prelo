@@ -277,7 +277,7 @@ QPushButton#btn_about:hover {
          <rect>
           <x>280</x>
           <y>100</y>
-          <width>171</width>
+          <width>170</width>
           <height>40</height>
          </rect>
         </property>

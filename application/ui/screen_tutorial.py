@@ -132,7 +132,7 @@ class Ui_TutorialScreen(object):
         self.widget_tutorial.setGeometry(QtCore.QRect(0, 0, 471, 581))
         self.widget_tutorial.setObjectName("widget_tutorial")
         self.btn_next = QtWidgets.QPushButton(self.widget_tutorial)
-        self.btn_next.setGeometry(QtCore.QRect(280, 280, 171, 40))
+        self.btn_next.setGeometry(QtCore.QRect(280, 100, 170, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
