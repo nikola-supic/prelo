@@ -2,6 +2,14 @@
   <qresource prefix="images">
     <file>images/welcome_bg.png</file>
   </qresource>
+  <qresource prefix="tutorial">
+    <file>images/tutorial/step_1.png</file>
+    <file>images/tutorial/step_2.png</file>
+    <file>images/tutorial/step_3.png</file>
+    <file>images/tutorial/step_4.png</file>
+    <file>images/tutorial/step_5.png</file>
+    <file>images/tutorial/step_6.png</file>
+  </qresource>
   <qresource prefix="sound">
     <file>images/sound/down.png</file>
     <file>images/sound/hover_down.png</file>
