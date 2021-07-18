@@ -308,11 +308,13 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         current_index = self.player_playlist.currentIndex()
         song = self.active_list[current_index]
         artist = db.get_artist_name(song.song_id)
+        art_path = db.get_art_path(song.art)
 
         self.label_name.setText(song.name)
         self.label_artist.setText(artist)
         self.label_time.setText(str(timedelta(seconds=0)))
         self.label_length.setText(str(timedelta(seconds=song.length)))
+        self.label_art.setStyleSheet(f"border-image: url({art_path});")
 
         self.song_status.setValue(0)
         self.song_status.setMaximum(song.length)

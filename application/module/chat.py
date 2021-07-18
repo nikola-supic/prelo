@@ -55,8 +55,11 @@ class ChatScreen(QMainWindow, Ui_ChatScreen):
 
         name = db.get_name(friend_id)
         username = db.get_username(friend_id)
+        art_id = db.get_user_art(friend_id)
+        art_path = db.get_art_path(art_id)
         self.label_name.setText(name)
         self.label_user.setText(username)
+        self.label_art.setStyleSheet(f"border-image: url({art_path});")
 
         self.refresh_friend(self.friend_id)
 

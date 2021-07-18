@@ -71,8 +71,11 @@ class SettingsScreen(QMainWindow, Ui_SettingsScreen):
     def update_user(self):
         name = db.get_name(self.user.id)
         username = db.get_username(self.user.id)
+        art_id = db.get_user_art(self.user.id)
+        art_path = db.get_art_path(art_id)
         self.user_name.setText(name)
         self.user_username.setText(username)
+        self.user_art.setStyleSheet(f"border-image: url({art_path});")
 
         if self.user.admin:
             admin = 'ДА'
@@ -216,10 +219,12 @@ class SettingsScreen(QMainWindow, Ui_SettingsScreen):
 
         song = self.song_list[selected]
         artist = db.get_artist_name(song.artist_id)
+        art_path = db.get_art_path(song.art)
 
         self.active_song = song
         self.song_name.setText(song.name)
         self.song_artist.setText(artist)
+        self.song_art.setStyleSheet(f"border-image: url({art_path});")
 
     def remove_song(self):
         db.remove_user_song(self.user.id, self.active_song.song_id)

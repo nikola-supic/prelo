@@ -44,6 +44,7 @@ class User():
         self.register_date = result[8]
         self.online = True # 9
         self.last_online = datetime.now() # 10
+        self.art = result[11]
 
         sql = "UPDATE user SET last_online=%s, online=1 WHERE id=%s"
         val = (self.last_online, self.id, )
@@ -128,6 +129,14 @@ def get_name(user_id):
 
 def get_username(user_id):
     sql = "SELECT username FROM user WHERE id=%s"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    return result[0]
+
+
+def get_user_art(user_id):
+    sql = "SELECT art FROM user WHERE id=%s"
     val = (user_id, )
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
@@ -455,3 +464,11 @@ def remove_user_playlist(user_id, playlist_id):
     val = (user_id, playlist_id, )
     mycursor.execute(sql, val)
     mydb.commit()
+
+# art functions
+def get_art_path(art_id):
+    sql = "SELECT path FROM art WHERE id=%s"
+    val = (art_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    return result[0]
