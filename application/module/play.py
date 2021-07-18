@@ -11,6 +11,7 @@ from _thread import start_new_thread
 from random import choice
 
 import database as db
+from download import download_playlist, download_single
 from module.popup import PopupWarning
 
 # Global Variables
@@ -263,14 +264,18 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
             self.player_playlist.currentIndexChanged.connect(self.setup_song)
             self.check_mode()
 
+            download_playlist(self.user.id, self.active_list, self.network, temporary = True)
+
             for song in self.active_list:
                 if os.path.isfile(song.path):
                     full_path = os.path.join(os.getcwd(), song.path)
-                    url = QtCore.QUrl.fromLocalFile(full_path)
-                    content = QMediaContent(url)
-                    self.player_playlist.addMedia(content)
                 else:
-                    self.download_song(song, True)
+                    song_path = 'temp\\' + song.path[6:]
+                    full_path = os.path.join(os.getcwd(), song_path)
+
+                url = QtCore.QUrl.fromLocalFile(full_path)
+                content = QMediaContent(url)
+                self.player_playlist.addMedia(content)
 
             self.player.setPlaylist(self.player_playlist)
             self.player_playlist.setCurrentIndex(start_index)
@@ -399,19 +404,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
     # # # # # # # # # # # #
 
     def download_song(self, song):
-        start_new_thread(self.download_thread, (song, ))
-
-
-    def download_thread(self, song):
-        try:
-            old_text = self.label.text()
-            self.label.setText('Преузимање у току...')
-            file_path, song_size = self.network.download_song(self.user.id, song.song_id, song.path)
-            self.label.setText(old_text)
-
-        except Exception as e:
-            print(str(e))
-            print('Error')
+        start_new_thread(download_single, (self.user.id, song, self.network, ))
 
 
     def add_song(self):

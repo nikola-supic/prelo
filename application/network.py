@@ -2,6 +2,7 @@
 DOCSTRING:
 
 """
+import os
 import socket
 import pickle
 
@@ -44,8 +45,20 @@ class Network():
             print(str(e))
 
 
-    def download_song(self, user_id, song_id, song_path):
+    def download_song(self, user_id, song_id, song_path, temporary):
         try:
+            if os.path.isfile(song_path):
+                return song_path, 0
+
+            if temporary:
+                file_path = 'temp\\' + song_path[6:]
+            
+                if os.path.isfile(file_path):
+                    return file_path, 0
+                print(file_path)
+            else:
+                file_path = song_path
+
             self.client.send(str.encode(f'download {user_id} {song_id} {song_path}'))
             song_size = pickle.loads(self.client.recv(2048*4))
 
@@ -59,10 +72,10 @@ class Network():
 
                 if recived_size > song_size:
                     data_arr = pickle.loads(recived_data) 
-                    with open(song_path, 'wb') as file:
+                    with open(file_path, 'wb') as file:
                         file.write(data_arr)
 
-                    return song_path, song_size
+                    return file_path, song_size
 
 
         except Exception as e:

@@ -139,7 +139,7 @@ class SearchScreen(QMainWindow, Ui_SearchScreen):
 
                 db.add_user_song(self.user.id, song_id)
                 if download:
-                    start_new_thread(download_single, (self.user.id, song_id, self.network, ))
+                    start_new_thread(download_single, (self.user.id, db.Song(song_id), self.network, ))
 
             elif self.mode == MODE_PLAYLIST:
                 playlist_id = selected[0].text()[1:]
@@ -148,7 +148,12 @@ class SearchScreen(QMainWindow, Ui_SearchScreen):
                 db.add_user_playlist(self.user.id, playlist_id)
                 if download:
                     result = db.get_playlist_songs(playlist_id)
-                    download_playlist(self.user.id, result, self.network)
+
+                    song_list = []
+                    for item in result:
+                        song_list.append(db.Song(item[0]))
+                    
+                    download_playlist(self.user.id, song_list, self.network)
 
     def exit(self):
         self.back.show()

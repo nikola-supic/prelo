@@ -5,6 +5,7 @@ DOCSTRING:
 
 from datetime import datetime, date
 import mysql.connector
+from utils import empty_temp
 
 # Global variables
 global mydb, mycursor
@@ -56,9 +57,10 @@ class User():
 
         sql = "UPDATE user SET last_online=%s, online=0 WHERE id=%s"
         val = (self.last_online, self.id, )
-
         mycursor.execute(sql, val)
         mydb.commit()
+
+        empty_temp()
 
 
     def update_sql(self, column, value):
@@ -386,7 +388,15 @@ def get_user_playlist(user_id):
 
 
 def add_user_playlist(user_id, playlist_id):
-    sql = "INSERT INTO user_playlist (user_id, playlist_id) VALUES (%s, %s)"
+    sql = "SELECT id FROM user_playlist WHERE user_id=%s AND playlist_id=%s"
     val = (user_id, playlist_id, )
     mycursor.execute(sql, val)
-    mydb.commit()
+    result = mycursor.fetchone()
+
+    if result is None:
+        sql = "INSERT INTO user_playlist (user_id, playlist_id) VALUES (%s, %s)"
+        val = (user_id, playlist_id, )
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return True
+    return False
