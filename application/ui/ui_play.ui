@@ -332,6 +332,20 @@ QListWidget::item:selected {
         <number>0</number>
        </property>
        <widget class="QWidget" name="page_songs">
+        <property name="styleSheet">
+         <string notr="true">QListWidget#list_songs, #list_friends {
+	color: rgb(224,224,226);
+	background-color:rgba(0,0,0,0);
+	border: 2px solid rgb(20,92,158);
+	border-radius: 5px;
+}
+QListWidget::item:hover {
+	background-color: rgb(20,92,158);
+}
+QListWidget::item:selected {
+	background-color: rgb(19,55,88);
+}</string>
+        </property>
         <widget class="QWidget" name="widget_current" native="true">
          <property name="geometry">
           <rect>
@@ -923,18 +937,7 @@ QPushButton#btn_unmute:hover {
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">QListWidget#list_songs {
-	color: rgb(224,224,226);
-	background-color:rgba(0,0,0,0);
-	border: 2px solid rgb(20,92,158);
-	border-radius: 5px;
-}
-QListWidget::item:hover {
-	background-color: rgb(20,92,158);
-}
-QListWidget::item:selected {
-	background-color: rgb(19,55,88);
-}</string>
+           <string notr="true"/>
           </property>
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -994,6 +997,42 @@ QPushButton#btn_back:hover {
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+         <widget class="QListWidget" name="list_friends">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>50</y>
+            <width>320</width>
+            <height>340</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QListWidget#list_songs {
+	color: rgb(224,224,226);
+	background-color:rgba(0,0,0,0);
+	border: 2px solid rgb(20,92,158);
+	border-radius: 5px;
+}
+QListWidget::item:hover {
+	background-color: rgb(20,92,158);
+}
+QListWidget::item:selected {
+	background-color: rgb(19,55,88);
+}</string>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
          </widget>
         </widget>

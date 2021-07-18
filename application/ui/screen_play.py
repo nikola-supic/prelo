@@ -156,6 +156,18 @@ class Ui_PlayScreen(object):
 "}")
         self.stacked_pages.setObjectName("stacked_pages")
         self.page_songs = QtWidgets.QWidget()
+        self.page_songs.setStyleSheet("QListWidget#list_songs, #list_friends {\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QListWidget::item:hover {\n"
+"    background-color: rgb(20,92,158);\n"
+"}\n"
+"QListWidget::item:selected {\n"
+"    background-color: rgb(19,55,88);\n"
+"}")
         self.page_songs.setObjectName("page_songs")
         self.widget_current = QtWidgets.QWidget(self.page_songs)
         self.widget_current.setGeometry(QtCore.QRect(0, 390, 340, 190))
@@ -433,18 +445,7 @@ class Ui_PlayScreen(object):
         font.setFamily("Courier New")
         font.setPointSize(9)
         self.list_songs.setFont(font)
-        self.list_songs.setStyleSheet("QListWidget#list_songs {\n"
-"    color: rgb(224,224,226);\n"
-"    background-color:rgba(0,0,0,0);\n"
-"    border: 2px solid rgb(20,92,158);\n"
-"    border-radius: 5px;\n"
-"}\n"
-"QListWidget::item:hover {\n"
-"    background-color: rgb(20,92,158);\n"
-"}\n"
-"QListWidget::item:selected {\n"
-"    background-color: rgb(19,55,88);\n"
-"}")
+        self.list_songs.setStyleSheet("")
         self.list_songs.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_songs.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_songs.setObjectName("list_songs")
@@ -472,6 +473,27 @@ class Ui_PlayScreen(object):
         self.label.setStyleSheet("color: rgb(224, 224, 226);")
         self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label.setObjectName("label")
+        self.list_friends = QtWidgets.QListWidget(self.widget_playlist)
+        self.list_friends.setGeometry(QtCore.QRect(10, 50, 320, 340))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        self.list_friends.setFont(font)
+        self.list_friends.setStyleSheet("QListWidget#list_songs {\n"
+"    color: rgb(224,224,226);\n"
+"    background-color:rgba(0,0,0,0);\n"
+"    border: 2px solid rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QListWidget::item:hover {\n"
+"    background-color: rgb(20,92,158);\n"
+"}\n"
+"QListWidget::item:selected {\n"
+"    background-color: rgb(19,55,88);\n"
+"}")
+        self.list_friends.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_friends.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_friends.setObjectName("list_friends")
         self.stacked_pages.addWidget(self.page_songs)
         self.page_new = QtWidgets.QWidget()
         self.page_new.setStyleSheet("QPushButton#btn_search {\n"
