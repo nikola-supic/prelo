@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TutorialScreen</class>
+ <widget class="QMainWindow" name="TutorialScreen">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>490</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame_border">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>490</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {	
+	background-color: rgba(18, 18, 18, 175);
+}
+QLabel {
+	background-color: rgba(0,0,0,0);
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>470</width>
+       <height>580</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>471</width>
+        <height>580</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPlainTextEdit {
+	background-color: rgba(0,0,0,0);
+	border: none;
+	color: rgb(224,224,226);
+}</string>
+      </property>
+      <widget class="QLabel" name="app_name">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>191</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>42</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(20, 92, 158);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="text">
+        <string>Прело</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>86</x>
+         <y>45</y>
+         <width>111</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(224,224,226);</string>
+       </property>
+       <property name="text">
+        <string>СНАГА КРАЈИНЕ</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_play">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>90</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_play {
+	border-image: url(:/menu/images/menu/play.png);
+}
+QPushButton#btn_play:hover {
+	border-image: url(:/menu/images/menu/hover_play.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_search">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>170</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_search {
+	border-image: url(:/menu/images/menu/search.png);
+}
+QPushButton#btn_search:hover {
+	border-image: url(:/menu/images/menu/hover_search.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_friends">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>250</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_friends {
+	border-image: url(:/menu/images/menu/friends.png);
+}
+QPushButton#btn_friends:hover {
+	border-image: url(:/menu/images/menu/hover_friends.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_chat">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>330</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_chat {
+	border-image: url(:/menu/images/menu/chat.png);
+}
+QPushButton#btn_chat:hover {
+	border-image: url(:/menu/images/menu/hover_chat.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_settings">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>410</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_settings {
+	border-image: url(:/menu/images/menu/settings.png);
+}
+QPushButton#btn_settings:hover {
+	border-image: url(:/menu/images/menu/hover_settings.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_about">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>490</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_about {
+	border-image: url(:/menu/images/menu/about.png);
+}
+QPushButton#btn_about:hover {
+	border-image: url(:/menu/images/menu/hover_about.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QWidget" name="widget_tutorial" native="true">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>471</width>
+         <height>581</height>
+        </rect>
+       </property>
+       <widget class="QPushButton" name="btn_next">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>100</y>
+          <width>171</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_next {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border-radius: 5px;
+}
+QPushButton#btn_next:hover {
+	background-color: rgb(19, 55, 88);
+}
+QPushButton#btn_next:pressed {
+	background-color: rgb(19, 37, 53);
+}</string>
+        </property>
+        <property name="text">
+         <string>Следећи корак ( 1 / 6)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step_1">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>-30</y>
+          <width>256</width>
+          <height>256</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/tutorial/images/tutorial/step_1.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step_2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>120</y>
+          <width>256</width>
+          <height>256</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/tutorial/images/tutorial/step_2.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step_3">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>230</y>
+          <width>256</width>
+          <height>256</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/tutorial/images/tutorial/step_3.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step_4">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>240</y>
+          <width>256</width>
+          <height>256</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/tutorial/images/tutorial/step_4.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step_5">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>320</y>
+          <width>256</width>
+          <height>256</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/tutorial/images/tutorial/step_5.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step_6">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>410</y>
+          <width>256</width>
+          <height>256</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/tutorial/images/tutorial/step_6.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="text_1">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>0</y>
+          <width>240</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="plainText">
+         <string>Корак 1:
+Ово дугме користите да би слушали музику.</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="text_2">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>140</y>
+          <width>240</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="plainText">
+         <string>Корак 2:
+У овај мени улазите да би нашли музику коју желите да слушаште.</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="text_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>400</y>
+          <width>161</width>
+          <height>181</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="plainText">
+         <string>Корак 3:
+Пријатељи, ту можете пронаћи ваше пријатеље и погледати шта слушају.</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="text_4">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>430</y>
+          <width>240</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="plainText">
+         <string>Корак 4:
+Овде улазите у мени за дописивање. Ту се можете дописивати са својим пријатељима, али и упознати нове људе.</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="text_5">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>310</y>
+          <width>240</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="plainText">
+         <string>Корак 5:
+Ово су подешавања, ту можете промјенити вашу лозинку, избрисати ваше пјесме и слично.</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="text_6">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>390</y>
+          <width>240</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="plainText">
+         <string>Корак 6:
+Овде можете информације о нама. Запратите нас. То би био крај туторијала. Надамо се да ћете уживати у нашој апликацији.
+</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="app_bg">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>491</width>
+       <height>601</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/images/images/welcome_bg.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>app_bg</zorder>
+    <zorder>frame</zorder>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
