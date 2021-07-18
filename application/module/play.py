@@ -44,17 +44,19 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.active_song = None
         self.shuffle = True
         self.repeat = REPEAT_ALL
+        self.friend_list = []
+ 
+        if self.online:
+            self.setup_songs()
+            self.update_playlist()
+            self.update_friend_list()
+        else:
+            self.setup_local()
 
         # Create media player
         self.player = QMediaPlayer()
         self.player.setMuted(False)
         self.player.setVolume(100)
- 
-        if self.online:
-            self.setup_songs()
-            self.update_playlist()
-        else:
-            self.setup_local()
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -78,6 +80,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.btn_download.clicked.connect(lambda: self.download_song(self.active_song))
         self.btn_add.clicked.connect(self.add_song)
         self.btn_share.clicked.connect(self.share_song)
+        self.list_friends.itemDoubleClicked.connect(self.send_song)
 
         self.btn_shuffle.clicked.connect(self.check_shuffle)
         self.btn_shuffle_off.clicked.connect(self.check_shuffle)
@@ -99,6 +102,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.click_time = get_time() + 2
 
         self.show()
+        self.list_friends.hide()
         self.widget_current.hide()
         self.check_buttons()
 
@@ -117,6 +121,20 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
             item = QtWidgets.QListWidgetItem(name)
             self.list_playlist.addItem(item)
 
+    def update_friend_list(self):
+        self.friend_list = []
+        self.list_friends.clear()
+        result = db.get_friends(self.user.id)
+        for idx, item in enumerate(result):
+            if self.user.id == item[0]:
+                friend_id = item[1]
+            else:
+                friend_id = item[0]
+
+            self.friend_list.append(friend_id)
+            username = db.get_username(friend_id)
+            item = QtWidgets.QListWidgetItem(f'#{idx+1} // @{username}')
+            self.list_friends.addItem(item)
 
     def setup_songs(self):
         if self.online:
@@ -260,6 +278,10 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
             if not self.widget_current.isVisible():
                 self.widget_current.show()
 
+            if self.list_friends.isVisible():
+                self.list_friends.hide()
+                self.list_songs.show()
+
             self.player_playlist = QMediaPlaylist()
             self.player_playlist.currentIndexChanged.connect(self.setup_song)
             self.check_mode()
@@ -296,7 +318,8 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.song_status.setMaximum(song.length)
 
         self.active_song = song
-        db.add_user_recent(self.user.id, song.song_id)
+        if self.playmode != RECENT:
+            db.add_user_recent(self.user.id, song.song_id)
 
 
     def check_buttons(self):
@@ -404,15 +427,46 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
     # # # # # # # # # # # #
 
     def download_song(self, song):
-        start_new_thread(download_single, (self.user.id, song, self.network, ))
+        if self.online:
+            start_new_thread(download_single, (self.user.id, song, self.network, ))
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
 
 
     def add_song(self):
-        db.add_user_song(self.user.id, self.active_song.song_id)
+        if self.online:
+            db.add_user_song(self.user.id, self.active_song.song_id)
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
 
 
     def share_song(self):
-        pass
+        if self.online:
+            if self.list_songs.isVisible():
+                self.list_songs.hide()
+                self.list_friends.show()
+            else:
+                self.list_friends.hide()
+                self.list_songs.show()
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
+
+
+    def send_song(self):
+        selected = self.list_friends.currentRow()
+        friend_id = self.friend_list[selected]
+
+        song = self.active_song
+        artist = db.get_artist_name(song.artist_id)
+        message = f'Тренутно слушам {artist} - {song.name}'
+
+        db.send_message(self.user.id, friend_id, message)
+
+        self.list_friends.hide()
+        self.list_songs.show()
 
     # # # # # # # #
     # NEW PLAYLIST
