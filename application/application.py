@@ -21,6 +21,7 @@ from ui.screen_welcome import Ui_WelcomeScreen
 
 # Import the modules
 from module.main_menu import MenuScreen
+from module.tutorial import TutorialScreen
 from module.popup import PopupError
 
 # Import database functions
@@ -107,7 +108,7 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
             global db_user
             user = db.check_login(username, password)
             db_user = user
-            self.menu = MenuScreen(user=user, network=self.network, online=True)
+            self.menu = TutorialScreen(user=user, network=self.network, online=True)
             self.close()
 
 
