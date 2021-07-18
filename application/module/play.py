@@ -114,7 +114,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
         self.playlist_list = []
         self.list_playlist.clear()
         result = db.get_user_playlist(self.user.id)
-        for idx, item in enumerate(result):
+        for item in result:
             name = db.get_playlist_name(item[0])
 
             self.playlist_list.append(item[0])
