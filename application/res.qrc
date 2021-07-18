@@ -3,6 +3,9 @@
     <file>images/welcome_bg.png</file>
   </qresource>
   <qresource prefix="art">
+    <file>images/art/arms.png</file>
+    <file>images/art/torso.png</file>
+    <file>images/art/head.png</file>
     <file>images/art/art_1.png</file>
   </qresource>
   <qresource prefix="tutorial">
