@@ -85,7 +85,7 @@ class Ui_SearchScreen(object):
         self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label.setObjectName("label")
         self.list_search = QtWidgets.QListWidget(self.widget)
-        self.list_search.setGeometry(QtCore.QRect(10, 130, 450, 390))
+        self.list_search.setGeometry(QtCore.QRect(10, 130, 450, 440))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -106,7 +106,7 @@ class Ui_SearchScreen(object):
         self.list_search.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_search.setObjectName("list_search")
         self.input_search = QtWidgets.QLineEdit(self.widget)
-        self.input_search.setGeometry(QtCore.QRect(10, 80, 400, 40))
+        self.input_search.setGeometry(QtCore.QRect(10, 80, 191, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -125,7 +125,7 @@ class Ui_SearchScreen(object):
         self.input_search.setClearButtonEnabled(True)
         self.input_search.setObjectName("input_search")
         self.btn_search = QtWidgets.QPushButton(self.widget)
-        self.btn_search.setGeometry(QtCore.QRect(419, 80, 40, 40))
+        self.btn_search.setGeometry(QtCore.QRect(210, 80, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(10)
@@ -140,28 +140,28 @@ class Ui_SearchScreen(object):
 "}")
         self.btn_search.setText("")
         self.btn_search.setObjectName("btn_search")
-        self.btn_add = QtWidgets.QPushButton(self.widget)
-        self.btn_add.setGeometry(QtCore.QRect(10, 530, 400, 40))
+        self.btn_mode = QtWidgets.QPushButton(self.widget)
+        self.btn_mode.setGeometry(QtCore.QRect(260, 80, 100, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
         font.setBold(False)
         font.setWeight(50)
-        self.btn_add.setFont(font)
-        self.btn_add.setStyleSheet("QPushButton#btn_search {\n"
+        self.btn_mode.setFont(font)
+        self.btn_mode.setStyleSheet("QPushButton#btn_mode {\n"
 "    background-color: rgb(20, 92, 158);\n"
 "    color: rgb(224, 224, 226);\n"
 "    border-radius: 5px;\n"
 "}\n"
-"QPushButton#btn_search:hover {\n"
+"QPushButton#btn_mode:hover {\n"
 "    background-color: rgb(19, 55, 88);\n"
 "}\n"
-"QPushButton#btn_search:pressed {\n"
+"QPushButton#btn_mode:pressed {\n"
 "    background-color: rgb(19, 37, 53);\n"
 "}")
-        self.btn_add.setObjectName("btn_add")
+        self.btn_mode.setObjectName("btn_mode")
         self.btn_download = QtWidgets.QPushButton(self.widget)
-        self.btn_download.setGeometry(QtCore.QRect(420, 530, 40, 40))
+        self.btn_download.setGeometry(QtCore.QRect(420, 80, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -187,6 +187,22 @@ class Ui_SearchScreen(object):
         self.downloading.setStyleSheet("color: rgb(224,224,226);")
         self.downloading.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.downloading.setObjectName("downloading")
+        self.btn_add = QtWidgets.QPushButton(self.widget)
+        self.btn_add.setGeometry(QtCore.QRect(370, 80, 40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_add.setFont(font)
+        self.btn_add.setStyleSheet("QPushButton#btn_add {\n"
+"    border-image: url(:/icons/images/icons/add.png);\n"
+"}\n"
+"QPushButton#btn_add:hover {\n"
+"    border-image: url(:/icons/images/icons/hover_add.png);\n"
+"}")
+        self.btn_add.setText("")
+        self.btn_add.setObjectName("btn_add")
         self.app_bg = QtWidgets.QLabel(self.frame_border)
         self.app_bg.setGeometry(QtCore.QRect(0, 0, 491, 601))
         self.app_bg.setStyleSheet("border-image: url(:/images/images/welcome_bg.png);")
@@ -204,7 +220,7 @@ class Ui_SearchScreen(object):
         SearchScreen.setWindowTitle(_translate("SearchScreen", "MainWindow"))
         self.app_name.setText(_translate("SearchScreen", "Прело"))
         self.label.setText(_translate("SearchScreen", "СНАГА КРАЈИНЕ"))
-        self.input_search.setPlaceholderText(_translate("SearchScreen", "Име аутора / пјесме / албума"))
-        self.btn_add.setText(_translate("SearchScreen", "Додај у своје пјесме"))
+        self.input_search.setPlaceholderText(_translate("SearchScreen", "Име пјесме"))
+        self.btn_mode.setText(_translate("SearchScreen", "Тражи пјесму"))
         self.downloading.setText(_translate("SearchScreen", "ПРЕУЗИМАЊЕ У ТОКУ..."))
 import res_rc

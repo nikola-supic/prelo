@@ -170,7 +170,7 @@ QPushButton#btn_back:hover {
          <x>10</x>
          <y>130</y>
          <width>450</width>
-         <height>390</height>
+         <height>440</height>
         </rect>
        </property>
        <property name="font">
@@ -205,7 +205,7 @@ QListWidget::item:selected {
         <rect>
          <x>10</x>
          <y>80</y>
-         <width>400</width>
+         <width>191</width>
          <height>40</height>
         </rect>
        </property>
@@ -233,7 +233,7 @@ QListWidget::item:selected {
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
        <property name="placeholderText">
-        <string>Име аутора / пјесме / албума</string>
+        <string>Име пјесме</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>true</bool>
@@ -242,7 +242,7 @@ QListWidget::item:selected {
       <widget class="QPushButton" name="btn_search">
        <property name="geometry">
         <rect>
-         <x>419</x>
+         <x>210</x>
          <y>80</y>
          <width>40</width>
          <height>40</height>
@@ -268,12 +268,12 @@ QPushButton#btn_search:hover {
         <string/>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_add">
+      <widget class="QPushButton" name="btn_mode">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>530</y>
-         <width>400</width>
+         <x>260</x>
+         <y>80</y>
+         <width>100</width>
          <height>40</height>
         </rect>
        </property>
@@ -286,27 +286,27 @@ QPushButton#btn_search:hover {
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton#btn_search {
+        <string notr="true">QPushButton#btn_mode {
 	background-color: rgb(20, 92, 158);
 	color: rgb(224, 224, 226);
 	border-radius: 5px;
 }
-QPushButton#btn_search:hover {
+QPushButton#btn_mode:hover {
 	background-color: rgb(19, 55, 88);
 }
-QPushButton#btn_search:pressed {
+QPushButton#btn_mode:pressed {
 	background-color: rgb(19, 37, 53);
 }</string>
        </property>
        <property name="text">
-        <string>Додај у своје пјесме</string>
+        <string>Тражи пјесму</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btn_download">
        <property name="geometry">
         <rect>
          <x>420</x>
-         <y>530</y>
+         <y>80</y>
          <width>40</width>
          <height>40</height>
         </rect>
@@ -356,6 +356,35 @@ QPushButton#btn_download:hover {
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_add">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>80</y>
+         <width>40</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_add {
+	border-image: url(:/icons/images/icons/add.png);
+}
+QPushButton#btn_add:hover {
+	border-image: url(:/icons/images/icons/hover_add.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
