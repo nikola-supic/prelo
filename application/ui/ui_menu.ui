@@ -301,6 +301,27 @@ QPushButton#btn_shutdown:hover {
         <string/>
        </property>
       </widget>
+      <widget class="QPushButton" name="btn_party">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>200</y>
+         <width>200</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_party {
+	border-image: url(:/menu/images/menu/party.png);
+}
+QPushButton#btn_party:hover {
+	border-image: url(:/menu/images/menu/hover_party.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QLabel" name="app_bg">

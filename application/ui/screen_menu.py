@@ -144,6 +144,16 @@ class Ui_MenuScreen(object):
 "}")
         self.btn_shutdown.setText("")
         self.btn_shutdown.setObjectName("btn_shutdown")
+        self.btn_party = QtWidgets.QPushButton(self.widget)
+        self.btn_party.setGeometry(QtCore.QRect(340, 200, 200, 200))
+        self.btn_party.setStyleSheet("QPushButton#btn_party {\n"
+"    border-image: url(:/menu/images/menu/party.png);\n"
+"}\n"
+"QPushButton#btn_party:hover {\n"
+"    border-image: url(:/menu/images/menu/hover_party.png);\n"
+"}")
+        self.btn_party.setText("")
+        self.btn_party.setObjectName("btn_party")
         self.app_bg = QtWidgets.QLabel(self.frame_border)
         self.app_bg.setGeometry(QtCore.QRect(0, 0, 491, 601))
         self.app_bg.setStyleSheet("border-image: url(:/images/images/welcome_bg.png);")
