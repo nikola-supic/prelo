@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PartyScreen</class>
+ <widget class="QMainWindow" name="PartyScreen">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>490</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame_border">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>490</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {	
+	background-color: rgba(18, 18, 18, 175);
+}
+QLabel {
+	background-color: rgba(0,0,0,0);
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>470</width>
+       <height>580</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>471</width>
+        <height>580</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <widget class="QLabel" name="app_name">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>191</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>42</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(20, 92, 158);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="text">
+        <string>Прело</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>75</x>
+         <y>35</y>
+         <width>110</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(224,224,226);</string>
+       </property>
+       <property name="text">
+        <string>СНАГА КРАЈИНЕ</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_exit">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>20</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_exit {
+	border-image: url(:/menu/images/menu/exit.png);
+}
+QPushButton#btn_exit:hover {
+	border-image: url(:/menu/images/menu/hover_exit.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QFrame" name="frame_bottom">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>490</y>
+         <width>470</width>
+         <height>90</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_art">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>70</width>
+          <height>70</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/art/images/art/art_1.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_user">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>35</y>
+          <width>170</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(224, 224, 226);</string>
+        </property>
+        <property name="text">
+         <string>Пјесмица</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_name">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>15</y>
+          <width>170</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(224, 224, 226);</string>
+        </property>
+        <property name="text">
+         <string>Артис</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_queue">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>30</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_queue {
+	border-image: url(:/party/images/party/queue.png);
+}
+QPushButton#btn_queue:hover {
+	border-image: url(:/party/images/party/hover_queue.png);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_chat">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>30</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_chat {
+	border-image: url(:/menu/images/menu/chat.png);
+}
+QPushButton#btn_chat:hover {
+	border-image: url(:/menu/images/menu/hover_chat.png);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_dislike">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>30</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_dislike {
+	border-image: url(:/party/images/party/dislike.png);
+}
+QPushButton#btn_dislike:hover {
+	border-image: url(:/party/images/party/hover_dislike.png);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_like">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>30</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_like {
+	border-image: url(:/party/images/party/like.png);
+}
+QPushButton#btn_like:hover {
+	border-image: url(:/party/images/party/hover_like.png);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_like">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>0</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(224, 224, 226);</string>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_dislike">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>0</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(224, 224, 226);</string>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <zorder>label_art</zorder>
+       <zorder>label_user</zorder>
+       <zorder>label_name</zorder>
+       <zorder>btn_queue</zorder>
+       <zorder>btn_chat</zorder>
+       <zorder>label_like</zorder>
+       <zorder>label_dislike</zorder>
+       <zorder>btn_dislike</zorder>
+       <zorder>btn_like</zorder>
+      </widget>
+      <widget class="QStackedWidget" name="stacked_pages">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>70</y>
+         <width>470</width>
+         <height>420</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QStackedWidget#stacked_pages {
+	background-color: rgba(0,0,0,0);
+}
+
+</string>
+       </property>
+       <property name="currentIndex">
+        <number>2</number>
+       </property>
+       <widget class="QWidget" name="page_party">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#char_head, #char_arms, #btn_add, #btn_download {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border: none;
+	border-radius: 5px;
+}</string>
+        </property>
+        <widget class="QPushButton" name="char_head">
+         <property name="geometry">
+          <rect>
+           <x>420</x>
+           <y>10</y>
+           <width>30</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#char_head {
+	border-image: url(:/party/images/party/head.png);
+}
+QPushButton#char_head:hover {
+	border-image: url(:/party/images/party/hover_head.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="char_arms">
+         <property name="geometry">
+          <rect>
+           <x>420</x>
+           <y>50</y>
+           <width>30</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#char_arms {
+	border-image: url(:/party/images/party/arms.png);
+}
+QPushButton#char_arms:hover {
+	border-image: url(:/party/images/party/hover_arms.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_add">
+         <property name="geometry">
+          <rect>
+           <x>420</x>
+           <y>90</y>
+           <width>30</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#btn_add {
+	border-image: url(:/icons/images/icons/add.png);
+}
+QPushButton#btn_add:hover {
+	border-image: url(:/icons/images/icons/hover_add.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_download">
+         <property name="geometry">
+          <rect>
+           <x>420</x>
+           <y>130</y>
+           <width>30</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#btn_download {
+	border-image: url(:/icons/images/icons/download.png);
+}
+QPushButton#btn_download:hover {
+	border-image: url(:/icons/images/icons/hover_download.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_queue">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_join, #btn_search, #btn_hide {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border: none;
+	border-radius: 5px;
+}
+QPushButton#btn_join:hover, #btn_search:hover, #btn_hide:hover {
+	background-color: rgb(19, 55, 88);
+}
+QPushButton#btn_join:pressed, #btn_search:pressedr, #btn_hide:pressed {
+	background-color: rgb(19, 37, 53);
+}
+
+QLineEdit {
+	background-color: rgba(0,0,0,0);
+	border-radius: 5px;
+	border: 2px solid rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	padding-left: 5px;
+}
+
+QListWidget#list_queue, #list_search {
+	color: rgb(224,224,226);
+	background-color:rgba(0,0,0,0);
+	border: 2px solid rgb(20,92,158);
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+QListWidget::item:hover {
+	background-color: rgb(20,92,158);
+}
+QListWidget::item:selected {
+	background-color: rgb(19,55,88);
+}
+
+QLabel#label_queue {
+	color: rgb(224, 224, 226);
+	background-color: rgb(20,92,158);
+	border-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}</string>
+        </property>
+        <widget class="QFrame" name="frame_queue">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>471</width>
+           <height>421</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget#widget_queue {
+	background-color: rgb()
+}</string>
+         </property>
+         <widget class="QLabel" name="label_queue">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>10</y>
+            <width>160</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Ред чекања</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QListWidget" name="list_queue">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>40</y>
+            <width>160</width>
+            <height>370</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>8</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+         </widget>
+         <widget class="QListWidget" name="list_search">
+          <property name="geometry">
+           <rect>
+            <x>190</x>
+            <y>50</y>
+            <width>260</width>
+            <height>320</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>8</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="input_name">
+          <property name="geometry">
+           <rect>
+            <x>190</x>
+            <y>10</y>
+            <width>220</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Normal</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>Име пјесме</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_join">
+          <property name="geometry">
+           <rect>
+            <x>190</x>
+            <y>380</y>
+            <width>220</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#btn_shutdown {
+	border-image: url(:/menu/images/menu/exit.png);
+}
+QPushButton#btn_shutdown:hover {
+	border-image: url(:/menu/images/menu/hover_exit.png);
+}</string>
+          </property>
+          <property name="text">
+           <string>Стани у ред чекања</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_hide">
+          <property name="geometry">
+           <rect>
+            <x>420</x>
+            <y>380</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#btn_hide {
+	border-image: url(:/party/images/party/hide.png);
+}
+QPushButton#btn_hide:hover {
+	border-image: url(:/party/images/party/hover_hide.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_search">
+          <property name="geometry">
+           <rect>
+            <x>420</x>
+            <y>10</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#btn_search {
+	border-image: url(:/icons/images/icons/search.png);
+}
+QPushButton#btn_search:hover {
+	border-image: url(:/icons/images/icons/hover_search.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_chat">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_send, #btn_hide_2 {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border: none;
+	border-radius: 5px;
+}
+QPushButton#btn_send:hover, #btn_hide_2:hover {
+	background-color: rgb(19, 55, 88);
+}
+QPushButton#btn_send:pressed, #btn_hide_2:pressedd {
+	background-color: rgb(19, 37, 53);
+}
+
+QLineEdit {
+	background-color: rgba(0,0,0,0);
+	border-radius: 5px;
+	border: 2px solid rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	padding-left: 5px;
+}
+
+QPlainTextEdit {
+	background-color: rgba(0,0,0,0);
+	border-radius: 5px;
+	border: 2px solid rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	padding-left: 5px;
+}</string>
+        </property>
+        <widget class="QFrame" name="frame_chat">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>470</width>
+           <height>420</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLineEdit" name="input_msg">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>380</y>
+            <width>351</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Normal</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>Унесите поруку</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_hide_2">
+          <property name="geometry">
+           <rect>
+            <x>420</x>
+            <y>380</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#btn_hide_2 {
+	border-image: url(:/party/images/party/hide.png);
+}
+QPushButton#btn_hide_2:hover {
+	border-image: url(:/party/images/party/hover_hide.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QPlainTextEdit" name="chat_history">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>10</y>
+            <width>431</width>
+            <height>361</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="plainText">
+           <string>дадада
+</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_send">
+          <property name="geometry">
+           <rect>
+            <x>380</x>
+            <y>380</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#btn_send {
+	border-image: url(:/icons/images/icons/send.png);
+}
+QPushButton#btn_send:hover {
+	border-image: url(:/icons/images/icons/hover_send.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="label_listeners">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>20</y>
+         <width>170</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(224, 224, 226);</string>
+       </property>
+       <property name="text">
+        <string>Слушаоци: 0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="app_bg">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>491</width>
+       <height>601</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/images/images/welcome_bg.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>app_bg</zorder>
+    <zorder>frame</zorder>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
