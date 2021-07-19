@@ -2,6 +2,20 @@
   <qresource prefix="images">
     <file>images/welcome_bg.png</file>
   </qresource>
+  <qresource prefix="party">
+    <file>images/party/arms.png</file>
+    <file>images/party/head.png</file>
+    <file>images/party/hover_arms.png</file>
+    <file>images/party/hover_head.png</file>
+    <file>images/party/dislike.png</file>
+    <file>images/party/hide.png</file>
+    <file>images/party/hover_dislike.png</file>
+    <file>images/party/hover_hide.png</file>
+    <file>images/party/hover_like.png</file>
+    <file>images/party/hover_queue.png</file>
+    <file>images/party/like.png</file>
+    <file>images/party/queue.png</file>
+  </qresource>
   <qresource prefix="art">
     <file>images/art/arms.png</file>
     <file>images/art/torso.png</file>
@@ -63,6 +77,8 @@
     <file>images/play/shuffle_off.png</file>
   </qresource>
   <qresource prefix="menu">
+    <file>images/menu/hover_party.png</file>
+    <file>images/menu/party.png</file>
     <file>images/menu/admin.png</file>
     <file>images/menu/chat.png</file>
     <file>images/menu/friends.png</file>
