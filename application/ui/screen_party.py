@@ -91,7 +91,7 @@ class Ui_PartyScreen(object):
         self.label_art.setAlignment(QtCore.Qt.AlignCenter)
         self.label_art.setObjectName("label_art")
         self.label_user = QtWidgets.QLabel(self.frame_bottom)
-        self.label_user.setGeometry(QtCore.QRect(100, 35, 170, 40))
+        self.label_user.setGeometry(QtCore.QRect(100, 20, 230, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
@@ -102,7 +102,7 @@ class Ui_PartyScreen(object):
         self.label_user.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_user.setObjectName("label_user")
         self.label_name = QtWidgets.QLabel(self.frame_bottom)
-        self.label_name.setGeometry(QtCore.QRect(100, 15, 170, 40))
+        self.label_name.setGeometry(QtCore.QRect(100, 0, 230, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(14)
@@ -113,7 +113,7 @@ class Ui_PartyScreen(object):
         self.label_name.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_name.setObjectName("label_name")
         self.btn_queue = QtWidgets.QPushButton(self.frame_bottom)
-        self.btn_queue.setGeometry(QtCore.QRect(420, 30, 30, 30))
+        self.btn_queue.setGeometry(QtCore.QRect(420, 50, 30, 30))
         self.btn_queue.setStyleSheet("QPushButton#btn_queue {\n"
 "    border-image: url(:/party/images/party/queue.png);\n"
 "}\n"
@@ -123,7 +123,7 @@ class Ui_PartyScreen(object):
         self.btn_queue.setText("")
         self.btn_queue.setObjectName("btn_queue")
         self.btn_chat = QtWidgets.QPushButton(self.frame_bottom)
-        self.btn_chat.setGeometry(QtCore.QRect(380, 30, 30, 30))
+        self.btn_chat.setGeometry(QtCore.QRect(420, 10, 30, 30))
         self.btn_chat.setStyleSheet("QPushButton#btn_chat {\n"
 "    border-image: url(:/menu/images/menu/chat.png);\n"
 "}\n"
@@ -133,7 +133,7 @@ class Ui_PartyScreen(object):
         self.btn_chat.setText("")
         self.btn_chat.setObjectName("btn_chat")
         self.btn_dislike = QtWidgets.QPushButton(self.frame_bottom)
-        self.btn_dislike.setGeometry(QtCore.QRect(340, 30, 30, 30))
+        self.btn_dislike.setGeometry(QtCore.QRect(380, 50, 30, 30))
         self.btn_dislike.setStyleSheet("QPushButton#btn_dislike {\n"
 "    border-image: url(:/party/images/party/dislike.png);\n"
 "}\n"
@@ -143,7 +143,7 @@ class Ui_PartyScreen(object):
         self.btn_dislike.setText("")
         self.btn_dislike.setObjectName("btn_dislike")
         self.btn_like = QtWidgets.QPushButton(self.frame_bottom)
-        self.btn_like.setGeometry(QtCore.QRect(300, 30, 30, 30))
+        self.btn_like.setGeometry(QtCore.QRect(380, 10, 30, 30))
         self.btn_like.setStyleSheet("QPushButton#btn_like {\n"
 "    border-image: url(:/party/images/party/like.png);\n"
 "}\n"
@@ -153,7 +153,7 @@ class Ui_PartyScreen(object):
         self.btn_like.setText("")
         self.btn_like.setObjectName("btn_like")
         self.label_like = QtWidgets.QLabel(self.frame_bottom)
-        self.label_like.setGeometry(QtCore.QRect(300, 0, 30, 30))
+        self.label_like.setGeometry(QtCore.QRect(345, 10, 30, 30))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(14)
@@ -161,10 +161,10 @@ class Ui_PartyScreen(object):
         font.setWeight(75)
         self.label_like.setFont(font)
         self.label_like.setStyleSheet("color: rgb(224, 224, 226);")
-        self.label_like.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_like.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_like.setObjectName("label_like")
         self.label_dislike = QtWidgets.QLabel(self.frame_bottom)
-        self.label_dislike.setGeometry(QtCore.QRect(340, 0, 30, 30))
+        self.label_dislike.setGeometry(QtCore.QRect(345, 50, 30, 30))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(14)
@@ -172,8 +172,51 @@ class Ui_PartyScreen(object):
         font.setWeight(75)
         self.label_dislike.setFont(font)
         self.label_dislike.setStyleSheet("color: rgb(224, 224, 226);")
-        self.label_dislike.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_dislike.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_dislike.setObjectName("label_dislike")
+        self.song_status = QtWidgets.QSlider(self.frame_bottom)
+        self.song_status.setGeometry(QtCore.QRect(100, 70, 230, 16))
+        self.song_status.setStyleSheet("QSlider::groove:horizontal {\n"
+"    background-color: rgb(224,224,226);\n"
+"    height: 4px;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"QSlider::handle:horizontal {\n"
+"    width: 12px;\n"
+"    background-color: rgb(20,92,158);\n"
+"    border-radius: 5px;\n"
+"    margin: -5px 0;\n"
+"}")
+        self.song_status.setSingleStep(1)
+        self.song_status.setPageStep(0)
+        self.song_status.setProperty("value", 13)
+        self.song_status.setSliderPosition(13)
+        self.song_status.setTracking(True)
+        self.song_status.setOrientation(QtCore.Qt.Horizontal)
+        self.song_status.setTickInterval(0)
+        self.song_status.setObjectName("song_status")
+        self.label_time = QtWidgets.QLabel(self.frame_bottom)
+        self.label_time.setGeometry(QtCore.QRect(100, 40, 60, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_time.setFont(font)
+        self.label_time.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label_time.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_time.setObjectName("label_time")
+        self.label_length = QtWidgets.QLabel(self.frame_bottom)
+        self.label_length.setGeometry(QtCore.QRect(270, 40, 61, 40))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_length.setFont(font)
+        self.label_length.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label_length.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_length.setObjectName("label_length")
         self.label_art.raise_()
         self.label_user.raise_()
         self.label_name.raise_()
@@ -183,6 +226,9 @@ class Ui_PartyScreen(object):
         self.label_dislike.raise_()
         self.btn_dislike.raise_()
         self.btn_like.raise_()
+        self.song_status.raise_()
+        self.label_time.raise_()
+        self.label_length.raise_()
         self.stacked_pages = QtWidgets.QStackedWidget(self.widget)
         self.stacked_pages.setGeometry(QtCore.QRect(0, 70, 470, 420))
         self.stacked_pages.setStyleSheet("QStackedWidget#stacked_pages {\n"
@@ -201,6 +247,18 @@ class Ui_PartyScreen(object):
 "\n"
 "QLabel {\n"
 "    background-color: rgba(0,0,0,0);\n"
+"}\n"
+"\n"
+"QSlider::groove:horizontal {\n"
+"    background-color: rgb(18, 18, 18);\n"
+"    height: 4px;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"QSlider::handle:horizontal {\n"
+"    width: 12px;\n"
+"    background-color: rgb(19,55,88);\n"
+"    border-radius: 5px;\n"
+"    margin: -5px 0;\n"
 "}")
         self.page_party.setObjectName("page_party")
         self.btn_head = QtWidgets.QPushButton(self.page_party)
@@ -243,6 +301,49 @@ class Ui_PartyScreen(object):
 "}")
         self.btn_download.setText("")
         self.btn_download.setObjectName("btn_download")
+        self.widget_head = QtWidgets.QWidget(self.page_party)
+        self.widget_head.setGeometry(QtCore.QRect(270, 0, 150, 50))
+        self.widget_head.setStyleSheet("QLabel#label_bg {\n"
+"    background-color: rgb(20, 92, 158);\n"
+"    color: rgb(224, 224, 226);\n"
+"    border: none;\n"
+"    border-radius: 5px;\n"
+"}")
+        self.widget_head.setObjectName("widget_head")
+        self.label_bg = QtWidgets.QLabel(self.widget_head)
+        self.label_bg.setGeometry(QtCore.QRect(10, 10, 130, 30))
+        self.label_bg.setStyleSheet("")
+        self.label_bg.setText("")
+        self.label_bg.setObjectName("label_bg")
+        self.slider_head = QtWidgets.QSlider(self.widget_head)
+        self.slider_head.setGeometry(QtCore.QRect(20, 10, 111, 31))
+        self.slider_head.setMinimum(250)
+        self.slider_head.setMaximum(1250)
+        self.slider_head.setProperty("value", 750)
+        self.slider_head.setOrientation(QtCore.Qt.Horizontal)
+        self.slider_head.setObjectName("slider_head")
+        self.widget_arms = QtWidgets.QWidget(self.page_party)
+        self.widget_arms.setGeometry(QtCore.QRect(270, 40, 150, 50))
+        self.widget_arms.setStyleSheet("QLabel#label_bg_2 {\n"
+"    background-color: rgb(20, 92, 158);\n"
+"    color: rgb(224, 224, 226);\n"
+"    border: none;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"")
+        self.widget_arms.setObjectName("widget_arms")
+        self.label_bg_2 = QtWidgets.QLabel(self.widget_arms)
+        self.label_bg_2.setGeometry(QtCore.QRect(10, 10, 130, 30))
+        self.label_bg_2.setStyleSheet("")
+        self.label_bg_2.setText("")
+        self.label_bg_2.setObjectName("label_bg_2")
+        self.slider_arms = QtWidgets.QSlider(self.widget_arms)
+        self.slider_arms.setGeometry(QtCore.QRect(20, 10, 111, 31))
+        self.slider_arms.setMinimum(250)
+        self.slider_arms.setMaximum(1250)
+        self.slider_arms.setProperty("value", 750)
+        self.slider_arms.setOrientation(QtCore.Qt.Horizontal)
+        self.slider_arms.setObjectName("slider_arms")
         self.stacked_pages.addWidget(self.page_party)
         self.page_queue = QtWidgets.QWidget()
         self.page_queue.setStyleSheet("QPushButton#btn_join, #btn_search, #btn_hide {\n"
@@ -506,6 +607,8 @@ class Ui_PartyScreen(object):
         self.label_name.setText(_translate("PartyScreen", "Артис"))
         self.label_like.setText(_translate("PartyScreen", "1"))
         self.label_dislike.setText(_translate("PartyScreen", "2"))
+        self.label_time.setText(_translate("PartyScreen", "00:00"))
+        self.label_length.setText(_translate("PartyScreen", "00:00"))
         self.label_queue.setText(_translate("PartyScreen", "Ред чекања"))
         self.input_search.setPlaceholderText(_translate("PartyScreen", "Име пјесме"))
         self.btn_join.setText(_translate("PartyScreen", "Стани у ред чекања"))
