@@ -3,6 +3,8 @@
     <file>images/welcome_bg.png</file>
   </qresource>
   <qresource prefix="party">
+    <file>images/party/effect_dislike.png</file>
+    <file>images/party/effect_like.png</file>
     <file>images/party/arms.png</file>
     <file>images/party/head.png</file>
     <file>images/party/hover_arms.png</file>
