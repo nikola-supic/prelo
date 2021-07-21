@@ -118,19 +118,30 @@ class Server():
                     elif data_list[0] == 'get_party':
                         client.sendall(pickle.dumps(self.party))
 
-                    elif data_list[0] == 'check_head':
+                    elif data_list[0] == 'toggle_head':
                         user_id = data_list[1]
 
                         self.party.toggle_head(user_id)
                         client.sendall(pickle.dumps(self.party))
 
-                    elif data_list[0] == 'check_arms':
+                    elif data_list[0] == 'toggle_arms':
                         user_id = data_list[1]
 
                         self.party.toggle_arms(user_id)
                         client.sendall(pickle.dumps(self.party))
 
+                    elif data_list[0] == 'send_message':
+                        user_id = data_list[1]
+                        username = data_list[2]
+                        username.replace('_', ' ')
+                        message = ' '.join(data_list[3:])
 
+                        chat = self.party.send_message(user_id, username, message)
+                        client.sendall(pickle.dumps(chat))
+
+                    elif data_list[0] == 'get_chat':
+                        chat = self.party.get_chat()
+                        client.sendall(pickle.dumps(chat))
 
             except Exception as e:
                 print(str(e))
@@ -141,13 +152,11 @@ class Server():
         self.id_count -= 1
         client.close()
 
-
     def global_chat(self, user_id, username, message):
-        self.global_log.info(f'{username}#{user_id:04} // {message}')
+        self.global_log.info(f'{username}#{user_id:0>4} // {message}')
 
         with open('logs/global_chat.log', 'r') as file:
             return file.read()
-
 
     def get_global_chat(self):
         with open('logs/global_chat.log', 'r') as file:

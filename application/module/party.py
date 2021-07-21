@@ -9,7 +9,7 @@ from _thread import start_new_thread
 
 import database as db
 
-from character import Character
+from module.character import Character
 
 # PARTY SCREEN
 class PartyScreen(QMainWindow, Ui_PartyScreen):
@@ -41,6 +41,8 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.btn_add.clicked.connect(self.song_add)
         self.btn_download.clicked.connect(self.song_download)
 
+        self.btn_send.clicked.connect(self.send_message)
+
         self.click_time = get_time() + 1
         self.anim_time = 750
 
@@ -51,6 +53,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
  
         self.worker.party_left.connect(self.on_party_left)
         self.worker.party_get.connect(self.on_party_get)
+        self.worker.chat_get.connect(self.on_get_chat)
  
         self.thread.started.connect(self.worker.join_party)
         self.thread.start()
@@ -67,6 +70,8 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
     def on_party_get(self, party):
         if party is None:
             return True
+
+        self.label_listeners.setText(f'Слушаоци: {len(party.users)}')
 
         self.party = party
         for user_id in party.users:
@@ -98,6 +103,9 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 
         for user_id in remove_list:
             self.characters.pop(user_id)
+
+    def on_get_chat(self, chat):
+        self.chat_history.setPlainText(chat)
 
     # # # # # # # # # # #
     # SWITCH ANIMATIONS
@@ -156,10 +164,10 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
     # PARTY FUNCTIONS
     # # # # # # # # # #
     def animation_head(self):
-        self.network.send(f'check_head {self.user.id}')
+        self.network.send(f'toggle_head {self.user.id}')
 
     def animation_arms(self):
-        self.network.send(f'check_arms {self.user.id}')
+        self.network.send(f'toggle_arms {self.user.id}')
 
     def song_add(self):
         pass
@@ -170,6 +178,19 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
     # # # # # # # # #
     # CHAT FUNCTIONS
     # # # # # # # # #
+    def send_message(self):
+        msg = self.input_msg.text()
+        if msg:
+            try:
+                username = str(self.user.username)
+                username.replace(' ', '_')
+                chat = self.network.send(f'send_message {self.user.id} {username} {msg}')
+
+                self.input_msg.setText('')
+                self.chat_history.setPlainText(chat)
+            except Exception as e:
+                print('Error while trying to send message.')
+                print(str(e))
 
     # # # # # # # # # #
     # QUEUE FUNCTIONS
@@ -186,6 +207,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 class PartyThread(QObject):
     party_get = pyqtSignal(object)
     party_left = pyqtSignal()
+    chat_get = pyqtSignal(str)
 
     def __init__(self, user, network):
         super(PartyThread, self).__init__()
@@ -204,6 +226,14 @@ class PartyThread(QObject):
 
             except Exception as e:
                 print('Error while trying to get party')
+                print(str(e))
+
+            try:
+                chat = self.network.send('get_chat')
+                self.chat_get.emit(chat)
+
+            except Exception as e:
+                print('Error while trying to get chat')
                 print(str(e))
 
             time.sleep(1)
