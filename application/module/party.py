@@ -10,6 +10,7 @@ from _thread import start_new_thread
 import database as db
 
 from module.character import Character
+from module.effect import Effect
 
 # PARTY SCREEN
 class PartyScreen(QMainWindow, Ui_PartyScreen):
@@ -41,6 +42,8 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.btn_arms.clicked.connect(self.animation_arms)
         self.btn_add.clicked.connect(self.song_add)
         self.btn_download.clicked.connect(self.song_download)
+        self.btn_like.clicked.connect(self.song_like)
+        self.btn_dislike.clicked.connect(self.song_dislike)
 
         self.btn_send.clicked.connect(self.send_message)
 
@@ -62,6 +65,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.thread.started.connect(self.worker.join_party)
         self.thread.start()
 
+        self.effects = []
         self.show()
 
     # # # # # # # # # # # #
@@ -188,6 +192,14 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 
     def song_download(self):
         pass
+
+    def song_like(self):
+        like = Effect(self.page_party, self.user.username, 'images\\party\\effect_like.png')
+        self.effects.append(like)
+
+    def song_dislike(self):
+        dislike = Effect(self.page_party, self.user.username, 'images\\party\\effect_dislike.png')
+        self.effects.append(dislike)
 
     # # # # # # # # #
     # CHAT FUNCTIONS
