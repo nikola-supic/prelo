@@ -454,6 +454,7 @@ class Ui_PartyScreen(object):
         self.chat_history.setFont(font)
         self.chat_history.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.chat_history.setReadOnly(True)
+        self.chat_history.setPlainText("")
         self.chat_history.setObjectName("chat_history")
         self.btn_send = QtWidgets.QPushButton(self.frame_chat)
         self.btn_send.setGeometry(QtCore.QRect(380, 380, 30, 30))
@@ -493,7 +494,7 @@ class Ui_PartyScreen(object):
         PartyScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(PartyScreen)
-        self.stacked_pages.setCurrentIndex(2)
+        self.stacked_pages.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(PartyScreen)
 
     def retranslateUi(self, PartyScreen):
@@ -509,29 +510,5 @@ class Ui_PartyScreen(object):
         self.input_search.setPlaceholderText(_translate("PartyScreen", "Име пјесме"))
         self.btn_join.setText(_translate("PartyScreen", "Стани у ред чекања"))
         self.input_msg.setPlaceholderText(_translate("PartyScreen", "Унесите поруку"))
-        self.chat_history.setPlainText(_translate("PartyScreen", "\n"
-"da\n"
-"da\n"
-"d\n"
-"a\n"
-"da\n"
-"d\n"
-"ad\n"
-"a\n"
-"d\n"
-"ad\n"
-"a\n"
-"d\n"
-"ad\n"
-"a\n"
-"dawdwadawdawdawdaw\n"
-"d\n"
-"awd\n"
-"aw\n"
-"daw\n"
-"daw\n"
-"d\n"
-"awd\n"
-"aw"))
         self.label_listeners.setText(_translate("PartyScreen", "Слушаоци: 0"))
 import res_rc
