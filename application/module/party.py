@@ -70,6 +70,8 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.thread.start()
 
         self.show()
+        self.widget_head.hide()
+        self.widget_arms.hide()
 
     # # # # # # # # # # # #
     # PARTY THREAD SIGNALS
@@ -106,12 +108,12 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
                 user = party.users[user_id]
 
                 if user.anim_head:
-                    char.start_head_anim()
+                    char.start_head_anim(int(user.anim_head_time))
                 else:
                     char.stop_head_anim()
 
                 if user.anim_arms:
-                    char.start_arms_anim()
+                    char.start_arms_anim(int(user.anim_arms_time))
                 else:
                     char.stop_arms_anim()
 
@@ -186,14 +188,36 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 
         QtCore.QTimer.singleShot(self.anim_time, lambda: self.stacked_pages.setCurrentWidget(self.page_party))
 
+    def check_sliders(self):
+        if self.party is None:
+            return False
+
+        user = self.party.users[str(self.user.id)]
+
+        if user.anim_head:
+            self.widget_head.hide()
+        else:
+            self.slider_head.setValue(int(user.anim_head_time))
+            self.widget_head.show()
+
+        if user.anim_arms:
+            self.widget_arms.hide()
+        else:
+            self.slider_arms.setValue(int(user.anim_arms_time))
+            self.widget_arms.show()
+
     # # # # # # # # # #
     # PARTY FUNCTIONS
     # # # # # # # # # #
     def animation_head(self):
-        self.network.send(f'toggle_head {self.user.id}')
+        value = self.slider_head.value()
+        self.party = self.network.send(f'toggle_head {self.user.id} {value}')
+        self.check_sliders()  
 
     def animation_arms(self):
-        self.network.send(f'toggle_arms {self.user.id}')
+        value = self.slider_arms.value()
+        self.party = self.network.send(f'toggle_arms {self.user.id} {value}')
+        self.check_sliders()  
 
     def song_add(self):
         pass
@@ -284,7 +308,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
             return False
 
         self.list_queue.clear()
-        for idx, user in enumerate(self.party.queue):
+        for idx, user in enumerate(self.party.queue.values()):
             item = QtWidgets.QListWidgetItem(f'#{idx} // {user.username}')
             self.list_queue.addItem(item)
 

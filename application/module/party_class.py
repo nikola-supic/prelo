@@ -14,7 +14,9 @@ class User():
         self.arms = arms
 
         self.anim_head = True
+        self.anim_head_time = 750
         self.anim_arms = True
+        self.anim_arms_time = 750
 
         self.song_id = None
 
@@ -22,7 +24,7 @@ class User():
 class Party():
     def __init__(self):
         self.users = {}
-        self.queue = set()
+        self.queue = {}
         self.likes = set()
         self.dislikes = set()
 
@@ -48,18 +50,20 @@ class Party():
         self.users[user_id] = user
 
     def leave(self, user_id):
-        self.queue.discard(self.users[user_id])
+        self.queue.pop(user_id)
         self.users.pop(user_id)
 
-    def toggle_head(self, user_id):
+    def toggle_head(self, user_id, time):
         toggle = self.users[user_id].anim_head
         toggle = False if toggle else True
         self.users[user_id].anim_head = toggle
+        self.users[user_id].anim_head_time = time
 
-    def toggle_arms(self, user_id):
+    def toggle_arms(self, user_id, time):
         toggle = self.users[user_id].anim_arms
         toggle = False if toggle else True
         self.users[user_id].anim_arms = toggle
+        self.users[user_id].anim_arms_time = time
 
     def send_message(self, user_id, username, message):
         self.party_log.info(f'{username}#{user_id:0>4} // {message}')
@@ -73,7 +77,7 @@ class Party():
 
     def join_queue(self, user_id, song_id):
         self.users[user_id].song_id = song_id
-        self.queue.add(self.users[user_id])
+        self.queue[user_id] = self.users[user_id]
 
     def send_like(self, user_id):
         self.likes.add(user_id)

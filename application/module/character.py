@@ -87,11 +87,11 @@ class Character():
         self.char_arms.hide()
         self.char_name.hide()
 
-    def start_head_anim(self):
+    def start_head_anim(self, time):
         if self.timer_head is None:
             self.timer_head = QtCore.QTimer()
             self.timer_head.timeout.connect(self.head_animation)
-            self.timer_head.start(750)
+            self.timer_head.start(time)
 
     def stop_head_anim(self):
         if self.timer_head is not None:
@@ -108,11 +108,11 @@ class Character():
         pixmap_rotated = self.pixmap_head.transformed(QTransform().rotate(angle), QtCore.Qt.SmoothTransformation)
         self.char_head.setPixmap(pixmap_rotated)
     
-    def start_arms_anim(self):
+    def start_arms_anim(self, time):
         if self.timer_arms is None:
             self.timer_arms = QtCore.QTimer()
             self.timer_arms.timeout.connect(self.arms_animation)
-            self.timer_arms.start(750)
+            self.timer_arms.start(time)
 
     def stop_arms_anim(self):
         if self.timer_arms is not None:

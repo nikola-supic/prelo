@@ -120,14 +120,16 @@ class Server():
 
                     elif data_list[0] == 'toggle_head':
                         user_id = data_list[1]
+                        head_time = data_list[2]
 
-                        self.party.toggle_head(user_id)
+                        self.party.toggle_head(user_id, head_time)
                         client.sendall(pickle.dumps(self.party))
 
                     elif data_list[0] == 'toggle_arms':
                         user_id = data_list[1]
+                        arms_time = data_list[2]
 
-                        self.party.toggle_arms(user_id)
+                        self.party.toggle_arms(user_id, arms_time)
                         client.sendall(pickle.dumps(self.party))
 
                     elif data_list[0] == 'send_message':
