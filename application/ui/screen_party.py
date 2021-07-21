@@ -271,6 +271,9 @@ class Ui_PartyScreen(object):
 "    background-color:rgba(0,0,0,0);\n"
 "    border: 2px solid rgb(20,92,158);\n"
 "    border-radius: 5px;\n"
+"}\n"
+"QListWidget#list_queue \n"
+"{\n"
 "    border-top-left-radius: 0px;\n"
 "    border-top-right-radius: 0px;\n"
 "}\n"
@@ -324,17 +327,17 @@ class Ui_PartyScreen(object):
         self.list_search.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_search.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.list_search.setObjectName("list_search")
-        self.input_name = QtWidgets.QLineEdit(self.frame_queue)
-        self.input_name.setGeometry(QtCore.QRect(190, 10, 220, 32))
+        self.input_search = QtWidgets.QLineEdit(self.frame_queue)
+        self.input_search.setGeometry(QtCore.QRect(190, 10, 220, 32))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
-        self.input_name.setFont(font)
-        self.input_name.setStyleSheet("")
-        self.input_name.setEchoMode(QtWidgets.QLineEdit.Normal)
-        self.input_name.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.input_name.setClearButtonEnabled(True)
-        self.input_name.setObjectName("input_name")
+        self.input_search.setFont(font)
+        self.input_search.setStyleSheet("")
+        self.input_search.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.input_search.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.input_search.setClearButtonEnabled(True)
+        self.input_search.setObjectName("input_search")
         self.btn_join = QtWidgets.QPushButton(self.frame_queue)
         self.btn_join.setGeometry(QtCore.QRect(190, 380, 220, 30))
         font = QtGui.QFont()
@@ -447,10 +450,10 @@ class Ui_PartyScreen(object):
         self.chat_history.setGeometry(QtCore.QRect(20, 10, 431, 361))
         font = QtGui.QFont()
         font.setFamily("Courier New")
-        font.setPointSize(9)
+        font.setPointSize(8)
         self.chat_history.setFont(font)
+        self.chat_history.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.chat_history.setReadOnly(True)
-        self.chat_history.setPlainText("")
         self.chat_history.setObjectName("chat_history")
         self.btn_send = QtWidgets.QPushButton(self.frame_chat)
         self.btn_send.setGeometry(QtCore.QRect(380, 380, 30, 30))
@@ -490,7 +493,7 @@ class Ui_PartyScreen(object):
         PartyScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(PartyScreen)
-        self.stacked_pages.setCurrentIndex(0)
+        self.stacked_pages.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(PartyScreen)
 
     def retranslateUi(self, PartyScreen):
@@ -503,8 +506,32 @@ class Ui_PartyScreen(object):
         self.label_like.setText(_translate("PartyScreen", "1"))
         self.label_dislike.setText(_translate("PartyScreen", "2"))
         self.label_queue.setText(_translate("PartyScreen", "Ред чекања"))
-        self.input_name.setPlaceholderText(_translate("PartyScreen", "Име пјесме"))
+        self.input_search.setPlaceholderText(_translate("PartyScreen", "Име пјесме"))
         self.btn_join.setText(_translate("PartyScreen", "Стани у ред чекања"))
         self.input_msg.setPlaceholderText(_translate("PartyScreen", "Унесите поруку"))
+        self.chat_history.setPlainText(_translate("PartyScreen", "\n"
+"da\n"
+"da\n"
+"d\n"
+"a\n"
+"da\n"
+"d\n"
+"ad\n"
+"a\n"
+"d\n"
+"ad\n"
+"a\n"
+"d\n"
+"ad\n"
+"a\n"
+"dawdwadawdawdawdaw\n"
+"d\n"
+"awd\n"
+"aw\n"
+"daw\n"
+"daw\n"
+"d\n"
+"awd\n"
+"aw"))
         self.label_listeners.setText(_translate("PartyScreen", "Слушаоци: 0"))
 import res_rc

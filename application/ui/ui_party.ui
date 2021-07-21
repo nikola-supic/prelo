@@ -416,7 +416,7 @@ QPushButton#btn_like:hover {
 </string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="page_party">
         <property name="styleSheet">
@@ -544,6 +544,9 @@ QListWidget#list_queue, #list_search {
 	background-color:rgba(0,0,0,0);
 	border: 2px solid rgb(20,92,158);
 	border-radius: 5px;
+}
+QListWidget#list_queue 
+{
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 }
@@ -651,7 +654,7 @@ QLabel#label_queue {
            <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
          </widget>
-         <widget class="QLineEdit" name="input_name">
+         <widget class="QLineEdit" name="input_search">
           <property name="geometry">
            <rect>
             <x>190</x>
@@ -887,8 +890,11 @@ QPushButton#btn_hide_2:hover {
           <property name="font">
            <font>
             <family>Courier New</family>
-            <pointsize>9</pointsize>
+            <pointsize>8</pointsize>
            </font>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
           <property name="readOnly">
            <bool>true</bool>
