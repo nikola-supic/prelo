@@ -133,7 +133,7 @@ QLabel {
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_exit">
+      <widget class="QPushButton" name="btn_back">
        <property name="geometry">
         <rect>
          <x>420</x>
@@ -143,10 +143,10 @@ QLabel {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton#btn_exit {
+        <string notr="true">QPushButton#btn_back {
 	border-image: url(:/menu/images/menu/exit.png);
 }
-QPushButton#btn_exit:hover {
+QPushButton#btn_back:hover {
 	border-image: url(:/menu/images/menu/hover_exit.png);
 }</string>
        </property>
@@ -416,18 +416,22 @@ QPushButton#btn_like:hover {
 </string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page_party">
         <property name="styleSheet">
-         <string notr="true">QPushButton#char_head, #char_arms, #btn_add, #btn_download {
+         <string notr="true">QPushButton#btn_head, #btn_arms, #btn_add, #btn_download {
 	background-color: rgb(20, 92, 158);
 	color: rgb(224, 224, 226);
 	border: none;
 	border-radius: 5px;
+}
+
+QLabel {
+	background-color: rgba(0,0,0,0);
 }</string>
         </property>
-        <widget class="QPushButton" name="char_head">
+        <widget class="QPushButton" name="btn_head">
          <property name="geometry">
           <rect>
            <x>420</x>
@@ -437,10 +441,10 @@ QPushButton#btn_like:hover {
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton#char_head {
+          <string notr="true">QPushButton#btn_head {
 	border-image: url(:/party/images/party/head.png);
 }
-QPushButton#char_head:hover {
+QPushButton#btn_head:hover {
 	border-image: url(:/party/images/party/hover_head.png);
 }</string>
          </property>
@@ -448,7 +452,7 @@ QPushButton#char_head:hover {
           <string/>
          </property>
         </widget>
-        <widget class="QPushButton" name="char_arms">
+        <widget class="QPushButton" name="btn_arms">
          <property name="geometry">
           <rect>
            <x>420</x>
@@ -458,10 +462,10 @@ QPushButton#char_head:hover {
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton#char_arms {
+          <string notr="true">QPushButton#btn_arms {
 	border-image: url(:/party/images/party/arms.png);
 }
-QPushButton#char_arms:hover {
+QPushButton#btn_arms:hover {
 	border-image: url(:/party/images/party/hover_arms.png);
 }</string>
          </property>
@@ -890,8 +894,7 @@ QPushButton#btn_hide_2:hover {
            <bool>true</bool>
           </property>
           <property name="plainText">
-           <string>дадада
-</string>
+           <string/>
           </property>
          </widget>
          <widget class="QPushButton" name="btn_send">

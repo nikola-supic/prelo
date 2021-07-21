@@ -64,16 +64,16 @@ class Ui_PartyScreen(object):
         self.label.setStyleSheet("color: rgb(224,224,226);")
         self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label.setObjectName("label")
-        self.btn_exit = QtWidgets.QPushButton(self.widget)
-        self.btn_exit.setGeometry(QtCore.QRect(420, 20, 30, 30))
-        self.btn_exit.setStyleSheet("QPushButton#btn_exit {\n"
+        self.btn_back = QtWidgets.QPushButton(self.widget)
+        self.btn_back.setGeometry(QtCore.QRect(420, 20, 30, 30))
+        self.btn_back.setStyleSheet("QPushButton#btn_back {\n"
 "    border-image: url(:/menu/images/menu/exit.png);\n"
 "}\n"
-"QPushButton#btn_exit:hover {\n"
+"QPushButton#btn_back:hover {\n"
 "    border-image: url(:/menu/images/menu/hover_exit.png);\n"
 "}")
-        self.btn_exit.setText("")
-        self.btn_exit.setObjectName("btn_exit")
+        self.btn_back.setText("")
+        self.btn_back.setObjectName("btn_back")
         self.frame_bottom = QtWidgets.QFrame(self.widget)
         self.frame_bottom.setGeometry(QtCore.QRect(0, 490, 470, 90))
         self.frame_bottom.setStyleSheet("")
@@ -192,33 +192,37 @@ class Ui_PartyScreen(object):
 "")
         self.stacked_pages.setObjectName("stacked_pages")
         self.page_party = QtWidgets.QWidget()
-        self.page_party.setStyleSheet("QPushButton#char_head, #char_arms, #btn_add, #btn_download {\n"
+        self.page_party.setStyleSheet("QPushButton#btn_head, #btn_arms, #btn_add, #btn_download {\n"
 "    background-color: rgb(20, 92, 158);\n"
 "    color: rgb(224, 224, 226);\n"
 "    border: none;\n"
 "    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: rgba(0,0,0,0);\n"
 "}")
         self.page_party.setObjectName("page_party")
-        self.char_head = QtWidgets.QPushButton(self.page_party)
-        self.char_head.setGeometry(QtCore.QRect(420, 10, 30, 30))
-        self.char_head.setStyleSheet("QPushButton#char_head {\n"
+        self.btn_head = QtWidgets.QPushButton(self.page_party)
+        self.btn_head.setGeometry(QtCore.QRect(420, 10, 30, 30))
+        self.btn_head.setStyleSheet("QPushButton#btn_head {\n"
 "    border-image: url(:/party/images/party/head.png);\n"
 "}\n"
-"QPushButton#char_head:hover {\n"
+"QPushButton#btn_head:hover {\n"
 "    border-image: url(:/party/images/party/hover_head.png);\n"
 "}")
-        self.char_head.setText("")
-        self.char_head.setObjectName("char_head")
-        self.char_arms = QtWidgets.QPushButton(self.page_party)
-        self.char_arms.setGeometry(QtCore.QRect(420, 50, 30, 30))
-        self.char_arms.setStyleSheet("QPushButton#char_arms {\n"
+        self.btn_head.setText("")
+        self.btn_head.setObjectName("btn_head")
+        self.btn_arms = QtWidgets.QPushButton(self.page_party)
+        self.btn_arms.setGeometry(QtCore.QRect(420, 50, 30, 30))
+        self.btn_arms.setStyleSheet("QPushButton#btn_arms {\n"
 "    border-image: url(:/party/images/party/arms.png);\n"
 "}\n"
-"QPushButton#char_arms:hover {\n"
+"QPushButton#btn_arms:hover {\n"
 "    border-image: url(:/party/images/party/hover_arms.png);\n"
 "}")
-        self.char_arms.setText("")
-        self.char_arms.setObjectName("char_arms")
+        self.btn_arms.setText("")
+        self.btn_arms.setObjectName("btn_arms")
         self.btn_add = QtWidgets.QPushButton(self.page_party)
         self.btn_add.setGeometry(QtCore.QRect(420, 90, 30, 30))
         self.btn_add.setStyleSheet("QPushButton#btn_add {\n"
@@ -446,6 +450,7 @@ class Ui_PartyScreen(object):
         font.setPointSize(9)
         self.chat_history.setFont(font)
         self.chat_history.setReadOnly(True)
+        self.chat_history.setPlainText("")
         self.chat_history.setObjectName("chat_history")
         self.btn_send = QtWidgets.QPushButton(self.frame_chat)
         self.btn_send.setGeometry(QtCore.QRect(380, 380, 30, 30))
@@ -485,7 +490,7 @@ class Ui_PartyScreen(object):
         PartyScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(PartyScreen)
-        self.stacked_pages.setCurrentIndex(2)
+        self.stacked_pages.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(PartyScreen)
 
     def retranslateUi(self, PartyScreen):
@@ -501,7 +506,5 @@ class Ui_PartyScreen(object):
         self.input_name.setPlaceholderText(_translate("PartyScreen", "Име пјесме"))
         self.btn_join.setText(_translate("PartyScreen", "Стани у ред чекања"))
         self.input_msg.setPlaceholderText(_translate("PartyScreen", "Унесите поруку"))
-        self.chat_history.setPlainText(_translate("PartyScreen", "дадада\n"
-""))
         self.label_listeners.setText(_translate("PartyScreen", "Слушаоци: 0"))
 import res_rc
