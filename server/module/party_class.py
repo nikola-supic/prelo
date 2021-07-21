@@ -23,6 +23,8 @@ class Party():
     def __init__(self):
         self.users = {}
         self.queue = set()
+        self.likes = set()
+        self.dislikes = set()
 
         self.party_file = 'logs/party_chat.log'
         self.party_log = logging.getLogger('PARTY')
@@ -73,3 +75,8 @@ class Party():
         self.users[user_id].song_id = song_id
         self.queue.add(self.users[user_id])
 
+    def send_like(self, user_id):
+        self.likes.add(user_id)
+
+    def send_dislike(self, user_id):
+        self.dislikes.add(user_id)

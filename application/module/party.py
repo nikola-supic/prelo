@@ -25,6 +25,10 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.party = None
         self.characters = {}
         self.search_songs = []
+        self.effects = []
+        self.likes = {}
+        self.dislikes = {}
+        self.reacted = False
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -65,7 +69,6 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.thread.started.connect(self.worker.join_party)
         self.thread.start()
 
-        self.effects = []
         self.show()
 
     # # # # # # # # # # # #
@@ -81,6 +84,8 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 
         # Basic info
         self.label_listeners.setText(f'Слушаоци: {len(party.users)}')
+        self.label_like.setText(str(len(party.likes)))
+        self.label_dislike.setText(str(len(party.dislikes)))
 
         # Getting characters
         self.party = party
@@ -118,6 +123,9 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 
         # Updating queue
         self.update_queue()
+
+        # Update effects
+        self.update_effects()
 
     def on_get_chat(self, chat):
         if not self.chat_history.isVisible():
@@ -194,12 +202,39 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         pass
 
     def song_like(self):
-        like = Effect(self.page_party, self.user.username, 'images\\party\\effect_like.png')
-        self.effects.append(like)
+        if self.reacted:
+            like = Effect(self.page_party, self.user.id, 'images\\party\\effect_like.png')
+            self.effects.append(like)
+            return False
+
+        if (self.user.id in self.party.likes) or (self.user.id in self.party.dislikes):
+            return False
+
+        likes = self.network.send(f'send_like {self.user.id}')
+        self.reacted = True
 
     def song_dislike(self):
-        dislike = Effect(self.page_party, self.user.username, 'images\\party\\effect_dislike.png')
-        self.effects.append(dislike)
+        if self.reacted:
+            dislike = Effect(self.page_party, self.user.id, 'images\\party\\effect_dislike.png')
+            self.effects.append(dislike)
+            return False
+
+        if (self.user.id in self.party.likes) or (self.user.id in self.party.dislikes):
+            return False
+
+        dislikes = self.network.send(f'send_dislike {self.user.id}')
+        self.reacted = True
+
+    def update_effects(self):
+        for user in self.party.likes:
+            if user not in self.likes:
+                like = Effect(self.page_party, user, 'images\\party\\effect_like.png')
+                self.likes[user] = like
+
+        for user in self.party.dislikes:
+            if user not in self.dislikes:
+                dislike = Effect(self.page_party, user, 'images\\party\\effect_dislike.png')
+                self.dislikes[user] = dislike
 
     # # # # # # # # #
     # CHAT FUNCTIONS

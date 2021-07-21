@@ -150,6 +150,18 @@ class Server():
                         self.party.join_queue(user_id, song_id)
                         client.sendall(pickle.dumps(self.party.queue))
 
+                    elif data_list[0] == 'send_like':
+                        user_id = data_list[1]
+
+                        self.party.send_like(user_id)
+                        client.sendall(pickle.dumps(self.party.likes))
+
+                    elif data_list[0] == 'send_dislike':
+                        user_id = data_list[1]
+
+                        self.party.send_dislike(user_id)
+                        client.sendall(pickle.dumps(self.party.dislikes))
+
             except Exception as e:
                 print(str(e))
                 self.root_log.info(f'Lost connection to: {client_addr}... (Error)')
