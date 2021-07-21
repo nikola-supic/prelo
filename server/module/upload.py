@@ -35,7 +35,6 @@ class UploadScreen(QMainWindow, Ui_UploadScreen):
         self.btn_upload.clicked.connect(self.upload)
         self.click_time = get_time() + 1
 
-        db.connect(database='prelo')
         self.show()
 
 

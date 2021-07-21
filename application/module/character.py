@@ -20,13 +20,13 @@ class Character():
         self.counter_arms = 0
         self.timer_head = None
         self.timer_arms = None
+        self.visible = False
 
         self.create_character()
         self.create_name()
-        self.show()
-        self.check_head_animation()
-        self.check_arms_animation()
 
+        # self.check_head_animation()
+        # self.check_arms_animation()
 
     def create_character(self):
         self.char_body = QtWidgets.QLabel(self.widget)
@@ -53,7 +53,6 @@ class Character():
         self.pixmap_arms = QPixmap(self.arms)
         self.char_arms.setPixmap(self.pixmap_arms)
         
-        
     def create_name(self):
         self.char_name = QtWidgets.QLabel(self.widget)
         self.char_name.setGeometry(QtCore.QRect(self.x - 20, self.y + 200, 140, 40))
@@ -69,17 +68,33 @@ class Character():
         self.char_name.setText(self.name)
 
     def show(self):
+        if self.visible:
+            return False
+
+        self.visible = True
         self.char_body.show()
-        self.char_head.show()
+        self.char_head.show() 
         self.char_arms.show()
         self.char_name.show()
 
-    def check_head_animation(self):
+    def hide(self):
+        if not self.visible:
+            return False
+
+        self.visible = False
+        self.char_body.hide()
+        self.char_head.hide() 
+        self.char_arms.hide()
+        self.char_name.hide()
+
+    def start_head_anim(self):
         if self.timer_head is None:
             self.timer_head = QtCore.QTimer()
             self.timer_head.timeout.connect(self.head_animation)
             self.timer_head.start(750)
-        else:
+
+    def stop_head_anim(self):
+        if self.timer_head is not None:
             self.timer_head.stop()
             self.timer_head = None
 
@@ -93,12 +108,14 @@ class Character():
         pixmap_rotated = self.pixmap_head.transformed(QTransform().rotate(angle), QtCore.Qt.SmoothTransformation)
         self.char_head.setPixmap(pixmap_rotated)
     
-    def check_arms_animation(self):
+    def start_arms_anim(self):
         if self.timer_arms is None:
             self.timer_arms = QtCore.QTimer()
             self.timer_arms.timeout.connect(self.arms_animation)
             self.timer_arms.start(750)
-        else:
+
+    def stop_arms_anim(self):
+        if self.timer_arms is not None:
             self.timer_arms.stop()
             self.timer_arms = None
 

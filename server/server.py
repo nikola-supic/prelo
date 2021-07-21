@@ -26,6 +26,8 @@ from module.log import LogScreen
 from module.upload import UploadScreen
 from module.backend import Server
 
+import db_server as db 
+
 # SERVER SCREEN
 class ServerScreen(QMainWindow, Ui_ServerScreen):
     def __init__(self):
@@ -215,6 +217,7 @@ def get_time():
 
 
 if __name__ == '__main__':
+    db.connect(database = 'prelo')
     app = QtWidgets.QApplication(sys.argv)
     window = ServerScreen()
     sys.exit(app.exec_())

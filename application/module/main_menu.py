@@ -15,6 +15,7 @@ from module.chat import ChatScreen
 from module.settings import SettingsScreen
 from module.about import AboutScreen
 from module.popup import PopupWarning
+from module.party import PartyScreen
 
 
 # MAIN SCREEN
@@ -39,6 +40,7 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
         self.btn_about.clicked.connect(self.about)
         self.btn_admin.clicked.connect(self.admin)
         self.btn_shutdown.clicked.connect(self.shutdown)
+        self.btn_party.clicked.connect(self.party)
         self.click_time = get_time()
 
         self.show()
@@ -125,6 +127,19 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
 
         if self.online:
             pass
+        else:
+            self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
+            self.close()
+
+
+    def party(self):
+        if self.click_time > get_time():
+            return False
+        self.click_time = get_time()+1
+
+        if self.online:
+            self.about = PartyScreen(self)
+            self.close()
         else:
             self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
             self.close()

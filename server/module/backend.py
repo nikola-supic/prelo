@@ -3,9 +3,9 @@ import socket
 from _thread import start_new_thread
 import pickle
 
-from datetime import datetime
 import os
-from pathlib import Path
+from module.party_class import Party
+import db_server as db
 
 # BACKEND CLASS
 class Server():
@@ -30,6 +30,8 @@ class Server():
         except socket.error as e:
             print(str(e))
 
+        self.party = Party()
+
 
     def start(self):
         self.root_log.info('Server started, waiting for connection...')
@@ -40,10 +42,16 @@ class Server():
 
 
     def restart(self):
+        del self.party
+        self.party = Party()
+
         self.root_log.info('Restarting server...')
 
 
     def shutdown(self):
+        del self.party
+        self.party = Party()
+
         self.root_log.info('Shutting down server...')
 
 
@@ -94,12 +102,42 @@ class Server():
 
                         self.root_log.info(f'Downloading song (User ID: {user_id}) (Song ID: {song_id})')
 
+                    elif data_list[0] == 'join_party':
+                        user_id = data_list[1]
+
+                        result = db.get_party_user(user_id)
+                        self.party.join(user_id, result)
+                        client.sendall(pickle.dumps(self.party))
+
+                    elif data_list[0] == 'leave_party':
+                        user_id = data_list[1]
+
+                        self.party.leave(user_id)
+                        client.sendall(pickle.dumps(self.party))
+
+                    elif data_list[0] == 'get_party':
+                        client.sendall(pickle.dumps(self.party))
+
+                    elif data_list[0] == 'check_head':
+                        user_id = data_list[1]
+
+                        self.party.toggle_head(user_id)
+                        client.sendall(pickle.dumps(self.party))
+
+                    elif data_list[0] == 'check_arms':
+                        user_id = data_list[1]
+
+                        self.party.toggle_arms(user_id)
+                        client.sendall(pickle.dumps(self.party))
+
+
 
             except Exception as e:
                 print(str(e))
                 self.root_log.info(f'Lost connection to: {client_addr}... (Error)')
                 break
 
+        self.addresses.pop(client)
         self.id_count -= 1
         client.close()
 

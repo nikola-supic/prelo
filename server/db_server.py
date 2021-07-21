@@ -47,3 +47,11 @@ def add_song(artist, name, path, length, added_by):
     mycursor.execute(sql, val)
     mydb.commit()
     return mycursor.lastrowid
+
+# user-related functions
+def get_party_user(user_id):
+    sql = "SELECT username FROM user WHERE id=%s"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    return result
