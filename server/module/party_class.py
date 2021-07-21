@@ -44,7 +44,7 @@ class Party():
         char_arms = 'images\\art\\arms.png'
 
         char_x = randint(0, 370)
-        char_y = randint(150, 195)
+        char_y = randint(135, 195)
 
         user = User(user_id, username, (char_x, char_y), char_body, char_head, char_arms)
         self.users[user_id] = user
