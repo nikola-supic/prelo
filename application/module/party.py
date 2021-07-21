@@ -23,6 +23,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 
         self.party = None
         self.characters = {}
+        self.search_songs = []
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -42,6 +43,9 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.btn_download.clicked.connect(self.song_download)
 
         self.btn_send.clicked.connect(self.send_message)
+
+        self.btn_search.clicked.connect(self.search_song)
+        self.btn_join.clicked.connect(self.join_queue)
 
         self.click_time = get_time() + 1
         self.anim_time = 750
@@ -71,8 +75,10 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         if party is None:
             return True
 
+        # Basic info
         self.label_listeners.setText(f'Слушаоци: {len(party.users)}')
 
+        # Getting characters
         self.party = party
         for user_id in party.users:
             if user_id not in self.characters:
@@ -80,6 +86,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
                 char = Character(self.page_party, user.username, user.pos, user.size, user.body, user.head, user.arms)
                 self.characters[user_id] = char
 
+        # Drawing characters
         remove_list = []
         for user_id in self.characters:
             char = self.characters[user_id]
@@ -101,10 +108,17 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 
                 char.show()
 
+        # Removing characters
         for user_id in remove_list:
             self.characters.pop(user_id)
 
+        # Updating queue
+        self.update_queue()
+
     def on_get_chat(self, chat):
+        if not self.chat_history.isVisible():
+            return False
+
         self.chat_history.setPlainText(chat)
 
     # # # # # # # # # # #
@@ -195,6 +209,38 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
     # # # # # # # # # #
     # QUEUE FUNCTIONS
     # # # # # # # # # #
+    def search_song(self):
+        song_name = self.input_search.text()
+        if song_name:
+            result = db.search_song(song_name)
+
+            self.input_search.setText('')
+            self.list_search.clear()
+            self.search_songs = []
+            for item in result:
+                song_id = item[0]
+                artist_name = db.get_artist_name(item[1])
+                name = item[2] 
+
+                self.search_songs.append(song_id)
+                item = QtWidgets.QListWidgetItem(f'{artist_name} - {name}')
+                self.list_search.addItem(item)
+
+    def join_queue(self):
+        selected = self.list_search.currentRow()
+        if selected != -1:
+            song_id = self.search_songs[selected] 
+            queue = self.network.send(f'join_queue {self.user.id} {song_id}')
+
+    def update_queue(self):
+        if not self.list_queue.isVisible():
+            return False
+
+        self.list_queue.clear()
+        for idx, user in enumerate(self.party.queue):
+            item = QtWidgets.QListWidgetItem(f'#{idx} // {user.username}')
+            self.list_queue.addItem(item)
+
 
     def exit(self):
         self.worker.leave_party()

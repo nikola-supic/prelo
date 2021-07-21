@@ -143,6 +143,13 @@ class Server():
                         chat = self.party.get_chat()
                         client.sendall(pickle.dumps(chat))
 
+                    elif data_list[0] == 'join_queue':
+                        user_id = data_list[1]
+                        song_id = data_list[2]
+
+                        self.party.join_queue(user_id, song_id)
+                        client.sendall(pickle.dumps(self.party.queue))
+
             except Exception as e:
                 print(str(e))
                 self.root_log.info(f'Lost connection to: {client_addr}... (Error)')

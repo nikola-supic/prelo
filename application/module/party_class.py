@@ -16,10 +16,13 @@ class User():
         self.anim_head = True
         self.anim_arms = True
 
+        self.song_id = None
+
 
 class Party():
     def __init__(self):
         self.users = {}
+        self.queue = set()
 
         self.party_file = 'logs/party_chat.log'
         self.party_log = logging.getLogger('PARTY')
@@ -43,6 +46,7 @@ class Party():
         self.users[user_id] = user
 
     def leave(self, user_id):
+        self.queue.discard(self.users[user_id])
         self.users.pop(user_id)
 
     def toggle_head(self, user_id):
@@ -64,3 +68,8 @@ class Party():
     def get_chat(self):
         with open(self.party_file, 'r') as file:
             return file.read()
+
+    def join_queue(self, user_id, song_id):
+        self.users[user_id].song_id = song_id
+        self.queue.add(self.users[user_id])
+
