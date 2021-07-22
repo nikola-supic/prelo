@@ -197,7 +197,7 @@ QPushButton#btn_back:hover {
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_user">
+       <widget class="QLabel" name="label_artist">
         <property name="geometry">
          <rect>
           <x>100</x>
@@ -488,7 +488,7 @@ QSlider::handle:horizontal {
         </property>
        </widget>
        <zorder>label_art</zorder>
-       <zorder>label_user</zorder>
+       <zorder>label_artist</zorder>
        <zorder>label_name</zorder>
        <zorder>btn_queue</zorder>
        <zorder>btn_chat</zorder>
@@ -542,6 +542,30 @@ QSlider::handle:horizontal {
     background-color: rgb(19,55,88);
     border-radius: 5px;
 	margin: -5px 0;
+}
+
+
+QSlider::groove:vertical {
+    background-color: rgb(18, 18, 18);
+    width: 4px;
+	border-radius: 2px;
+}
+QSlider::handle:vertical {
+	height: 12px;
+    background-color: rgb(19,55,88);
+    border-radius: 5px;
+	margin: 0px -5px;
+}
+
+
+
+
+
+QLabel#label_bg, #label_bg_2, #label_bg_3 {
+	background-color: rgb(20, 92, 158);
+	color: rgb(224, 224, 226);
+	border: none;
+	border-radius: 5px;
 }</string>
         </property>
         <widget class="QPushButton" name="btn_head">
@@ -638,12 +662,7 @@ QPushButton#btn_download:hover {
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">QLabel#label_bg {
-	background-color: rgb(20, 92, 158);
-	color: rgb(224, 224, 226);
-	border: none;
-	border-radius: 5px;
-}</string>
+          <string notr="true"/>
          </property>
          <widget class="QLabel" name="label_bg">
           <property name="geometry">
@@ -694,13 +713,7 @@ QPushButton#btn_download:hover {
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">QLabel#label_bg_2 {
-	background-color: rgb(20, 92, 158);
-	color: rgb(224, 224, 226);
-	border: none;
-	border-radius: 5px;
-}
-</string>
+          <string notr="true"/>
          </property>
          <widget class="QLabel" name="label_bg_2">
           <property name="geometry">
@@ -740,6 +753,65 @@ QPushButton#btn_download:hover {
            <enum>Qt::Horizontal</enum>
           </property>
          </widget>
+        </widget>
+        <widget class="QLabel" name="label_bg_3">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>30</width>
+           <height>150</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QSlider" name="slider_volume">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>20</y>
+           <width>30</width>
+           <height>130</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_volume">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>155</y>
+           <width>31</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 224, 226);</string>
+         </property>
+         <property name="text">
+          <string>100</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QWidget" name="page_queue">
@@ -1164,9 +1236,9 @@ QPushButton#btn_send:hover {
       <widget class="QLabel" name="label_listeners">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>20</y>
-         <width>170</width>
+         <x>200</x>
+         <y>15</y>
+         <width>210</width>
          <height>30</height>
         </rect>
        </property>
@@ -1183,6 +1255,33 @@ QPushButton#btn_send:hover {
        </property>
        <property name="text">
         <string>Слушаоци: 0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_current">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>35</y>
+         <width>210</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(224, 224, 226);</string>
+       </property>
+       <property name="text">
+        <string>Тренутно пушта: никола</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

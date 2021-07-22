@@ -90,17 +90,17 @@ class Ui_PartyScreen(object):
         self.label_art.setText("")
         self.label_art.setAlignment(QtCore.Qt.AlignCenter)
         self.label_art.setObjectName("label_art")
-        self.label_user = QtWidgets.QLabel(self.frame_bottom)
-        self.label_user.setGeometry(QtCore.QRect(100, 20, 230, 40))
+        self.label_artist = QtWidgets.QLabel(self.frame_bottom)
+        self.label_artist.setGeometry(QtCore.QRect(100, 20, 230, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
         font.setBold(False)
         font.setWeight(50)
-        self.label_user.setFont(font)
-        self.label_user.setStyleSheet("color: rgb(224, 224, 226);")
-        self.label_user.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.label_user.setObjectName("label_user")
+        self.label_artist.setFont(font)
+        self.label_artist.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label_artist.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_artist.setObjectName("label_artist")
         self.label_name = QtWidgets.QLabel(self.frame_bottom)
         self.label_name.setGeometry(QtCore.QRect(100, 0, 230, 40))
         font = QtGui.QFont()
@@ -218,7 +218,7 @@ class Ui_PartyScreen(object):
         self.label_length.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_length.setObjectName("label_length")
         self.label_art.raise_()
-        self.label_user.raise_()
+        self.label_artist.raise_()
         self.label_name.raise_()
         self.btn_queue.raise_()
         self.btn_chat.raise_()
@@ -259,6 +259,30 @@ class Ui_PartyScreen(object):
 "    background-color: rgb(19,55,88);\n"
 "    border-radius: 5px;\n"
 "    margin: -5px 0;\n"
+"}\n"
+"\n"
+"\n"
+"QSlider::groove:vertical {\n"
+"    background-color: rgb(18, 18, 18);\n"
+"    width: 4px;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"QSlider::handle:vertical {\n"
+"    height: 12px;\n"
+"    background-color: rgb(19,55,88);\n"
+"    border-radius: 5px;\n"
+"    margin: 0px -5px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"QLabel#label_bg, #label_bg_2, #label_bg_3 {\n"
+"    background-color: rgb(20, 92, 158);\n"
+"    color: rgb(224, 224, 226);\n"
+"    border: none;\n"
+"    border-radius: 5px;\n"
 "}")
         self.page_party.setObjectName("page_party")
         self.btn_head = QtWidgets.QPushButton(self.page_party)
@@ -303,12 +327,7 @@ class Ui_PartyScreen(object):
         self.btn_download.setObjectName("btn_download")
         self.widget_head = QtWidgets.QWidget(self.page_party)
         self.widget_head.setGeometry(QtCore.QRect(270, 0, 150, 50))
-        self.widget_head.setStyleSheet("QLabel#label_bg {\n"
-"    background-color: rgb(20, 92, 158);\n"
-"    color: rgb(224, 224, 226);\n"
-"    border: none;\n"
-"    border-radius: 5px;\n"
-"}")
+        self.widget_head.setStyleSheet("")
         self.widget_head.setObjectName("widget_head")
         self.label_bg = QtWidgets.QLabel(self.widget_head)
         self.label_bg.setGeometry(QtCore.QRect(10, 10, 130, 30))
@@ -324,13 +343,7 @@ class Ui_PartyScreen(object):
         self.slider_head.setObjectName("slider_head")
         self.widget_arms = QtWidgets.QWidget(self.page_party)
         self.widget_arms.setGeometry(QtCore.QRect(270, 40, 150, 50))
-        self.widget_arms.setStyleSheet("QLabel#label_bg_2 {\n"
-"    background-color: rgb(20, 92, 158);\n"
-"    color: rgb(224, 224, 226);\n"
-"    border: none;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"")
+        self.widget_arms.setStyleSheet("")
         self.widget_arms.setObjectName("widget_arms")
         self.label_bg_2 = QtWidgets.QLabel(self.widget_arms)
         self.label_bg_2.setGeometry(QtCore.QRect(10, 10, 130, 30))
@@ -344,6 +357,27 @@ class Ui_PartyScreen(object):
         self.slider_arms.setProperty("value", 750)
         self.slider_arms.setOrientation(QtCore.Qt.Horizontal)
         self.slider_arms.setObjectName("slider_arms")
+        self.label_bg_3 = QtWidgets.QLabel(self.page_party)
+        self.label_bg_3.setGeometry(QtCore.QRect(20, 10, 30, 150))
+        self.label_bg_3.setStyleSheet("")
+        self.label_bg_3.setText("")
+        self.label_bg_3.setObjectName("label_bg_3")
+        self.slider_volume = QtWidgets.QSlider(self.page_party)
+        self.slider_volume.setGeometry(QtCore.QRect(20, 20, 30, 130))
+        self.slider_volume.setMaximum(100)
+        self.slider_volume.setOrientation(QtCore.Qt.Vertical)
+        self.slider_volume.setObjectName("slider_volume")
+        self.label_volume = QtWidgets.QLabel(self.page_party)
+        self.label_volume.setGeometry(QtCore.QRect(20, 155, 31, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_volume.setFont(font)
+        self.label_volume.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label_volume.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_volume.setObjectName("label_volume")
         self.stacked_pages.addWidget(self.page_party)
         self.page_queue = QtWidgets.QWidget()
         self.page_queue.setStyleSheet("QPushButton#btn_join, #btn_search, #btn_hide {\n"
@@ -575,7 +609,7 @@ class Ui_PartyScreen(object):
         self.btn_send.setObjectName("btn_send")
         self.stacked_pages.addWidget(self.page_chat)
         self.label_listeners = QtWidgets.QLabel(self.widget)
-        self.label_listeners.setGeometry(QtCore.QRect(240, 20, 170, 30))
+        self.label_listeners.setGeometry(QtCore.QRect(200, 15, 210, 30))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(14)
@@ -585,6 +619,17 @@ class Ui_PartyScreen(object):
         self.label_listeners.setStyleSheet("color: rgb(224, 224, 226);")
         self.label_listeners.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_listeners.setObjectName("label_listeners")
+        self.label_current = QtWidgets.QLabel(self.widget)
+        self.label_current.setGeometry(QtCore.QRect(200, 35, 210, 30))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_current.setFont(font)
+        self.label_current.setStyleSheet("color: rgb(224, 224, 226);")
+        self.label_current.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_current.setObjectName("label_current")
         self.app_bg = QtWidgets.QLabel(self.frame_border)
         self.app_bg.setGeometry(QtCore.QRect(0, 0, 491, 601))
         self.app_bg.setStyleSheet("border-image: url(:/images/images/welcome_bg.png);")
@@ -603,15 +648,17 @@ class Ui_PartyScreen(object):
         PartyScreen.setWindowTitle(_translate("PartyScreen", "MainWindow"))
         self.app_name.setText(_translate("PartyScreen", "Прело"))
         self.label.setText(_translate("PartyScreen", "СНАГА КРАЈИНЕ"))
-        self.label_user.setText(_translate("PartyScreen", "Пјесмица"))
+        self.label_artist.setText(_translate("PartyScreen", "Пјесмица"))
         self.label_name.setText(_translate("PartyScreen", "Артис"))
         self.label_like.setText(_translate("PartyScreen", "1"))
         self.label_dislike.setText(_translate("PartyScreen", "2"))
         self.label_time.setText(_translate("PartyScreen", "00:00"))
         self.label_length.setText(_translate("PartyScreen", "00:00"))
+        self.label_volume.setText(_translate("PartyScreen", "100"))
         self.label_queue.setText(_translate("PartyScreen", "Ред чекања"))
         self.input_search.setPlaceholderText(_translate("PartyScreen", "Име пјесме"))
         self.btn_join.setText(_translate("PartyScreen", "Стани у ред чекања"))
         self.input_msg.setPlaceholderText(_translate("PartyScreen", "Унесите поруку"))
         self.label_listeners.setText(_translate("PartyScreen", "Слушаоци: 0"))
+        self.label_current.setText(_translate("PartyScreen", "Тренутно пушта: никола"))
 import res_rc
