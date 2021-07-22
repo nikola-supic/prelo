@@ -77,21 +77,23 @@ class Server():
                     break
                 else:
                     data_list = data.split()
+                    # Global chat
                     if data_list[0] == 'global':
-                        user_id = data_list[1]
+                        user_id = int(data_list[1])
                         username = data_list[2]
                         message = data_list[3].replace('_', ' ')
 
-                        chat = self.global_chat(int(user_id), username, message)
+                        chat = self.global_chat(user_id, username, message)
                         client.sendall(pickle.dumps(chat))
 
                     elif data_list[0] == 'get_global':
                         chat = self.get_global_chat()
                         client.sendall(pickle.dumps(chat))
 
+                    # Download 
                     elif data_list[0] == 'download':
-                        user_id = data_list[1]
-                        song_id = data_list[2]
+                        user_id = int(data_list[1])
+                        song_id = int(data_list[2])
                         song_path = ' '.join(data_list[3:])
 
                         song_size = os.path.getsize(song_path)
@@ -102,15 +104,16 @@ class Server():
 
                         self.root_log.info(f'Downloading song (User ID: {user_id}) (Song ID: {song_id})')
 
+                    # Party
                     elif data_list[0] == 'join_party':
-                        user_id = data_list[1]
+                        user_id = int(data_list[1])
 
                         result = db.get_party_user(user_id)
                         self.party.join(user_id, result)
                         client.sendall(pickle.dumps(self.party))
 
                     elif data_list[0] == 'leave_party':
-                        user_id = data_list[1]
+                        user_id = int(data_list[1])
 
                         self.party.leave(user_id)
                         client.sendall(pickle.dumps(self.party))
@@ -119,21 +122,21 @@ class Server():
                         client.sendall(pickle.dumps(self.party))
 
                     elif data_list[0] == 'toggle_head':
-                        user_id = data_list[1]
-                        head_time = data_list[2]
+                        user_id = int(data_list[1])
+                        head_time = int(data_list[2])
 
                         self.party.toggle_head(user_id, head_time)
                         client.sendall(pickle.dumps(self.party))
 
                     elif data_list[0] == 'toggle_arms':
-                        user_id = data_list[1]
-                        arms_time = data_list[2]
+                        user_id = int(data_list[1])
+                        arms_time = int(data_list[2])
 
                         self.party.toggle_arms(user_id, arms_time)
                         client.sendall(pickle.dumps(self.party))
 
                     elif data_list[0] == 'send_message':
-                        user_id = data_list[1]
+                        user_id = int(data_list[1])
                         username = data_list[2]
                         username.replace('_', ' ')
                         message = ' '.join(data_list[3:])
@@ -146,23 +149,48 @@ class Server():
                         client.sendall(pickle.dumps(chat))
 
                     elif data_list[0] == 'join_queue':
-                        user_id = data_list[1]
-                        song_id = data_list[2]
+                        user_id = int(data_list[1])
+                        song_id = int(data_list[2])
 
                         self.party.join_queue(user_id, song_id)
                         client.sendall(pickle.dumps(self.party.queue))
 
                     elif data_list[0] == 'send_like':
-                        user_id = data_list[1]
+                        user_id = int(data_list[1])
 
                         self.party.send_like(user_id)
                         client.sendall(pickle.dumps(self.party.likes))
 
                     elif data_list[0] == 'send_dislike':
-                        user_id = data_list[1]
+                        user_id = int(data_list[1])
 
                         self.party.send_dislike(user_id)
                         client.sendall(pickle.dumps(self.party.dislikes))
+
+                    elif data_list[0] == 'play_song':
+                        user_id = int(data_list[1])
+                        queue_id = int(data_list[2])
+                        song_id = int(data_list[3])
+                        time = int(data_list[4])
+
+                        print(f'[DEBUG] PLAY: {user_id} {queue_id} {song_id} {time}')
+
+                        self.party.play_song(user_id, queue_id, song_id, time)
+                        client.sendall(pickle.dumps(self.party.active_song))
+
+                    elif data_list[0] == 'finish_song':
+                        user_id = int(data_list[1])
+                        print(f'[DEBUG] FINISH: {user_id}')
+
+                        self.party.finish_song(user_id)
+                        client.sendall(pickle.dumps(self.party.active_song))
+
+                    elif data_list[0] == 'update_song_time':
+                        user_id = int(data_list[1])
+                        ms = int(data_list[2])
+
+                        self.party.update_song(user_id, ms)
+                        client.sendall(pickle.dumps(self.party.active_song))
 
             except Exception as e:
                 print(str(e))

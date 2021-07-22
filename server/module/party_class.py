@@ -27,6 +27,12 @@ class Party():
         self.queue = {}
         self.likes = set()
         self.dislikes = set()
+        self.active_song = {
+            'user_id' : None, 
+            'queue_id' : None,
+            'song_id' : None, 
+            'time' : None
+        }
 
         self.party_file = 'logs/party_chat.log'
         self.party_log = logging.getLogger('PARTY')
@@ -48,10 +54,36 @@ class Party():
 
         user = User(user_id, username, (char_x, char_y), char_body, char_head, char_arms)
         self.users[user_id] = user
+        print(f'[ + ] Joined. User ID: {user_id}')
 
     def leave(self, user_id):
-        self.queue.pop(user_id)
-        self.users.pop(user_id)
+        if self.active_song['user_id'] == user_id:
+            self.active_song['user_id'] = None
+
+        try:
+            self.queue.pop(user_id, None)
+        except Exception as e:
+            print(str(e))
+            print('Error while trying to quit. (queue)')
+
+        try:
+            self.users.pop(user_id, None)
+        except Exception as e:
+            print(str(e))
+            print('Error while trying to quit. (users)')
+        
+        self.users = {}
+        self.queue = {}
+        self.likes = set()
+        self.dislikes = set()
+        self.active_song = {
+            'user_id' : None, 
+            'queue_id' : None,
+            'song_id' : None, 
+            'time' : None
+        }
+
+        print(f'[ + ] Left. User ID: {user_id}')
 
     def toggle_head(self, user_id, time):
         toggle = self.users[user_id].anim_head
@@ -84,3 +116,31 @@ class Party():
 
     def send_dislike(self, user_id):
         self.dislikes.add(user_id)
+
+    def play_song(self, user_id, queue_id, song_id, time):
+        print(f'[ + ] Started song: {queue_id}')
+        self.active_song = {
+            'user_id' : user_id, 
+            'queue_id' : queue_id,
+            'song_id' : song_id, 
+            'time' : time
+        }
+
+        del self.queue[queue_id]
+
+    def finish_song(self, user_id):
+        song_id = self.active_song['song_id']
+        print(f'[ + ] Song finished (ID: {song_id}) // No. likes: {len(self.likes)} // No. dislikes: {len(self.dislikes)}')
+
+        self.likes = set()
+        self.dislikes = set()
+        self.active_song = {
+            'user_id' : None, 
+            'queue_id' : None,
+            'song_id' : None, 
+            'time' : None
+        }
+
+    def update_song(self, user_id, ms):
+        self.active_song['user_id'] = user_id
+        self.active_song['time'] = ms

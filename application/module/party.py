@@ -1,16 +1,18 @@
 # Importing the libraries
-import sys, time
+import sys, time, os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import QPropertyAnimation, QThread, QObject, pyqtSignal, pyqtSlot
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from ui.screen_party import Ui_PartyScreen
-from datetime import datetime
+from datetime import datetime, timedelta
 from _thread import start_new_thread
 
 import database as db
 
 from module.character import Character
 from module.effect import Effect
+from download import download_single
 
 # PARTY SCREEN
 class PartyScreen(QMainWindow, Ui_PartyScreen):
@@ -29,6 +31,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.likes = {}
         self.dislikes = {}
         self.reacted = False
+        self.active_song = None
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -50,9 +53,10 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.btn_dislike.clicked.connect(self.song_dislike)
 
         self.btn_send.clicked.connect(self.send_message)
-
         self.btn_search.clicked.connect(self.search_song)
         self.btn_join.clicked.connect(self.join_queue)
+
+        self.slider_volume.sliderMoved.connect(self.change_volume)
 
         self.click_time = get_time() + 1
         self.anim_time = 750
@@ -72,6 +76,15 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.show()
         self.widget_head.hide()
         self.widget_arms.hide()
+        self.slider_volume.setValue(75)
+        self.label_volume.setText(str(75))
+
+        # Create media player
+        self.player = QMediaPlayer()
+        self.player.setMuted(False)
+        self.player.setVolume(75)
+        self.player.positionChanged.connect(self.on_position_change)
+        self.player.mediaStatusChanged.connect(self.on_status_change)
 
     # # # # # # # # # # # #
     # PARTY THREAD SIGNALS
@@ -82,7 +95,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
 
     def on_party_get(self, party):
         if party is None:
-            return True
+            return False
 
         # Basic info
         self.label_listeners.setText(f'Слушаоци: {len(party.users)}')
@@ -129,6 +142,9 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         # Update effects
         self.update_effects()
 
+        # Check song
+        self.check_song()
+
     def on_get_chat(self, chat):
         if not self.chat_history.isVisible():
             return False
@@ -143,7 +159,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         # Opening animation
         current_widget = self.stacked_pages.currentWidget()
         if current_widget != self.page_party:
-            return True
+            return False
 
         self.stacked_pages.setCurrentWidget(self.page_chat)
 
@@ -157,7 +173,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
     def switch_to_queue(self):
         current_widget = self.stacked_pages.currentWidget()
         if current_widget != self.page_party:
-            return True
+            return False
 
         self.stacked_pages.setCurrentWidget(self.page_queue)
 
@@ -192,7 +208,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         if self.party is None:
             return False
 
-        user = self.party.users[str(self.user.id)]
+        user = self.party.users[self.user.id]
 
         if user.anim_head:
             self.widget_head.hide()
@@ -205,6 +221,112 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         else:
             self.slider_arms.setValue(int(user.anim_arms_time))
             self.widget_arms.show()
+
+    # # # # # # # # # # # # #
+    # ACTIVE SONG FUNCTIONS
+    # # # # # # # # # # # # #
+    def check_song(self):
+        if self.active_song is not None:
+            return False
+
+        if not self.party.queue and self.party.active_song['song_id'] == None:
+            self.toggle_song(False)
+            return False
+
+        self.toggle_song(True)
+        if self.party.active_song['song_id'] == None:
+            user_id = next(iter(self.party.queue))
+            user = self.party.users[user_id]
+            song_id = user.song_id
+        else:
+            user_id = self.party.active_song['queue_id']
+            user = self.party.users[user_id]
+            song_id = self.party.active_song['song_id']
+
+        self.setup_song(user_id, user, song_id)
+
+    def toggle_song(self, show):
+        if not show:
+            self.label_current.hide()
+            self.label_name.hide()
+            self.label_artist.hide()
+            self.label_time.hide()
+            self.label_length.hide()
+            self.label_art.hide()
+            self.song_status.hide()
+        else:
+            self.label_current.show()
+            self.label_name.show()
+            self.label_artist.show()
+            self.label_time.show()
+            self.label_length.show()
+            self.label_art.show()
+            self.song_status.show()
+
+    def setup_song(self, queue_id, user, song_id):
+        self.label_current.setText(f'Музику пушта: {user.username}')
+
+        song = db.Song(song_id)
+        artist = db.get_artist_name(song.song_id)
+        art_path = db.get_art_path(song.art)
+
+        self.label_name.setText(song.name)
+        self.label_artist.setText(artist)
+        self.label_time.setText(str(timedelta(seconds=0)))
+        self.label_length.setText(str(timedelta(seconds=song.length)))
+        self.label_art.setStyleSheet(f"border-image: url({art_path});")
+
+        self.song_status.setValue(0)
+        self.song_status.setMaximum(song.length)
+
+        self.active_song = song
+        db.add_user_recent(self.user.id, song.song_id)
+        self.play_song(song, queue_id)
+
+    def play_song(self, song, queue_id):
+        if os.path.isfile(song.path):
+            full_path = os.path.join(os.getcwd(), song.path)
+        else:
+            song_path = 'temp\\' + song.path[6:]
+            full_path = os.path.join(os.getcwd(), song_path)
+
+        url = QtCore.QUrl.fromLocalFile(full_path)
+        content = QMediaContent(url)
+        self.player.setMedia(content)
+
+        if self.party.active_song['user_id'] == None:
+            song = self.network.send(f'play_song {self.user.id} {queue_id} {song.song_id} {0}')
+        else:
+            self.player.setPosition(self.party.active_song['time'])
+
+        self.player.play()
+
+    def on_position_change(self):
+        ms = self.player.position()
+        seconds = int(ms / 1000)
+
+        self.label_time.setText(str(timedelta(seconds=seconds)))
+        self.song_status.setValue(seconds)
+
+        if self.party.active_song['user_id'] == self.user.id:
+            song = self.network.send(f'update_song_time {self.user.id} {ms}')
+        elif self.party.active_song['user_id'] == None:
+            song = self.network.send(f'update_song_time {self.user.id} {ms}')
+
+    def on_status_change(self):
+        status = self.player.mediaStatus()
+        if status == QMediaPlayer.EndOfMedia:
+            self.toggle_song(False)
+
+            if self.party.active_song['user_id'] == self.user.id:
+                song = self.network.send(f'finish_song {self.user.id}')
+
+            self.effects = []
+            self.likes = {}
+            self.dislikes = {}
+            self.reacted = False
+            self.active_song = None
+            self.player.stop()
 
     # # # # # # # # # #
     # PARTY FUNCTIONS
@@ -220,10 +342,16 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.check_sliders()  
 
     def song_add(self):
-        pass
+        if self.active_song == None:
+            return False
+
+        db.add_user_song(self.user.id, self.active_song.song_id)
 
     def song_download(self):
-        pass
+        if self.active_song == None:
+            return False
+
+        start_new_thread(download_single, (self.user.id, self.active_song, self.network, ))
 
     def song_like(self):
         if self.reacted:
@@ -259,6 +387,11 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
             if user not in self.dislikes:
                 dislike = Effect(self.page_party, user, 'images\\party\\effect_dislike.png')
                 self.dislikes[user] = dislike
+
+    def change_volume(self):
+        volume = self.slider_volume.value()
+        self.player.setVolume(volume)
+        self.label_volume.setText(str(volume))
 
     # # # # # # # # #
     # CHAT FUNCTIONS
@@ -312,11 +445,14 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
             item = QtWidgets.QListWidgetItem(f'#{idx} // {user.username}')
             self.list_queue.addItem(item)
 
-
     def exit(self):
+        self.close()
+
+    def closeEvent(self, event):
+        del self.player
         self.worker.leave_party()
         self.back.show()
-        self.close()
+        QtCore.QTimer.singleShot(1500, lambda: event.accept())
 
 # # # # # # # # # # # #
 # COMMUNICATION THREAD
@@ -344,6 +480,8 @@ class PartyThread(QObject):
             except Exception as e:
                 print('Error while trying to get party')
                 print(str(e))
+
+            time.sleep(1)
 
             try:
                 chat = self.network.send('get_chat')
