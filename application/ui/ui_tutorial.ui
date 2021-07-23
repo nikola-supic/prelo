@@ -541,6 +541,66 @@ QPushButton#btn_next:pressed {
 </string>
         </property>
        </widget>
+       <widget class="QLabel" name="step_7">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>180</y>
+          <width>256</width>
+          <height>256</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/tutorial/images/tutorial/step_7.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="text_7">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>200</y>
+          <width>240</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="plainText">
+         <string>Корак 7:
+Овде можете да пуштате и слушате музику заједно са људима широм свијета. </string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="btn_party">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>200</y>
+         <width>200</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_party {
+	border-image: url(:/menu/images/menu/party.png);
+}
+QPushButton#btn_party:hover {
+	border-image: url(:/menu/images/menu/hover_party.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
      </widget>
     </widget>

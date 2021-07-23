@@ -229,6 +229,29 @@ class Ui_TutorialScreen(object):
         self.text_6.setFont(font)
         self.text_6.setStyleSheet("")
         self.text_6.setObjectName("text_6")
+        self.step_7 = QtWidgets.QLabel(self.widget_tutorial)
+        self.step_7.setGeometry(QtCore.QRect(90, 180, 256, 256))
+        self.step_7.setStyleSheet("border-image: url(:/tutorial/images/tutorial/step_7.png);")
+        self.step_7.setText("")
+        self.step_7.setObjectName("step_7")
+        self.text_7 = QtWidgets.QPlainTextEdit(self.widget_tutorial)
+        self.text_7.setGeometry(QtCore.QRect(100, 200, 240, 100))
+        font = QtGui.QFont()
+        font.setFamily("Courier New")
+        font.setPointSize(12)
+        self.text_7.setFont(font)
+        self.text_7.setStyleSheet("")
+        self.text_7.setObjectName("text_7")
+        self.btn_party = QtWidgets.QPushButton(self.widget)
+        self.btn_party.setGeometry(QtCore.QRect(340, 200, 200, 200))
+        self.btn_party.setStyleSheet("QPushButton#btn_party {\n"
+"    border-image: url(:/menu/images/menu/party.png);\n"
+"}\n"
+"QPushButton#btn_party:hover {\n"
+"    border-image: url(:/menu/images/menu/hover_party.png);\n"
+"}")
+        self.btn_party.setText("")
+        self.btn_party.setObjectName("btn_party")
         self.app_bg = QtWidgets.QLabel(self.frame_border)
         self.app_bg.setGeometry(QtCore.QRect(0, 0, 491, 601))
         self.app_bg.setStyleSheet("border-image: url(:/images/images/welcome_bg.png);")
@@ -260,4 +283,6 @@ class Ui_TutorialScreen(object):
         self.text_6.setPlainText(_translate("TutorialScreen", "Корак 6:\n"
 "Овде можете информације о нама. Запратите нас. То би био крај туторијала. Надамо се да ћете уживати у нашој апликацији.\n"
 ""))
+        self.text_7.setPlainText(_translate("TutorialScreen", "Корак 7:\n"
+"Овде можете да пуштате и слушате музику заједно са људима широм свијета. "))
 import res_rc

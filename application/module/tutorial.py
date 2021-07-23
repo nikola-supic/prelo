@@ -22,7 +22,8 @@ class TutorialScreen(QMainWindow, Ui_TutorialScreen):
             self.step_3,
             self.step_4,
             self.step_5,
-            self.step_6
+            self.step_6,
+            self.step_7,
         ]
         self.texts = [
             self.text_1,
@@ -30,7 +31,8 @@ class TutorialScreen(QMainWindow, Ui_TutorialScreen):
             self.text_3,
             self.text_4,
             self.text_5,
-            self.text_6
+            self.text_6,
+            self.text_7,
         ] 
         self.buttons = [
             self.btn_play,
@@ -38,7 +40,8 @@ class TutorialScreen(QMainWindow, Ui_TutorialScreen):
             self.btn_friends,
             self.btn_chat,
             self.btn_settings,
-            self.btn_about
+            self.btn_about,
+            self.btn_party,
         ]
 
         # Remove title bar

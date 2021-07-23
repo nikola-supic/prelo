@@ -25,6 +25,7 @@
     <file>images/art/art_1.png</file>
   </qresource>
   <qresource prefix="tutorial">
+    <file>images/tutorial/step_7.png</file>
     <file>images/tutorial/step_1.png</file>
     <file>images/tutorial/step_2.png</file>
     <file>images/tutorial/step_3.png</file>
