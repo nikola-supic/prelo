@@ -33,6 +33,8 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
     def __init__(self):
         super(ServerScreen, self).__init__()
         self.setupUi(self)
+        self.host = 'localhost'
+        self.port = 5555
         self.log_file = 'logs/server_log.log'
         self.global_file = 'logs/global_chat.log'
         self.upload_file = 'logs/uploading.log'
@@ -55,6 +57,8 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.btn_exit.clicked.connect(self.exit)
         self.click_time = get_time() + 1
 
+        self.label_host.setText(f'Host: {self.host}')
+        self.label_port.setText(f'Port: {self.port}')
         self.show()
 
         self.server = None
@@ -116,7 +120,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.click_time = get_time()+1
 
         if self.server is None:
-            self.server = Server(self.root_log, self.global_log)
+            self.server = Server(self.root_log, self.global_log, self.host, self.port)
             self.server.start()
 
             self.check_buttons()

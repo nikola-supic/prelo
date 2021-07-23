@@ -9,9 +9,9 @@ import db_server as db
 
 # BACKEND CLASS
 class Server():
-    def __init__(self, root_log, global_log):
-        self.host = 'localhost'
-        self.port = 5555
+    def __init__(self, root_log, global_log, host = 'localhost', port = 5555):
+        self.host = host
+        self.port = port
         self.addr = (self.host, self.port)
         self.id_count = 0
         self.addresses = {}
