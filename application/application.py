@@ -18,6 +18,7 @@ from PyQt5.QtCore import QPropertyAnimation, QParallelAnimationGroup
 # Importing UI
 from ui.screen_loading import Ui_LoadingScreen
 from ui.screen_welcome import Ui_WelcomeScreen
+from ui.screen_join import Ui_JoinScreen
 
 # Import the modules
 from module.main_menu import MenuScreen
@@ -35,6 +36,7 @@ import webbrowser
 from social_media import links
 
 # Global variables
+TEST_MODE = True
 db_user = None
 
 # Welcome screen (login/register)
@@ -129,7 +131,7 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
 
 # Loading screen
 class LoadingScreen(QMainWindow, Ui_LoadingScreen):
-    def __init__(self):
+    def __init__(self, host, port):
         super(LoadingScreen, self).__init__()
         self.setupUi(self)
 
@@ -152,7 +154,7 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
 
         # Variables
         self.counter = 0
-        self.network = Network('localhost', 5555)
+        self.network = Network(host, port)
 
 
     def progress(self):
@@ -186,9 +188,38 @@ class LoadingScreen(QMainWindow, Ui_LoadingScreen):
         self.counter += 1
 
 
+# Join screen
+class JoinScreen(QMainWindow, Ui_JoinScreen):
+    def __init__(self):
+        super(JoinScreen, self).__init__()
+        self.setupUi(self)
+
+        # Remove title bar
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+        # Events
+        self.btn_join.clicked.connect(self.join)
+
+        self.show()
+
+
+    def join(self):
+        host = self.input_host.text()
+        port = self.input_port.text()
+
+        if host and port:
+            self.close()
+            self.loading = LoadingScreen(host, int(port))
+
+
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    window = LoadingScreen()
+    if TEST_MODE:
+        window = JoinScreen()
+    else:
+        window = LoadingScreen('localhost', 5555)
     app.exec_()
     if db_user is not None:
         db_user.user_quit()
