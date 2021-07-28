@@ -45,6 +45,7 @@ class User():
         self.online = True # 9
         self.last_online = datetime.now() # 10
         self.art = result[11]
+        self.ban = result[12]
 
         sql = "UPDATE user SET last_online=%s, online=1 WHERE id=%s"
         val = (self.last_online, self.id, )
@@ -79,7 +80,10 @@ def check_login(username, password):
     result = mycursor.fetchone()
 
     if result is not None:
-        return User(result)
+        user = User(result)
+        if user.ban:
+            return False
+        return user
     return None
 
 
@@ -110,12 +114,26 @@ def check_register(first_name, last_name, username, email, password, confirm_pw)
     return False
 
 
+def get_online():
+    mydb.commit()
+    mycursor.execute("SELECT id, username FROM user WHERE online=1")
+    result = mycursor.fetchall()
+    return result
+
+
 def search_user(username):
     sql = "SELECT id, first_name, last_name, username FROM user WHERE username LIKE CONCAT('%',%s,'%')"
     val = (username, )
 
     mycursor.execute(sql, val)
     result = mycursor.fetchall()
+    return result
+
+def get_user(user_id):
+    sql = "SELECT * FROM user WHERE id=%s"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
     return result
 
 
@@ -142,6 +160,25 @@ def get_user_art(user_id):
     result = mycursor.fetchone()
     return result[0]
 
+def toggle_user_ban(user_id, ban):
+    ban = False if ban else True
+    sql = "UPDATE user SET ban=%s WHERE id=%s"
+    val = (ban, user_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def toggle_user_admin(user_id, admin):
+    admin = False if admin else True
+    sql = "UPDATE user SET admin=%s WHERE id=%s"
+    val = (admin, user_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def delete_user(user_id):
+    sql = "DELETE FROM user WHERE id=%s"
+    val = (user_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
 
 # friends related functions
 def add_friend(user_id, friend_id):

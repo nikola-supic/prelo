@@ -36,7 +36,7 @@ import webbrowser
 from social_media import links
 
 # Global variables
-TEST_MODE = True
+TEST_MODE = False
 db_user = None
 
 # Welcome screen (login/register)
@@ -119,8 +119,11 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
         password = self.login_pw.text()
 
         user = db.check_login(username, password)
-        if not user:
+        if user is None:
             self.popup = PopupError(self, 'Погрешно корисничко име или лозинка.', 'Неуспјешна пријава')
+            self.close()
+        elif not user:
+            self.popup = PopupError(self, 'Овај налог је банован са наше апликације.', 'Неуспјешна пријава')
             self.close()
         else:
             global db_user

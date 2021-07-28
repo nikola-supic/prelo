@@ -16,6 +16,7 @@ from module.settings import SettingsScreen
 from module.about import AboutScreen
 from module.popup import PopupWarning
 from module.party import PartyScreen
+from module.admin import AdminScreen
 
 
 # MAIN SCREEN
@@ -44,6 +45,8 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
         self.click_time = get_time()
 
         self.show()
+        if not self.user.admin:
+            self.btn_admin.hide()
 
 
     def play(self):
@@ -126,7 +129,8 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
         self.click_time = get_time()+1
 
         if self.online:
-            pass
+            self.admin = AdminScreen(self)
+            self.close()
         else:
             self.popup = PopupWarning(self, 'Апликацију користите у офлајн режиму.\nОву опцију можете користити само док сте онлајн.', 'Офлајн режим')
             self.close()
