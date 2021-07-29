@@ -426,7 +426,7 @@ QListWidget::item:selected {
 </string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="page_user">
         <property name="styleSheet">
@@ -1852,7 +1852,8 @@ QPushButton#btn_search_playlist:hover {
            <string>Аутор:
 Име:
 Опис:
-Јаван:</string>
+Јаван:
+Број пјесама: </string>
           </property>
           <property name="placeholderText">
            <string>Унесите поруку...</string>
@@ -2016,7 +2017,7 @@ QPushButton#btn_search_art:hover {
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLineEdit" name="input_playlist_name_2">
+         <widget class="QLineEdit" name="input_art_desc">
           <property name="geometry">
            <rect>
             <x>10</x>

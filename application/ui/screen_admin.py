@@ -893,17 +893,17 @@ class Ui_AdminScreen(object):
         self.art_img.setText("")
         self.art_img.setAlignment(QtCore.Qt.AlignCenter)
         self.art_img.setObjectName("art_img")
-        self.input_playlist_name_2 = QtWidgets.QLineEdit(self.widget_art)
-        self.input_playlist_name_2.setGeometry(QtCore.QRect(10, 360, 320, 40))
+        self.input_art_desc = QtWidgets.QLineEdit(self.widget_art)
+        self.input_art_desc.setGeometry(QtCore.QRect(10, 360, 320, 40))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(9)
-        self.input_playlist_name_2.setFont(font)
-        self.input_playlist_name_2.setStyleSheet("")
-        self.input_playlist_name_2.setEchoMode(QtWidgets.QLineEdit.Normal)
-        self.input_playlist_name_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.input_playlist_name_2.setClearButtonEnabled(True)
-        self.input_playlist_name_2.setObjectName("input_playlist_name_2")
+        self.input_art_desc.setFont(font)
+        self.input_art_desc.setStyleSheet("")
+        self.input_art_desc.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.input_art_desc.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.input_art_desc.setClearButtonEnabled(True)
+        self.input_art_desc.setObjectName("input_art_desc")
         self.admin_9 = QtWidgets.QLabel(self.widget_art)
         self.admin_9.setGeometry(QtCore.QRect(12, 330, 320, 40))
         font = QtGui.QFont()
@@ -937,7 +937,7 @@ class Ui_AdminScreen(object):
         AdminScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(AdminScreen)
-        self.stacked_pages.setCurrentIndex(0)
+        self.stacked_pages.setCurrentIndex(5)
         QtCore.QMetaObject.connectSlotsByName(AdminScreen)
 
     def retranslateUi(self, AdminScreen):
@@ -1001,12 +1001,13 @@ class Ui_AdminScreen(object):
         self.info_playlist.setPlainText(_translate("AdminScreen", "Аутор:\n"
 "Име:\n"
 "Опис:\n"
-"Јаван:"))
+"Јаван:\n"
+"Број пјесама: "))
         self.info_playlist.setPlaceholderText(_translate("AdminScreen", "Унесите поруку..."))
         self.input_art.setPlaceholderText(_translate("AdminScreen", "Тражи арт стајл"))
         self.btn_art_save.setText(_translate("AdminScreen", "Сачувај"))
         self.btn_art_delete.setText(_translate("AdminScreen", "Избриши"))
-        self.input_playlist_name_2.setPlaceholderText(_translate("AdminScreen", "Опис арт стајла"))
+        self.input_art_desc.setPlaceholderText(_translate("AdminScreen", "Опис арт стајла"))
         self.admin_9.setText(_translate("AdminScreen", "Измјене"))
         self.art_description.setText(_translate("AdminScreen", "Опис арт стајла"))
 import res_rc
