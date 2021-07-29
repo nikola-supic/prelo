@@ -102,13 +102,12 @@ class WelcomeScreen(QMainWindow, Ui_WelcomeScreen):
         password = self.reg_pw.text()
         confirm_pw = self.reg_pw_2.text()
 
-        registered = db.check_register(first_name, last_name, username, email, password, confirm_pw)
-        if not registered:
+        user = db.check_register(first_name, last_name, username, email, password, confirm_pw)
+        if not user:
             self.popup = PopupError(self, 'Неку од информација сте унијели погрешно.', 'Неуспјешна регистрација')
             self.close()
         else:
             global db_user
-            user = db.check_login(username, password)
             db_user = user
             self.menu = TutorialScreen(user=user, network=self.network, online=True)
             self.close()

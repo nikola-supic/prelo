@@ -6,6 +6,7 @@ DOCSTRING:
 from datetime import datetime, date
 import mysql.connector
 from utils import empty_temp
+import bcrypt
 
 # Global variables
 global mydb, mycursor
@@ -26,26 +27,32 @@ def connect(host='localhost', user='root', password='', database=''):
         return False
 
 # user-related functions
-
 class User():
     """
     DOCSTRING:
 
     """
-    def __init__(self, result):
-        self.id = result[0]
+    def __init__(self, user_id):
+        self.id = user_id
+
+        sql = "SELECT * FROM user WHERE id=%s"
+        val = (user_id, )
+        mycursor.execute(sql, val)
+        result = mycursor.fetchone()
+
         self.first_name = result[1]
         self.last_name = result[2]
         self.username = result[3]
         self.email = result[4]
         self.password = result[5]
-        self.birthday = result[6]
-        self.admin = result[7]
-        self.register_date = result[8]
-        self.online = True # 9
-        self.last_online = datetime.now() # 10
-        self.art = result[11]
-        self.ban = result[12]
+        self.salt = result[6]
+        self.birthday = result[7]
+        self.admin = result[8]
+        self.register_date = result[9]
+        self.online = True # 10
+        self.last_online = datetime.now() # 11
+        self.art = result[12]
+        self.ban = result[13]
 
         sql = "UPDATE user SET last_online=%s, online=1 WHERE id=%s"
         val = (self.last_online, self.id, )
@@ -73,19 +80,23 @@ class User():
 
 
 def check_login(username, password):
-    sql = "SELECT * FROM user WHERE username=%s AND password=%s"
-    val = (username, password, )
-
+    sql = "SELECT id, password FROM user WHERE username=%s LIMIT 1"
+    val = (username, )
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
+    if result is None:
+        return None
 
-    if result is not None:
-        user = User(result)
+    user_id = result[0]
+    user_pass = result[1].encode()
+    password = password.encode()
+
+    if bcrypt.checkpw(password, user_pass):
+        user = User(user_id)
         if user.ban:
             return False
         return user
     return None
-
 
 def check_register(first_name, last_name, username, email, password, confirm_pw):
     if len(first_name) < 4:
@@ -96,19 +107,24 @@ def check_register(first_name, last_name, username, email, password, confirm_pw)
         return False
     if len(email) < 8:
         return False
-    if len(password) < 8 or len(password) > 48:
+    if len(password) < 8 or len(password) > 32:
         return False
     if password != confirm_pw:
         return False
 
-    try:
-        sql = "INSERT INTO user (first_name, last_name, username, email, password, birthday, register_date) VALUES (%s, %s, %s, %s, %s, %s, NOW())"
-        val = (first_name, last_name, username, email, password, date(1970, 1, 1), )
+    password = password.encode()
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password, salt)
 
+    try:
+        sql = "INSERT INTO user (first_name, last_name, username, email, password, salt, birthday, register_date) VALUES (%s, %s, %s, %s, %s, %s, %s, NOW())"
+        val = (first_name, last_name, username, email, hashed, salt, date(1970, 1, 1), )
         mycursor.execute(sql, val)
         mydb.commit()
 
-        return True
+        user_id = mycursor.lastrowid
+        user = User(user_id)
+        return user
     except Exception as e:
         print(e)
     return False
