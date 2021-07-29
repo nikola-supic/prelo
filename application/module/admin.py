@@ -23,6 +23,7 @@ class AdminScreen(QMainWindow, Ui_AdminScreen):
         self.chosen_user = None
         self.chosen_song = None
         self.chosen_artist = None
+        self.chosen_playlist = None
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -264,13 +265,51 @@ class AdminScreen(QMainWindow, Ui_AdminScreen):
     # PLAYLIST FUNCTIONS
     # # # # # # # # # # #
     def search_playlist(self):
-        pass
+        playlist = self.input_playlist.text()
+        if playlist:
+            playlist_id = db.search_playlist(playlist, private = True)
+            if not playlist_id:
+                return False
+
+            self.input_playlist.setText('')
+            playlist_id = playlist_id[0][0]
+            playlist = db.Playlist(playlist_id)
+            creator = db.get_username(playlist.creator_id)
+
+            if playlist.public:
+                public = 'ДА'
+            else:
+                public = 'НЕ'
+
+            song_count = len(db.get_playlist_songs(playlist_id))
+
+            self.info_playlist.setPlainText(f'Аутор: {creator}\nИме: {playlist.name}\nОпис: {playlist.description}\nЈаван: {public}\nБрој пјесама: {song_count}')
+
+            if not self.widget_playlist.isVisible():
+                self.widget_playlist.show()
+
+            self.chosen_playlist = playlist
 
     def delete_playlist(self):
-        pass
+        db.delete_playlist(self.chosen_playlist.id)
+        self.widget_playlist.hide()
 
     def save_playlist(self):
-        pass
+        name = self.input_playlist_name.text()
+        self.input_playlist_name.setText('')
+        if name:
+            db.update_playlist_name(self.chosen_playlist.id, name)
+
+        description = self.input_playlist_desc.text()
+        self.input_playlist_desc.setText('')
+        if description:
+            db.update_playlist_description(self.chosen_playlist.id, description)
+
+        public = self.check_public.isChecked()
+        if public != self.chosen_playlist.public:
+            db.update_public(self.chosen_playlist.id, public)
+
+        self.widget_playlist.hide()
 
     # # # # # # # # #
     # ART FUNCTIONS

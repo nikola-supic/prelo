@@ -466,13 +466,33 @@ def get_user_recent(user_id):
 
 
 # playlist functions
-def search_playlist(name):
-    sql = "SELECT id, name FROM playlist WHERE name LIKE CONCAT('%',%s,'%') AND public=1"
-    val = (name, )
-    mycursor.execute(sql, val)
-    result = mycursor.fetchall()
-    return result
+class Playlist():
+    def __init__(self, playlist_id):
+        super(Playlist, self).__init__()
+        self.id = playlist_id
 
+        sql = "SELECT * FROM playlist WHERE id=%s"
+        val = (playlist_id, )
+        mycursor.execute(sql, val)
+        result = mycursor.fetchone()
+
+        self.creator_id = result[1]
+        self.name = result[2]
+        self.description = result[3]
+        self.public = result[4]
+
+def search_playlist(name, private = False):
+    if private:
+        sql = "SELECT id, name FROM playlist WHERE name LIKE CONCAT('%',%s,'%')"
+        val = (name, )
+        mycursor.execute(sql, val)
+        result = mycursor.fetchall()
+    else:
+        sql = "SELECT id, name FROM playlist WHERE name LIKE CONCAT('%',%s,'%') AND public=1"
+        val = (name, )
+        mycursor.execute(sql, val)
+        result = mycursor.fetchall()
+    return result
 
 def create_playlist(user_id, name, description, public):
     sql = "INSERT INTO playlist (creator_id, name, description, public) VALUES (%s, %s, %s, %s)"
@@ -480,7 +500,6 @@ def create_playlist(user_id, name, description, public):
     mycursor.execute(sql, val)
     mydb.commit()
     return mycursor.lastrowid
-
 
 def delete_playlist(playlist_id):
     sql = "DELETE FROM playlist_song WHERE playlist_id=%s"
@@ -498,7 +517,6 @@ def delete_playlist(playlist_id):
     mycursor.execute(sql, val)
     mydb.commit()
 
-
 def get_playlist_name(playlist_id):
     sql = "SELECT name FROM playlist WHERE id=%s"
     val = (playlist_id, )
@@ -506,14 +524,12 @@ def get_playlist_name(playlist_id):
     result = mycursor.fetchone()
     return result[0]
 
-
 def get_playlist(playlist_id):
     sql = "SELECT * FROM playlist WHERE id=%s"
     val = (playlist_id, )
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
     return result
-
 
 def add_playlist_song(playlist_id, song_id):
     sql = "SELECT id FROM playlist_song WHERE playlist_id=%s AND song_id=%s"
@@ -535,7 +551,6 @@ def remove_playlist_song(playlist_id, song_id):
     mycursor.execute(sql, val)
     mydb.commit()
 
-
 def get_playlist_songs(playlist_id):
     sql = "SELECT song_id FROM playlist_song WHERE playlist_id=%s"
     val = (playlist_id, )
@@ -546,6 +561,18 @@ def get_playlist_songs(playlist_id):
 def update_public(playlist_id, public):
     sql = "UPDATE playlist SET public=%s WHERE id=%s"
     val = (public, playlist_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def update_playlist_name(playlist_id, name):
+    sql = "UPDATE playlist SET name=%s WHERE id=%s"
+    val = (name, playlist_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def update_playlist_description(playlist_id, description):
+    sql = "UPDATE playlist SET description=%s WHERE id=%s"
+    val = (description, playlist_id, )
     mycursor.execute(sql, val)
     mydb.commit()
 
