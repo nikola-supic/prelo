@@ -308,6 +308,8 @@ class Song():
         self.path = result[4]
         self.length = result[5]
         self.added_by = result[6]
+        self.bitrate = result[7]
+        self.date_added = result[8]
 
 
 def search_song(name):
@@ -317,13 +319,50 @@ def search_song(name):
     result = mycursor.fetchall()
     return result
 
-
 def get_song_path(song_id):
     sql = "SELECT path FROM song WHERE id=%s"
     val = (song_id, )
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
     return result[0]
+
+def delete_song(song_id):
+    sql = "DELETE FROM song WHERE id=%s"
+    val = (song_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def update_song_name(song_id, name):
+    sql = "UPDATE song SET name=%s WHERE id=%s"
+    val = (name, song_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def update_song_artist(song_id, artist_id):
+    sql = "SELECT id FROM artist WHERE id=%s"
+    val = (artist_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    if result is None:
+        return False
+
+    sql = "UPDATE song SET artist_id=%s WHERE id=%s"
+    val = (artist_id, song_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()    
+
+def update_song_art(song_id, art_id):
+    sql = "SELECT id FROM art WHERE id=%s"
+    val = (art_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    if result is None:
+        return False
+
+    sql = "UPDATE song SET art=%s WHERE id=%s"
+    val = (art_id, song_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()    
 
 # user-songs
 def add_user_song(user_id, song_id):

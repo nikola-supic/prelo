@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from ui.screen_admin import Ui_AdminScreen
 from _thread import start_new_thread
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import database as db
 
@@ -21,6 +21,7 @@ class AdminScreen(QMainWindow, Ui_AdminScreen):
 
         self.online_thread = None
         self.chosen_user = None
+        self.chosen_song = None
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -107,10 +108,10 @@ class AdminScreen(QMainWindow, Ui_AdminScreen):
         username = self.input_user.text()
         if username:
             user_id = db.search_user(username)
-            self.input_user.setText('')
             if not user_id:
                 return False
              
+            self.input_user.setText('')
             user_id = user_id[0][0]
             user = db.get_user(user_id)
             user = db.User(user)
@@ -174,13 +175,49 @@ class AdminScreen(QMainWindow, Ui_AdminScreen):
     # SONG FUNCTIONS
     # # # # # # # # #
     def search_song(self):
-        pass
+        song_name = self.input_song.text()
+        if song_name:
+            song_id = db.search_song(song_name)
+            if not song_id:
+                return False
+
+            self.input_song.setText('')
+            song_id = song_id[0][0]
+            song = db.Song(song_id)
+            artist = db.get_artist_name(song.artist_id)
+            art_path = db.get_art_path(song.art)
+
+            self.song_name.setText(song.name)
+            self.song_artist.setText(artist)
+            self.song_art.setStyleSheet(f"border-image: url({art_path});")
+            self.info_song.setPlainText(f'Дужина: {timedelta(seconds=song.length)}\nБитрате: {song.bitrate}\nДодао: {song.added_by}\nДатум додавања: {song.date_added:%d.%m.%Y.}')
+
+            if not self.widget_song.isVisible():
+                self.widget_song.show()
+
+            self.chosen_song = song
 
     def delete_song(self):
-        pass
+        db.delete_song(self.chosen_song.song_id)
+        self.widget_song.hide()
 
     def save_song(self):
-        pass
+        song_name = self.input_song_name.text()
+        self.input_song_name.setText('')
+        if song_name:
+            db.update_song_name(self.chosen_song.song_id, song_name)
+
+        song_artist = self.input_song_artist.text()
+        self.input_song_artist.setText('')
+        if song_artist:
+            db.update_song_artist(self.chosen_song.song_id, song_artist)
+
+        song_art = self.input_song_art.text()
+        self.input_song_art.setText('')
+        if song_art:
+            db.update_song_art(self.chosen_song.song_id, song_art)
+
+        self.widget_song.hide()
 
     # # # # # # # # # #
     # ARTIST FUNCTIONS
