@@ -27,7 +27,7 @@ def connect(host='localhost', user='root', password='', database=''):
         return False
 
 # songs-related functions
-def add_song(artist, name, path, length, added_by):
+def add_song(artist, name, path, length, added_by, bitrate):
     sql = "SELECT * FROM artist WHERE name=%s"
     val = (artist, )
     mycursor.execute(sql, val)
@@ -42,8 +42,8 @@ def add_song(artist, name, path, length, added_by):
     else:
         artist_id = result[0]
 
-    sql = "INSERT INTO song (artist_id, name, path, length, added_by) VALUES (%s, %s, %s, %s, %s)"
-    val = (artist_id, name, path, length, added_by, )
+    sql = "INSERT INTO song (artist_id, name, path, length, added_by, bitrate, date_added) VALUES (%s, %s, %s, %s, %s, %s, NOW())"
+    val = (artist_id, name, path, length, added_by, bitrate, )
     mycursor.execute(sql, val)
     mydb.commit()
     return mycursor.lastrowid

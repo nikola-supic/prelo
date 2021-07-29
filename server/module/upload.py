@@ -82,12 +82,13 @@ class UploadScreen(QMainWindow, Ui_UploadScreen):
 
                 audio = MP3(song)
                 length = audio.info.length
+                bitrate = audio.info.bitrate
                 song = song.split(' - ')
                 artist = song[0]
                 name = song[1][:-4]
 
                 move(original, target)
-                song_id = db.add_song(artist, name, server_path, length, 'Server Admin')
+                song_id = db.add_song(artist, name, server_path, length, 'Server Admin', bitrate)
 
                 time = datetime.now()
                 self.upload_log.info(f'[ {time:%d.%m.%y. %H:%M:%S} ] Added song... (ID: {song_id}) ({artist} - {name})')
