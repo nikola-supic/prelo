@@ -260,6 +260,19 @@ def get_chat(user_id, friend_id):
 
 
 # artist-related functions
+class Artist():
+    def __init__(self, artist_id):
+        super(Artist, self).__init__()
+        self.id = artist_id
+
+        sql = "SELECT * FROM artist WHERE id=%s"
+        val = (artist_id, )
+        mycursor.execute(sql, val)
+        result = mycursor.fetchone()
+
+        self.name = result[1]
+        self.art = result[2]
+
 def get_artist_name(artist_id):
     sql = "SELECT name FROM artist WHERE id=%s"
     val = (artist_id, )
@@ -282,7 +295,6 @@ def get_artist_songs(artist_id):
     result = mycursor.fetchall()
     return result
 
-
 def search_artist(artist_name):
     sql = "SELECT id, name FROM artist WHERE name LIKE CONCAT('%',%s,'%')"
     val = (artist_name, )
@@ -290,6 +302,30 @@ def search_artist(artist_name):
     result = mycursor.fetchall()
     return result
 
+def delete_artist(artist_id):
+    sql = "DELETE FROM artist WHERE id=%s"
+    val = (artist_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def update_artist_name(artist_id, name):
+    sql = "UPDATE artist SET name=%s WHERE id=%s"
+    val = (name, artist_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def update_artist_art(artist_id, art_id):
+    sql = "SELECT id FROM art WHERE id=%s"
+    val = (art_id, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchone()
+    if result is None:
+        return False
+
+    sql = "UPDATE artist SET art=%s WHERE id=%s"
+    val = (art_id, artist_id, )
+    mycursor.execute(sql, val)
+    mydb.commit() 
 
 # songs-releated functions
 class Song():

@@ -22,6 +22,7 @@ class AdminScreen(QMainWindow, Ui_AdminScreen):
         self.online_thread = None
         self.chosen_user = None
         self.chosen_song = None
+        self.chosen_artist = None
 
         # Remove title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -223,13 +224,41 @@ class AdminScreen(QMainWindow, Ui_AdminScreen):
     # ARTIST FUNCTIONS
     # # # # # # # # # #
     def search_artist(self):
-        pass
+        artist = self.input_artist.text()
+        if artist:
+            artist_id = db.search_artist(artist)
+            if not artist_id:
+                return False
+
+            self.input_artist.setText('')
+            artist_id = artist_id[0][0]
+            artist = db.Artist(artist_id)
+            art_path = db.get_art_path(artist.art)
+
+            self.artist_name.setText(artist.name)
+            self.artist_art.setStyleSheet(f"border-image: url({art_path});")
+
+            if not self.widget_artist.isVisible():
+                self.widget_artist.show()
+
+            self.chosen_artist = artist
 
     def delete_artist(self):
-        pass
+        db.delete_artist(self.chosen_artist.id)
+        self.widget_artist.hide()
 
     def save_artist(self):
-        pass
+        artist = self.input_artist_name.text()
+        self.input_artist_name.setText('')
+        if artist:
+            db.update_artist_name(self.chosen_artist.id, artist)
+
+        artist_art = self.input_artist_art.text()
+        self.input_artist_art.setText('')
+        if artist_art:
+            db.update_artist_art(self.chosen_artist.id, artist_art)
+
+        self.widget_artist.hide()
 
     # # # # # # # # # # #
     # PLAYLIST FUNCTIONS
