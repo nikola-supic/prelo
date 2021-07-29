@@ -315,13 +315,36 @@ class AdminScreen(QMainWindow, Ui_AdminScreen):
     # ART FUNCTIONS
     # # # # # # # # #
     def search_art(self):
-        pass
+        art = self.input_art.text()
+        if art:
+            art_id = db.search_art(art)
+            if not art_id:
+                return False
+
+            self.input_art.setText('')
+            art_path = art_id[0][1]
+            art_desc = art_id[0][2]
+            art_id = art_id[0][0]
+
+            self.art_img.setStyleSheet(f"border-image: url({art_path});")
+            self.art_description.setText(art_desc)
+
+            if not self.widget_art.isVisible():
+                self.widget_art.show()
+
+            self.chosen_art = art_id
 
     def delete_art(self):
-        pass
+        db.delete_art(self.chosen_art)
+        self.widget_art.hide()
 
     def save_art(self):
-        pass
+        desc = self.input_art_desc.text()
+        self.input_art_desc.setText('')
+        if desc:
+            db.update_art_description(self.chosen_art, desc)
+
+        self.widget_art.hide()
 
     # # # # # # # # #
     # EXIT

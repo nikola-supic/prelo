@@ -124,7 +124,6 @@ def get_online():
 def search_user(username):
     sql = "SELECT id, first_name, last_name, username FROM user WHERE username LIKE CONCAT('%',%s,'%')"
     val = (username, )
-
     mycursor.execute(sql, val)
     result = mycursor.fetchall()
     return result
@@ -611,3 +610,22 @@ def get_art_path(art_id):
     mycursor.execute(sql, val)
     result = mycursor.fetchone()
     return result[0]
+
+def search_art(description):
+    sql = "SELECT id, path, description FROM art WHERE description LIKE CONCAT('%',%s,'%')"
+    val = (description, )
+    mycursor.execute(sql, val)
+    result = mycursor.fetchall()
+    return result
+
+def delete_art(art_id):
+    sql = "DELETE FROM art WHERE id=%s"
+    val = (art_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+def update_art_description(art_id, description):
+    sql = "UPDATE art SET description=%s WHERE id=%s"
+    val = (description, art_id, )
+    mycursor.execute(sql, val)
+    mydb.commit()
