@@ -60,26 +60,26 @@ class Ui_ServerScreen(object):
         self.app_2.setStyleSheet("color: rgb(224,224,226);")
         self.app_2.setAlignment(QtCore.Qt.AlignCenter)
         self.app_2.setObjectName("app_2")
-        self.btn_chat = QtWidgets.QPushButton(self.widget)
-        self.btn_chat.setGeometry(QtCore.QRect(20, 150, 120, 120))
-        self.btn_chat.setStyleSheet("QPushButton#btn_chat {\n"
+        self.toggle_chat = QtWidgets.QPushButton(self.widget)
+        self.toggle_chat.setGeometry(QtCore.QRect(20, 150, 120, 120))
+        self.toggle_chat.setStyleSheet("QPushButton#toggle_chat {\n"
 "    border-image: url(:/images/images/chat.png);\n"
 "}\n"
-"QPushButton#btn_chat:hover {\n"
+"QPushButton#toggle_chat:hover {\n"
 "    border-image: url(:/images/images/hover_chat.png);\n"
 "}")
-        self.btn_chat.setText("")
-        self.btn_chat.setObjectName("btn_chat")
-        self.btn_download = QtWidgets.QPushButton(self.widget)
-        self.btn_download.setGeometry(QtCore.QRect(150, 150, 120, 120))
-        self.btn_download.setStyleSheet("QPushButton#btn_download {\n"
+        self.toggle_chat.setText("")
+        self.toggle_chat.setObjectName("toggle_chat")
+        self.toggle_download = QtWidgets.QPushButton(self.widget)
+        self.toggle_download.setGeometry(QtCore.QRect(150, 150, 120, 120))
+        self.toggle_download.setStyleSheet("QPushButton#toggle_download {\n"
 "    border-image: url(:/images/images/download.png);\n"
 "}\n"
-"QPushButton#btn_download:hover {\n"
+"QPushButton#toggle_download:hover {\n"
 "    border-image: url(:/images/images/hover_download.png);\n"
 "}")
-        self.btn_download.setText("")
-        self.btn_download.setObjectName("btn_download")
+        self.toggle_download.setText("")
+        self.toggle_download.setObjectName("toggle_download")
         self.btn_restart = QtWidgets.QPushButton(self.widget)
         self.btn_restart.setGeometry(QtCore.QRect(410, 150, 120, 120))
         self.btn_restart.setStyleSheet("QPushButton#btn_restart {\n"
@@ -184,7 +184,7 @@ class Ui_ServerScreen(object):
         self.btn_start.setText("")
         self.btn_start.setObjectName("btn_start")
         self.btn_exit = QtWidgets.QPushButton(self.widget)
-        self.btn_exit.setGeometry(QtCore.QRect(620, 20, 41, 41))
+        self.btn_exit.setGeometry(QtCore.QRect(620, 20, 40, 40))
         self.btn_exit.setStyleSheet("QPushButton#btn_exit {\n"
 "    border-image: url(:/images/images/exit.png);\n"
 "}\n"
@@ -194,7 +194,7 @@ class Ui_ServerScreen(object):
         self.btn_exit.setText("")
         self.btn_exit.setObjectName("btn_exit")
         self.btn_global = QtWidgets.QPushButton(self.widget)
-        self.btn_global.setGeometry(QtCore.QRect(20, 20, 41, 41))
+        self.btn_global.setGeometry(QtCore.QRect(20, 20, 40, 40))
         self.btn_global.setStyleSheet("QPushButton#btn_global {\n"
 "    border-image: url(:/images/images/global.png);\n"
 "}\n"
@@ -204,7 +204,7 @@ class Ui_ServerScreen(object):
         self.btn_global.setText("")
         self.btn_global.setObjectName("btn_global")
         self.btn_upload = QtWidgets.QPushButton(self.widget)
-        self.btn_upload.setGeometry(QtCore.QRect(80, 20, 41, 41))
+        self.btn_upload.setGeometry(QtCore.QRect(80, 20, 40, 40))
         self.btn_upload.setStyleSheet("QPushButton#btn_upload {\n"
 "    border-image: url(:/images/images/upload.png);\n"
 "}\n"
@@ -231,6 +231,16 @@ class Ui_ServerScreen(object):
         self.label_port.setStyleSheet("color: rgb(224,224,226);")
         self.label_port.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_port.setObjectName("label_port")
+        self.btn_download = QtWidgets.QPushButton(self.widget)
+        self.btn_download.setGeometry(QtCore.QRect(140, 20, 40, 40))
+        self.btn_download.setStyleSheet("QPushButton#btn_download {\n"
+"    border-image: url(:/images/images/download.png);\n"
+"}\n"
+"QPushButton#btn_download:hover {\n"
+"    border-image: url(:/images/images/hover_download.png);\n"
+"}")
+        self.btn_download.setText("")
+        self.btn_download.setObjectName("btn_download")
         ServerScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(ServerScreen)

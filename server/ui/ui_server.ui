@@ -121,7 +121,7 @@ QLabel {
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_chat">
+      <widget class="QPushButton" name="toggle_chat">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -131,10 +131,10 @@ QLabel {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton#btn_chat {
+        <string notr="true">QPushButton#toggle_chat {
 	border-image: url(:/images/images/chat.png);
 }
-QPushButton#btn_chat:hover {
+QPushButton#toggle_chat:hover {
 	border-image: url(:/images/images/hover_chat.png);
 }</string>
        </property>
@@ -142,7 +142,7 @@ QPushButton#btn_chat:hover {
         <string/>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_download">
+      <widget class="QPushButton" name="toggle_download">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -152,10 +152,10 @@ QPushButton#btn_chat:hover {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton#btn_download {
+        <string notr="true">QPushButton#toggle_download {
 	border-image: url(:/images/images/download.png);
 }
-QPushButton#btn_download:hover {
+QPushButton#toggle_download:hover {
 	border-image: url(:/images/images/hover_download.png);
 }</string>
        </property>
@@ -427,8 +427,8 @@ QPushButton#btn_start:hover {
         <rect>
          <x>620</x>
          <y>20</y>
-         <width>41</width>
-         <height>41</height>
+         <width>40</width>
+         <height>40</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -448,8 +448,8 @@ QPushButton#btn_exit:hover {
         <rect>
          <x>20</x>
          <y>20</y>
-         <width>41</width>
-         <height>41</height>
+         <width>40</width>
+         <height>40</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -469,8 +469,8 @@ QPushButton#btn_global:hover {
         <rect>
          <x>80</x>
          <y>20</y>
-         <width>41</width>
-         <height>41</height>
+         <width>40</width>
+         <height>40</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -533,6 +533,27 @@ QPushButton#btn_upload:hover {
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_download">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>20</y>
+         <width>40</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#btn_download {
+	border-image: url(:/images/images/download.png);
+}
+QPushButton#btn_download:hover {
+	border-image: url(:/images/images/hover_download.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
