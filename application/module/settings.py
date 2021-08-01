@@ -189,12 +189,11 @@ class SettingsScreen(QMainWindow, Ui_SettingsScreen):
         confirm_pw = self.input_pw_2.text()
         email = self.input_email.text()
 
-        if len(password) >= 8 and len(password) <= 48 and (password == confirm_pw):
-            self.user.password = password
-            self.user.update_sql('password', password)
-        elif password:
-            self.popup = PopupWarning(self, 'Ваша лозинка мора имати између 8 и 48 карактера.', 'Погреашна лозинка.')
-            self.close()
+        if password == confirm_pw:
+            changed = db.update_password(self.user.id, password)
+            if not changed:
+                self.popup = PopupWarning(self, 'Ваша лозинка мора имати између 8 и 32 карактера.', 'Погреашна лозинка.')
+                self.close()
 
         if len(email) >= 8:
             self.user.email = email

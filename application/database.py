@@ -129,6 +129,18 @@ def check_register(first_name, last_name, username, email, password, confirm_pw)
         print(e)
     return False
 
+def update_password(user_id, password):
+    if len(password) < 8 or len(password) > 32:
+        return False
+
+    password = password.encode()
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password, salt)
+
+    sql = "UPDATE user SET password=%s, salt=%s WHERE id=%s"
+    val = (hashed, salt, user_id)
+    mycursor.execute(sql, val)
+    mydb.commit()
 
 def get_online():
     mydb.commit()
