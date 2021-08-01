@@ -307,7 +307,7 @@ class PlayScreen(QMainWindow, Ui_PlayScreen):
     def setup_song(self):
         current_index = self.player_playlist.currentIndex()
         song = self.active_list[current_index]
-        artist = db.get_artist_name(song.song_id)
+        artist = db.get_artist_name(song.artist_id)
         art_path = db.get_art_path(song.art)
 
         self.label_name.setText(song.name)

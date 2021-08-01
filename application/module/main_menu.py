@@ -45,8 +45,9 @@ class MenuScreen(QMainWindow, Ui_MenuScreen):
         self.click_time = get_time()
 
         self.show()
-        if not self.user.admin:
-            self.btn_admin.hide()
+        if online:
+            if not self.user.admin:
+                self.btn_admin.hide()
 
 
     def play(self):

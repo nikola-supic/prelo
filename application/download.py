@@ -10,5 +10,8 @@ def download(user_id, song, network, temporary):
         file_path, song_size = network.download_song(user_id, song.song_id, song.path, temporary)
 
     except Exception as e:
+        print('=' * 20)
+        print('Error while downloading song.')
         print(str(e))
-        print('Error')
+        print()
+        print('=' * 20)

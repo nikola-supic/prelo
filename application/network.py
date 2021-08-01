@@ -42,7 +42,11 @@ class Network():
             self.client.send(str.encode(data))
             return pickle.loads(self.client.recv(2048*4))
         except Exception as e:
+            print('=' * 20)
+            print('Network error: ')
             print(str(e))
+            print()
+            print('=' * 20)
 
 
     def download_song(self, user_id, song_id, song_path, temporary):
@@ -55,7 +59,6 @@ class Network():
             
                 if os.path.isfile(file_path):
                     return file_path, 0
-                print(file_path)
             else:
                 file_path = song_path
 
@@ -79,7 +82,11 @@ class Network():
 
 
         except Exception as e:
+            print('=' * 20)
+            print('Network error: (download) ')
             print(str(e))
+            print()
+            print('=' * 20)
 
 
     def get_first_data(self):

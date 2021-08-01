@@ -173,14 +173,11 @@ class Server():
                         song_id = int(data_list[3])
                         time = int(data_list[4])
 
-                        print(f'[DEBUG] PLAY: {user_id} {queue_id} {song_id} {time}')
-
                         self.party.play_song(user_id, queue_id, song_id, time)
                         client.sendall(pickle.dumps(self.party.active_song))
 
                     elif data_list[0] == 'finish_song':
                         user_id = int(data_list[1])
-                        print(f'[DEBUG] FINISH: {user_id}')
 
                         self.party.finish_song(user_id)
                         client.sendall(pickle.dumps(self.party.active_song))
@@ -193,8 +190,11 @@ class Server():
                         client.sendall(pickle.dumps(self.party.active_song))
 
             except Exception as e:
-                print(str(e))
                 self.root_log.info(f'Lost connection to: {client_addr}... (Error)')
+                print('=' * 20)
+                print(str(e))
+                print('')
+                print('=' * 20)
                 break
 
         self.addresses.pop(client)
