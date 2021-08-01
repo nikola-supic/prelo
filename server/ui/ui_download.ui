@@ -159,7 +159,7 @@ QPushButton#btn_back:hover {
         <string/>
        </property>
       </widget>
-      <widget class="QLineEdit" name="input_link">
+      <widget class="QLineEdit" name="input_url">
        <property name="geometry">
         <rect>
          <x>150</x>
