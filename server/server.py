@@ -24,6 +24,7 @@ from ui.screen_server import Ui_ServerScreen
 # Import the modules
 from module.log import LogScreen
 from module.upload import UploadScreen
+from module.download import DownloadScreen
 from module.backend import Server
 
 import db_server as db 
@@ -45,8 +46,8 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
         # Events
-        self.btn_chat.clicked.connect(self.toggle_chat)
-        self.btn_download.clicked.connect(self.toggle_download)
+        self.toggle_chat.clicked.connect(self.chat_toggle)
+        self.toggle_download.clicked.connect(self.download_toggle)
         self.btn_logs.clicked.connect(self.server_logs)
         self.btn_start.clicked.connect(self.server_start)
         self.btn_restart.clicked.connect(self.server_restart)
@@ -54,6 +55,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
 
         self.btn_global.clicked.connect(self.global_chat)
         self.btn_upload.clicked.connect(self.upload)
+        self.btn_download.clicked.connect(self.download)
         self.btn_exit.clicked.connect(self.exit)
         self.click_time = get_time() + 1
 
@@ -88,7 +90,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.global_log.addHandler(handler)
 
 
-    def toggle_chat(self):
+    def chat_toggle(self):
         if self.click_time > get_time():
             return False
         self.click_time = get_time()+1
@@ -96,7 +98,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.button_anim(self.btn_chat)
 
 
-    def toggle_download(self):
+    def download_toggle(self):
         if self.click_time > get_time():
             return False
         self.click_time = get_time()+1
@@ -183,6 +185,15 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
         self.click_time = get_time()+1
 
         self.upload = UploadScreen(self, self.upload_log)
+        self.close()
+
+
+    def download(self):
+        if self.click_time > get_time():
+            return False
+        self.click_time = get_time()+1
+
+        self.download = DownloadScreen(self, self.upload_log)
         self.close()
 
 
