@@ -182,7 +182,7 @@ class Ui_TutorialScreen(object):
         self.step_6.setText("")
         self.step_6.setObjectName("step_6")
         self.text_1 = QtWidgets.QPlainTextEdit(self.widget_tutorial)
-        self.text_1.setGeometry(QtCore.QRect(230, 0, 240, 100))
+        self.text_1.setGeometry(QtCore.QRect(230, 10, 240, 100))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(12)
@@ -190,7 +190,7 @@ class Ui_TutorialScreen(object):
         self.text_1.setStyleSheet("")
         self.text_1.setObjectName("text_1")
         self.text_2 = QtWidgets.QPlainTextEdit(self.widget_tutorial)
-        self.text_2.setGeometry(QtCore.QRect(180, 140, 240, 100))
+        self.text_2.setGeometry(QtCore.QRect(180, 150, 240, 100))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(12)
@@ -198,7 +198,7 @@ class Ui_TutorialScreen(object):
         self.text_2.setStyleSheet("")
         self.text_2.setObjectName("text_2")
         self.text_3 = QtWidgets.QPlainTextEdit(self.widget_tutorial)
-        self.text_3.setGeometry(QtCore.QRect(0, 400, 161, 181))
+        self.text_3.setGeometry(QtCore.QRect(0, 420, 161, 181))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(12)
@@ -206,7 +206,7 @@ class Ui_TutorialScreen(object):
         self.text_3.setStyleSheet("")
         self.text_3.setObjectName("text_3")
         self.text_4 = QtWidgets.QPlainTextEdit(self.widget_tutorial)
-        self.text_4.setGeometry(QtCore.QRect(170, 430, 240, 141))
+        self.text_4.setGeometry(QtCore.QRect(170, 420, 240, 141))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(12)
@@ -214,7 +214,7 @@ class Ui_TutorialScreen(object):
         self.text_4.setStyleSheet("")
         self.text_4.setObjectName("text_4")
         self.text_5 = QtWidgets.QPlainTextEdit(self.widget_tutorial)
-        self.text_5.setGeometry(QtCore.QRect(220, 310, 240, 131))
+        self.text_5.setGeometry(QtCore.QRect(220, 320, 240, 131))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(12)
@@ -222,7 +222,7 @@ class Ui_TutorialScreen(object):
         self.text_5.setStyleSheet("")
         self.text_5.setObjectName("text_5")
         self.text_6 = QtWidgets.QPlainTextEdit(self.widget_tutorial)
-        self.text_6.setGeometry(QtCore.QRect(120, 390, 240, 171))
+        self.text_6.setGeometry(QtCore.QRect(120, 400, 240, 171))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(12)
@@ -235,7 +235,7 @@ class Ui_TutorialScreen(object):
         self.step_7.setText("")
         self.step_7.setObjectName("step_7")
         self.text_7 = QtWidgets.QPlainTextEdit(self.widget_tutorial)
-        self.text_7.setGeometry(QtCore.QRect(100, 200, 240, 100))
+        self.text_7.setGeometry(QtCore.QRect(100, 210, 240, 100))
         font = QtGui.QFont()
         font.setFamily("Courier New")
         font.setPointSize(12)
@@ -270,19 +270,12 @@ class Ui_TutorialScreen(object):
         self.app_name.setText(_translate("TutorialScreen", "Прело"))
         self.label.setText(_translate("TutorialScreen", "СНАГА КРАЈИНЕ"))
         self.btn_next.setText(_translate("TutorialScreen", "Следећи корак ( 1 / 6)"))
-        self.text_1.setPlainText(_translate("TutorialScreen", "Корак 1:\n"
-"Ово дугме користите да би слушали музику."))
-        self.text_2.setPlainText(_translate("TutorialScreen", "Корак 2:\n"
-"У овај мени улазите да би нашли музику коју желите да слушаште."))
-        self.text_3.setPlainText(_translate("TutorialScreen", "Корак 3:\n"
-"Пријатељи, ту можете пронаћи ваше пријатеље и погледати шта слушају."))
-        self.text_4.setPlainText(_translate("TutorialScreen", "Корак 4:\n"
-"Овде улазите у мени за дописивање. Ту се можете дописивати са својим пријатељима, али и упознати нове људе."))
-        self.text_5.setPlainText(_translate("TutorialScreen", "Корак 5:\n"
-"Ово су подешавања, ту можете промјенити вашу лозинку, избрисати ваше пјесме и слично."))
-        self.text_6.setPlainText(_translate("TutorialScreen", "Корак 6:\n"
-"Овде можете информације о нама. Запратите нас. То би био крај туторијала. Надамо се да ћете уживати у нашој апликацији.\n"
+        self.text_1.setPlainText(_translate("TutorialScreen", "Ово дугме користите да би слушали музику."))
+        self.text_2.setPlainText(_translate("TutorialScreen", "У овај мени улазите да би нашли музику коју желите да слушаште."))
+        self.text_3.setPlainText(_translate("TutorialScreen", "Пријатељи, ту можете пронаћи ваше пријатеље и погледати шта слушају."))
+        self.text_4.setPlainText(_translate("TutorialScreen", "Овде улазите у мени за дописивање. Ту се можете дописивати са својим пријатељима, али и упознати нове људе."))
+        self.text_5.setPlainText(_translate("TutorialScreen", "Ово су подешавања, ту можете промјенити вашу лозинку, избрисати ваше пјесме и слично."))
+        self.text_6.setPlainText(_translate("TutorialScreen", "Овде можете информације о нама. Запратите нас. То би био крај туторијала. Надамо се да ћете уживати у нашој апликацији.\n"
 ""))
-        self.text_7.setPlainText(_translate("TutorialScreen", "Корак 7:\n"
-"Овде можете да пуштате и слушате музику заједно са људима широм свијета. "))
+        self.text_7.setPlainText(_translate("TutorialScreen", "Овде можете да пуштате и слушате музику заједно са људима широм свијета. "))
 import res_rc
