@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2021 at 03:03 PM
+-- Generation Time: Aug 01, 2021 at 03:18 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -173,7 +173,7 @@ CREATE TABLE `song` (
   `length` int(11) NOT NULL,
   `added_by` varchar(48) NOT NULL,
   `bitrate` int(11) NOT NULL DEFAULT 128,
-  `date_added` date NOT NULL DEFAULT current_timestamp()
+  `date_added` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
