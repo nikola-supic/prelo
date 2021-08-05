@@ -267,7 +267,7 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         self.label_current.setText(f'Музику пушта: {user.username}')
 
         song = db.Song(song_id)
-        artist = db.get_artist_name(song.song_id)
+        artist = db.get_artist_name(song.artist_id)
         art_path = db.get_art_path(song.art)
 
         self.label_name.setText(song.name)
@@ -287,6 +287,8 @@ class PartyScreen(QMainWindow, Ui_PartyScreen):
         if os.path.isfile(song.path):
             full_path = os.path.join(os.getcwd(), song.path)
         else:
+            download_single(self.user.id, self.active_song, self.network)
+
             song_path = 'temp\\' + song.path[6:]
             full_path = os.path.join(os.getcwd(), song_path)
 
