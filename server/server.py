@@ -95,7 +95,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
             return False
         self.click_time = get_time()+1
         
-        self.button_anim(self.btn_chat)
+        self.button_anim(self.toggle_chat)
 
 
     def download_toggle(self):
@@ -103,7 +103,7 @@ class ServerScreen(QMainWindow, Ui_ServerScreen):
             return False
         self.click_time = get_time()+1
 
-        self.button_anim(self.btn_download)
+        self.button_anim(self.toggle_download)
 
 
     def server_logs(self):
